@@ -57,8 +57,8 @@ void Palette::WritePaletteHeaderFile(const std::string& outputFolder,
     headerfile << "\n";
 
 	// includes
-    headerfile << "#include \"palette_types.h\"\n";
-    headerfile << "#include \"resource_types.h\"\n";
+    headerfile << "#include \"engine\\palette_types.h\"\n";
+    headerfile << "#include \"engine\\resource_types.h\"\n";
     headerfile << "\n";
 
 	// exported types

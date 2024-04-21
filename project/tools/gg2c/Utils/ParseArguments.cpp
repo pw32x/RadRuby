@@ -32,8 +32,16 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 
     ProgramArguments programArguments;
 
-    programArguments.m_filepath = program.get<std::string>("path");
-    programArguments.m_destinationFolder = FileUtils::ensureBackslash(program.get<std::string>("destfolder"));
+    programArguments.m_filepath = FileUtils::ensureBackslash(program.get<std::string>("path"));
+
+    #define BUFSIZE MAX_PATH
+    char currentDirectory[BUFSIZE];
+    DWORD dwRet = GetCurrentDirectoryA(BUFSIZE, currentDirectory);
+
+    programArguments.m_destinationFolder = currentDirectory;
+    programArguments.m_destinationFolder += "\\";
+    programArguments.m_destinationFolder += FileUtils::ensureBackslash(program.get<std::string>("destfolder"));
+
     programArguments.m_updateOnly = program.get<bool>("u");
 
     if (program["-s"] == true)

@@ -58,7 +58,12 @@ int ActualMain(int argc, char* argv[])
         }
 
         if (!FileUtils::folderExists(programArguments.m_destinationFolder.c_str()))
-            FileUtils::createFolder(programArguments.m_destinationFolder.c_str());
+        {
+            if (!FileUtils::createFolder(programArguments.m_destinationFolder.c_str()))
+            {
+                THROW_ERROR(Error::CouldntCreateDestinationFolder, "couldn't create destination folder for " + filename);
+            }
+        }
 
         AnimationBase* animation;
 

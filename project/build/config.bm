@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<BuildMaster>
+    <Settings>
+        <Setting name="ProjectName" value="RadRuby"/>
+		<Setting name="WorkingDirectory" value=""/> --><!-- root of the project folder -->
+		
+		<!-- paths are relative to the WorkingDirectory -->
+		<!-- customize these to your setup -->
+
+		<Setting name="dailyVersionsFolder" value="..\dailyversions" />
+		<Setting name="CopyToDailyFolder" value="true" />
+		
+		<!--<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
+		<Setting name="UseVisualStudioStylePaths" value="true"/>-->
+				
+		<Setting name="outFolder" value="out"/>
+		<Setting name="resourceInfoExportFolder" value="source/client/generated" />
+		
+    </Settings>
+
+	<Tools>
+		<Tool name="gg2c_animations" path="tools\gg2c\Release\gg2c.exe" flags="-updateonly" info="Export Animations"/>
+		<Tool name="gg2c_palettes" path="tools\gg2c\Release\gg2c.exe" flags="-palette -updateonly" info="Export Palettes"/>
+
+		<!--		
+		<Tool name="tmx2c" path="tools\bin\tmx2c\tmx2c.exe" info="Export backgrounds"/>
+		<Tool name="TemplateMaster" path="tools\bin\TemplateMaster\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
+		<Tool name="SceneMaster_export" path="tools\bin\SceneMaster\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
+
+		<Tool name="gal2tmx" path="tools\bin\gal2tmx\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
+			<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>
+		</Tool>
+		-->
+	</Tools>
+	
+	<!-- Tool Jobs are run in the order they're listed. -->
+	<ToolJobs>
+		<!--
+		<ToolJob tool="TemplateMaster" source="gamedata\gameobjecttemplates" destination="source\client\generated\gameobjecttemplates"/>
+		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets"/>
+		<ToolJob tool="gal2tmx" source="gamedata\animations\animatedtilesets\*.gal" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets"/>
+		<ToolJob tool="SceneMaster_export" source="gamedata\scenes" destination="source\client\exported\scenes" />
+		-->
+		
+		<ToolJob tool="gg2c_animations" source="gamedata\animations" destination="source\client\exported\animations"/>
+		<ToolJob tool="gg2c_palettes" source="gamedata\palettes" destination="source\client\exported\palettes"/>
+		
+		<!--
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps"/>
+		<ToolJob tool="tmx2c" source="gamedata\generated\themes" destination="source\client\exported\maps\"/>
+		-->
+	</ToolJobs>
+
+
+	<!--
+	<Include path ="source"/>
+	<Include path ="source/engine"/>
+	-->
+
+	<!-- Source set order is important. A file found in one source set will not be added to subsequent source sets -->
+	<!-- Source sets are created from tool jobs. They always go first -->
+
+<!--
+	<SourceSet bank="3">
+		<Source path = "source/client/generated/*_tileset.c"/>
+	</SourceSet>
+
+	<SourceSet>
+		<Source path = "source/client"/>
+		<Source path = "source/client/managers"/>
+		<Source path = "source/client/exported"/>
+		<Source path = "source/client/generated"/>
+		<Source path = "source/client/objects"/>
+    </SourceSet>
+
+	<SourceSet>
+		<Source path = "source/engine"/>
+		<Source path = "source/engine/commands"/>
+	</SourceSet>
+	-->
+
+
+</BuildMaster>

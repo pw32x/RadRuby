@@ -1,6 +1,6 @@
 #include "genesis.h"
-#include "..\client\ruby.h"
-#include "..\client\global_palette.h"
+#include "..\client\exported\animations\ruby.h"
+#include "..\client\exported\palettes\global_palette.h"
 #include "..\engine\AnimationDraw.h"
 
 void SetupSystem() 

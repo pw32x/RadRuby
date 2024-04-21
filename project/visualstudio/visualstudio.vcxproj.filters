@@ -20,6 +20,18 @@
     <Filter Include="Source Files\Genesis">
       <UniqueIdentifier>{566db3b1-11da-4abc-b9b4-85a164bfc70f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\exported">
+      <UniqueIdentifier>{0a7639e3-8f73-4a86-96dc-6ba9bb6d1f46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\exported\animations">
+      <UniqueIdentifier>{d6842396-0cc2-476a-a4e7-8cf7c08f2729}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\exported\palettes">
+      <UniqueIdentifier>{a18c2c46-f0df-428d-ae10-e30b1e9a7f06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\generated">
+      <UniqueIdentifier>{46d7a3a5-9c4e-43af-ae3b-031cb330b182}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\sgdk200\inc\bmp.h">
@@ -133,12 +145,6 @@
     <ClInclude Include="..\..\..\..\sgdk200\inc\asm.h">
       <Filter>SGDK</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\global_palette.h">
-      <Filter>Source Files\client</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\ruby.h">
-      <Filter>Source Files\client</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\FrameTriggers.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
@@ -156,6 +162,15 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\AnimationTypes.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\resource_infos.h">
+      <Filter>Source Files\client\generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\ruby.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\palettes\global_palette.h">
+      <Filter>Source Files\client\exported\palettes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,12 +270,6 @@
     <ClCompile Include="..\..\..\..\sgdk200\src\bmp.c">
       <Filter>SGDK</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\global_palette.c">
-      <Filter>Source Files\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\ruby.c">
-      <Filter>Source Files\client</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\engine\vdptypes.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -269,6 +278,15 @@
     </ClCompile>
     <ClCompile Include="..\source\Genesis\main.c">
       <Filter>Source Files\Genesis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\resource_infos.c">
+      <Filter>Source Files\client\generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\ruby.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\palettes\global_palette.c">
+      <Filter>Source Files\client\exported\palettes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

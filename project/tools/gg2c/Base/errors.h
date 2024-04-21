@@ -11,7 +11,8 @@ enum Error
 	FormatNot4BitsPerPixel,
 	ParsingArgumentsFailed,
 	UnsupportedAnimationType,
-	UnknownCommandLineFlag
+	UnknownCommandLineFlag,
+	CouldntCreateDestinationFolder
 };
 
 #define THROW_ERROR(code, message) \

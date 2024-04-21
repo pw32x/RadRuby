@@ -64,8 +64,9 @@
     <ClInclude Include="..\..\..\..\sgdk200\inc\vram.h" />
     <ClInclude Include="..\..\..\..\sgdk200\inc\ym2612.h" />
     <ClInclude Include="..\..\..\..\sgdk200\inc\z80_ctrl.h" />
-    <ClInclude Include="..\source\client\global_palette.h" />
-    <ClInclude Include="..\source\client\ruby.h" />
+    <ClInclude Include="..\source\client\exported\animations\ruby.h" />
+    <ClInclude Include="..\source\client\exported\palettes\global_palette.h" />
+    <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\engine\AnimationDraw.h" />
     <ClInclude Include="..\source\engine\AnimationTypes.h" />
     <ClInclude Include="..\source\engine\FrameTriggers.h" />
@@ -106,8 +107,9 @@
     <ClCompile Include="..\..\..\..\sgdk200\src\vram.c" />
     <ClCompile Include="..\..\..\..\sgdk200\src\ym2612.c" />
     <ClCompile Include="..\..\..\..\sgdk200\src\z80_ctrl.c" />
-    <ClCompile Include="..\source\client\global_palette.c" />
-    <ClCompile Include="..\source\client\ruby.c" />
+    <ClCompile Include="..\source\client\exported\animations\ruby.c" />
+    <ClCompile Include="..\source\client\exported\palettes\global_palette.c" />
+    <ClCompile Include="..\source\client\generated\resource_infos.c" />
     <ClCompile Include="..\source\engine\AnimationDraw.c" />
     <ClCompile Include="..\source\engine\vdptypes.c" />
     <ClCompile Include="..\source\Genesis\main.c" />

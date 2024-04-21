@@ -1,0 +1,150 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+
+namespace BuildMaster
+{
+    class NewSteps
+    {
+        public static bool BuildCode(Config config)
+        {
+            Console.WriteLine("Step: Build code (New Method):");
+
+            var sourceFilesToBuild = config.BuildListOfSourceFilesToCompile();
+            var sourceDestinationFolders = config.BuildSourceDestinationFolders();
+
+            Utils.CreateFolders(sourceDestinationFolders);
+
+            return BuildProject(sourceFilesToBuild, config);
+        }
+
+        public static void CleanOutputFolder(Config config)
+        {
+            Utils.DeleteAllFilesRecursive(config.CompilationSettings.OutFolder);
+        }
+
+        public static void CleanExportFolder(Config config)
+        {
+            var toolExportFolders = config.GetToolExportFolders();
+
+            foreach (var toolExportFolder in toolExportFolders)
+            {
+                Utils.DeleteAllFiles(toolExportFolder);
+            }
+        }
+
+        private static bool BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
+        {
+            Action<StreamWriter> buildProject = (StreamWriter sw) =>
+            {
+                // Build files
+                foreach (var sourceFile in sourceFilesToBuild)
+                {
+                    DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
+                    DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
+
+                    // only build if the source file is newer.
+                    // or the config file is newer.
+                    if (sourceLastWriteTime > destinationLastWriteTime ||
+                        config.LastConfigFileWriteTime > destinationLastWriteTime ||
+                        config.LastApplicationWriteTime > destinationLastWriteTime)
+                    {
+                        sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
+                    }
+                } 
+            };
+
+            var outputString = Utils.RunProcess(buildProject);
+
+            bool containsError = ProcessErrorString(outputString, config);
+
+            if (containsError)
+            {
+                return false;
+            }
+
+            Action<StreamWriter> linkProject = (StreamWriter sw) =>
+            {
+                // Run the linker and ihx converter
+                var sb = new StringBuilder();
+                void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+
+                var destinationSourceObjects = sourceFilesToBuild.OrderBy(s => s.BankNumber).Select(s => s.Destination);
+
+                foreach (var destinationSourceObject in destinationSourceObjects)
+                {
+                    addFlag(destinationSourceObject);
+                }
+
+                var usedBankNumbers = sourceFilesToBuild.Where(s => s.BankNumber > 1).Select(s => s.BankNumber).Distinct();
+
+                sw.WriteLine(config.BuildLinkCommand(usedBankNumbers) + " " + sb.ToString());
+                sw.WriteLine(config.BuildIHXToSMSCommand());
+            };
+
+            outputString = Utils.RunProcess(linkProject);
+            containsError = ProcessErrorString(outputString, config);
+
+            return !containsError;
+        }
+
+        static (string, int, string) ExtractErrorInfo(string line)
+        {
+            // Define the pattern with capturing groups
+            string pattern = @"^(.*):(\d+):";
+
+            // Match the pattern
+            Match match = Regex.Match(line, pattern);
+
+            // Check if the string matches the pattern
+            if (match.Success)
+            {
+                // Extract the path and line number from capturing groups
+                string filePath = match.Groups[1].Value;
+                int lineNumber = int.Parse(match.Groups[2].Value);
+
+                string restOfString = line.Substring(match.Length).Trim();
+
+                return (filePath, lineNumber, restOfString);
+            }
+
+            return ("", 0, line);
+        }
+
+        private static bool ProcessErrorString(string errorString, Config config)
+        {
+            bool containsError = false;
+
+            if (!String.IsNullOrEmpty(errorString))
+            {
+                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
+
+                string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+                foreach (var line in lines)
+                {
+                    var (filePath, lineNumber, message) = ExtractErrorInfo(line);
+
+                    if (string.IsNullOrEmpty(message))
+                        continue;
+
+                    if (!containsError)
+                    {
+                        containsError = message.ToLower().Contains("error");
+                    }
+
+                    if (useVSStylePaths && !string.IsNullOrEmpty(filePath))
+                        Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
+                    else
+                        Console.WriteLine(line);
+                }
+            }
+
+            return containsError;
+        }
+    }
+}

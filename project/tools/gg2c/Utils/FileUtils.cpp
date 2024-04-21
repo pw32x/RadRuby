@@ -1,5 +1,6 @@
 #include "..\stdafx.h"
 #include "FileUtils.h"
+#include "shlobj_core.h"
 
 FILETIME FileUtils::getLastWriteTime(const std::string& path)
 {
@@ -37,15 +38,8 @@ bool FileUtils::folderExists(const char* folderPath)
 
 bool FileUtils::createFolder(const char* folderPath)
 {
-    if (!CreateDirectoryA(folderPath, NULL))
-    {
-        if (GetLastError() != ERROR_ALREADY_EXISTS)
-        {
-            return false;
-        }
-    }
-
-    return true;
+    int returnCode = SHCreateDirectoryExA(NULL, folderPath, NULL);
+    return returnCode == ERROR_SUCCESS;
 }
 
 bool FileUtils::needsUpdate(const std::string& filename, 
