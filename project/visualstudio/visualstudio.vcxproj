@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug_Deploy|Win32">
+      <Configuration>Debug_Deploy</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug_Deploy|x64">
+      <Configuration>Debug_Deploy</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\sgdk200\inc\asm.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\bmp.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\config.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\dma.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\font.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\genesis.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\joy.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\kdebug.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\map.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\mapper.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\maths.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\maths3D.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\memory.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\memory_base.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\object.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\pal.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\pool.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\psg.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\sprite_eng.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\sprite_eng_legacy.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\sram.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\string.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\sys.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\tab_cnv.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\task.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\task_cst.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\timer.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\tools.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\types.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_bg.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_pal.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_spr.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_tile.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\vram.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\ym2612.h" />
+    <ClInclude Include="..\..\..\sgdk200\inc\z80_ctrl.h" />
+    <ClInclude Include="..\source\AnimationDraw.h" />
+    <ClInclude Include="..\source\AnimationTypes.h" />
+    <ClInclude Include="..\source\FrameTriggers.h" />
+    <ClInclude Include="..\source\global_palette.h" />
+    <ClInclude Include="..\source\palette_types.h" />
+    <ClInclude Include="..\source\resource_types.h" />
+    <ClInclude Include="..\source\ruby.h" />
+    <ClInclude Include="..\source\vdptypes.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\AnimationDraw.c" />
+    <ClCompile Include="..\source\global_palette.c" />
+    <ClCompile Include="..\source\main.c" />
+    <ClCompile Include="..\source\ruby.c" />
+    <ClCompile Include="..\source\vdptypes.c" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{AF575753-3018-438B-9CDC-FD1990ED19F7}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeOutput>..\out\RadRuby.bin</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\build\vs_clean.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|Win32'">
+    <NMakeOutput>..\out\untitled_project.sms</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\build\vs_clean.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeOutput>visualstudio.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|x64'">
+    <NMakeOutput>visualstudio.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeOutput>..\out\untitled_project.sms</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\build\vs_clean.bat</NMakeCleanCommandLine>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeOutput>visualstudio.exe</NMakeOutput>
+    <NMakePreprocessorDefinitions>NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SGDK">
+      <UniqueIdentifier>{3810f8e0-a281-42bb-af09-aab61c344848}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\AnimationTypes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\FrameTriggers.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ruby.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\resource_types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vdptypes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\dma.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\font.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\genesis.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\joy.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\kdebug.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\map.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\mapper.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\maths.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\maths3D.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\memory.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\memory_base.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\object.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\pal.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\pool.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\psg.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\sprite_eng.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\sprite_eng_legacy.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\sram.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\string.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\sys.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\tab_cnv.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\task.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\task_cst.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\timer.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\tools.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\types.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_bg.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_pal.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_spr.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vdp_tile.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\vram.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\ym2612.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\z80_ctrl.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\asm.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\bmp.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\sgdk200\inc\config.h">
+      <Filter>SGDK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\global_palette.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\palette_types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\AnimationDraw.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\main.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ruby.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\global_palette.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vdptypes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\AnimationDraw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

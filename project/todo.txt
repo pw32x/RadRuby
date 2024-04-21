@@ -1,0 +1,5 @@
+DONE figure out how to use gdb with genskmod
+
+convert .gal to genesis compatible format
+load gal to vdp
+display sprite
