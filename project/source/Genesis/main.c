@@ -1,7 +1,9 @@
 #include "genesis.h"
 #include "..\client\exported\animations\ruby.h"
 #include "..\client\exported\palettes\global_palette.h"
+#include "..\client\generated\tilesets\field_tileset.h"
 #include "..\engine\AnimationDraw.h"
+#include "..\engine\map_types.h"
 
 void SetupSystem() 
 {
@@ -40,18 +42,32 @@ void VDPTileManager_LoadGGAnimationToVDP(u16 region, const GGAnimation* animatio
 	VDP_waitDMACompletion();
 }
 
+
+void VDPTileManager_LoadTilesetDataToVDP(u16 region, const Ruby_Tileset* tileset, VDPTileIndex* vdpTileIndex)
+{
+	//*vdpTileIndex = vdpRegionTileIndex[region];
+	//vdpRegionTileIndex[region] += tileset->numTile;
+	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadSpriteData too many tiles loaded in vdp region");
+
+	VDP_loadTileData( (const u32 *)tileset->tiles, *vdpTileIndex, tileset->numTiles, DMA);
+	VDP_waitDMACompletion();
+}
+
 int main(bool hardReset)
 {
 	PAL_setPalette(PAL0, global_palette.palette, DMA);
 	VDP_waitDMACompletion();
 
-	VDPTileIndex vdpTileIndex = 1;
-	VDPTileManager_LoadGGAnimationToVDP(0, &ruby, &vdpTileIndex);
+	VDPTileIndex vdpAnimationTileIndex = 1;
+	VDPTileManager_LoadGGAnimationToVDP(0, &ruby, &vdpAnimationTileIndex);
+
+	VDPTileIndex vdpTilesetTileIndex = vdpAnimationTileIndex + ruby.totalTiles;
+	VDPTileManager_LoadTilesetDataToVDP(0, &field_tileset, &vdpTilesetTileIndex);
 
 	while (TRUE)
 	{
 		MyVDP_resetSprites();
-		GGAnimation_Draw(128, 128, &ruby, 0, vdpTileIndex);
+		GGAnimation_Draw(128, 128, &ruby, 0, vdpAnimationTileIndex);
 
 		MyVDP_setLastSprite();
 		VDP_waitVSync();

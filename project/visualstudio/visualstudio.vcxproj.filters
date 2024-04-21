@@ -35,6 +35,9 @@
     <Filter Include="Source Files\client\generated\tilesets">
       <UniqueIdentifier>{290a8f8e-4c37-4ea8-82b3-b1dfd26fd36c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\exported\maps">
+      <UniqueIdentifier>{9bc1ba36-6f24-402c-ac43-c6b2caa7b20e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\sgdk200\inc\bmp.h">
@@ -178,6 +181,9 @@
     <ClInclude Include="..\source\engine\map_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\field.h">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\sgdk200\src\dma.c">
@@ -296,6 +302,9 @@
     </ClCompile>
     <ClCompile Include="..\source\engine\map_types.c">
       <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\field.c">
+      <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
