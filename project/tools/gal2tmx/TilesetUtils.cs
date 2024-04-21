@@ -187,15 +187,7 @@ namespace gal2tmx
 
         */
 
-        private static void WriteToFourBytes(byte value, byte shift, byte[] bytes)
-        {
-            bytes[0] |= (byte)(((value & 0x01) >> 0) << shift);
-            bytes[1] |= (byte)(((value & 0x02) >> 1) << shift);
-            bytes[2] |= (byte)(((value & 0x04) >> 2) << shift);
-            bytes[3] |= (byte)(((value & 0x08) >> 3) << shift);
-        }
-
-        private unsafe static void ConvertToPlanar(int row, byte* tileData, byte[] outBytes)
+        private unsafe static void ConvertTo4ByteTileRow(int row, byte* tileData, byte[] outBytes)
         {
             var rowData = new byte[8];
 
@@ -206,20 +198,24 @@ namespace gal2tmx
                 rowData[loop] = value;
             }
 
-            for (byte loop = 0; loop < 8; loop++)
-            {
-                WriteToFourBytes(rowData[loop], (byte)(7 - loop), outBytes);
-            }
+            outBytes[0] |= (byte)(rowData[0] << 4);
+            outBytes[0] |= rowData[1];
+            outBytes[1] |= (byte)(rowData[2] << 4);
+            outBytes[1] |= rowData[3];
+            outBytes[2] |= (byte)(rowData[4] << 4);
+            outBytes[2] |= rowData[5];
+            outBytes[3] |= (byte)(rowData[6] << 4);
+            outBytes[3] |= rowData[7];
         }
 
 
-        private unsafe static void OutputTilePlanar(StringBuilder stringBuilder, byte* tileData)
+        private unsafe static void OutputTile(StringBuilder stringBuilder, byte* tileData)
         {
             for (int row = 0; row < 8; row++)
             {
                 byte[] bytes = { 0, 0, 0, 0 };
 
-                ConvertToPlanar(row, tileData, bytes);
+                ConvertTo4ByteTileRow(row, tileData, bytes);
 
                 stringBuilder.Append("    ");
 
@@ -259,7 +255,7 @@ namespace gal2tmx
                     int stride = bitmapData.Stride;
                     int len = stride * bitmap.Height;
 
-                    OutputTilePlanar(stringBuilder, pixels);
+                    OutputTile(stringBuilder, pixels);
                 }
 
                 bitmap.UnlockBits(bitmapData);
