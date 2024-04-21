@@ -143,9 +143,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakeOutput>..\out\RadRuby.bin</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>..\build\vs_clean.bat</NMakeCleanCommandLine>
+    <NMakeBuildCommandLine>..\build\build.bat</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>..\build\rebuild.bat</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>..\build\clean.bat</NMakeCleanCommandLine>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|Win32'">
     <NMakeOutput>..\out\untitled_project.sms</NMakeOutput>
