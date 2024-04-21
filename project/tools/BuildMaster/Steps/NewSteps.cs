@@ -12,14 +12,9 @@ namespace BuildMaster
     {
         public static bool BuildCode(Config config)
         {
-            Console.WriteLine("Step: Build code (New Method):");
+            Console.WriteLine("Step: Build code:");
 
-            var sourceFilesToBuild = config.BuildListOfSourceFilesToCompile();
-            var sourceDestinationFolders = config.BuildSourceDestinationFolders();
-
-            Utils.CreateFolders(sourceDestinationFolders);
-
-            return BuildProject(sourceFilesToBuild, config);
+            return BuildProject(config);
         }
 
         public static void CleanOutputFolder(Config config)
@@ -37,57 +32,42 @@ namespace BuildMaster
             }
         }
 
-        private static bool BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
+        private static bool BuildProject(Config config)
         {
-            Action<StreamWriter> buildProject = (StreamWriter sw) =>
+            // Create a new process start info
+            ProcessStartInfo psi = new ProcessStartInfo
             {
-                // Build files
-                foreach (var sourceFile in sourceFilesToBuild)
-                {
-                    DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
-                    DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
-
-                    // only build if the source file is newer.
-                    // or the config file is newer.
-                    if (sourceLastWriteTime > destinationLastWriteTime ||
-                        config.LastConfigFileWriteTime > destinationLastWriteTime ||
-                        config.LastApplicationWriteTime > destinationLastWriteTime)
-                    {
-                        sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
-                    }
-                } 
+                FileName = "..\\..\\..\\sgdk200\\bin\\make.exe", // Use the command prompt
+                RedirectStandardInput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                Arguments = "-f " + config.GetSetting("MakefilePath") + " TARGET=\"" + config.ProjectName + "\"",
+                //CreateNoWindow = !Debugger.IsAttached
             };
 
-            var outputString = Utils.RunProcess(buildProject);
+            // Start the process
+            Process process = new Process { StartInfo = psi };
+            process.Start();
 
-            bool containsError = ProcessErrorString(outputString, config);
+            // Get the process's input stream
+            StreamWriter sw = process.StandardInput;
+            StreamReader errorReader = process.StandardError; 
 
-            if (containsError)
-            {
-                return false;
-            }
+            // Close the input stream to indicate the end of input
+            sw.Close();
 
-            Action<StreamWriter> linkProject = (StreamWriter sw) =>
-            {
-                // Run the linker and ihx converter
-                var sb = new StringBuilder();
-                void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+            var errorString = errorReader.ReadToEnd();
 
-                var destinationSourceObjects = sourceFilesToBuild.OrderBy(s => s.BankNumber).Select(s => s.Destination);
+            // Wait for the process to complete
+            process.WaitForExit();
 
-                foreach (var destinationSourceObject in destinationSourceObjects)
-                {
-                    addFlag(destinationSourceObject);
-                }
+            // Display the exit code
+            //Console.WriteLine("Exit Code: " + process.ExitCode);
 
-                var usedBankNumbers = sourceFilesToBuild.Where(s => s.BankNumber > 1).Select(s => s.BankNumber).Distinct();
+            // Close the process
+            process.Close();
 
-                sw.WriteLine(config.BuildLinkCommand(usedBankNumbers) + " " + sb.ToString());
-                sw.WriteLine(config.BuildIHXToSMSCommand());
-            };
-
-            outputString = Utils.RunProcess(linkProject);
-            containsError = ProcessErrorString(outputString, config);
+            bool containsError = ProcessErrorString(errorString, config);
 
             return !containsError;
         }
@@ -121,8 +101,6 @@ namespace BuildMaster
 
             if (!String.IsNullOrEmpty(errorString))
             {
-                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
-
                 string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
                 foreach (var line in lines)
@@ -137,10 +115,7 @@ namespace BuildMaster
                         containsError = message.ToLower().Contains("error");
                     }
 
-                    if (useVSStylePaths && !string.IsNullOrEmpty(filePath))
-                        Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
-                    else
-                        Console.WriteLine(line);
+                    Console.WriteLine(line);
                 }
             }
 

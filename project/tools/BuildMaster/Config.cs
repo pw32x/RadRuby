@@ -28,14 +28,10 @@ namespace BuildMaster
             LoadTools(xmlDocument);
             LoadToolJobs(xmlDocument);
 
-            LoadIncludes(xmlDocument);
-            LoadSourceSets(xmlDocument);
-
             BuildToolDestinationFoldersList();
 
 
-            CompilationSettings = new CompilationSettings(GetSetting("devkitSmsPath"),
-                                                            GetSetting("outFolder"));
+            CompilationSettings = new CompilationSettings(GetSetting("outFolder"));
 
             LastConfigFileWriteTime = File.GetLastWriteTime(path);
 
@@ -43,44 +39,9 @@ namespace BuildMaster
             LastApplicationWriteTime = System.IO.File.GetLastWriteTime(appPath);
         }
 
-        public string BuildLinkCommand(IEnumerable<uint> usedBankNumbers)
-        {
-            var sb = new StringBuilder();
-
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
-
-            addFlag(CompilationSettings.Compiler);
-            addFlag("-o");
-            addFlag(CompilationSettings.OutFolder + ProjectName + ".ihx");
-            addFlag(CompilationSettings.GetLinkerFlags(usedBankNumbers));
-
-            return sb.ToString();
-        }
-
-        public string BuildIHXToSMSCommand()
-        {
-            var sb = new StringBuilder();
-
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
-
-            addFlag(CompilationSettings.IHX2SMS_Path);
-            addFlag(CompilationSettings.OutFolder + ProjectName + ".ihx");
-            addFlag(CompilationSettings.OutFolder + ProjectName + ".sms");
-
-            return sb.ToString();
-        }
-
         public IEnumerable<string> BuildSourceDestinationFolders()
         {
             var sourceDestinationFolders = new HashSet<string>();
-
-            foreach (var sourceSet in m_sourceSets)
-            {
-                foreach (var sourcePath in sourceSet.SourceFolders)
-                {
-                    sourceDestinationFolders.Add(CompilationSettings.OutFolder + sourcePath);
-                }
-            }
 
             foreach (var toolDestinationFolder in m_toolDestinationFolders)
             {
@@ -100,158 +61,6 @@ namespace BuildMaster
             }
 
             return toolExportFolders;
-        }
-
-        public class SourceToBuild
-        {
-            public SourceToBuild(string filename,
-                                 string destination,
-                                 string flags,
-                                 string bank = "")
-            {
-                Filename = Path.Combine(filename.Split('/'));
-                Destination = Path.Combine(destination.Split('/'));
-                Bank = bank;
-
-                m_bankNumber = 0;
-                uint.TryParse(bank, out m_bankNumber);
-
-                Flags = flags;
-
-                if (m_bankNumber != 0)
-                    Flags += " --constseg BANK" + Bank;
-            }
-
-            public string Filename { get; }
-            public string Destination { get; }
-            public string Bank { get; }
-
-            private uint m_bankNumber;
-            public uint BankNumber => m_bankNumber;
-
-            public string Flags { get; }
-
-            public override int GetHashCode()
-            {
-                return Filename.GetHashCode();
-            }
-
-            public override bool Equals(object obj)
-            {
-                return obj is SourceToBuild other && Filename == other.Filename;
-            }
-        }
-
-        public IEnumerable<SourceToBuild> BuildListOfSourceFilesToCompile()
-        {
-            var sourceFilesToBuild = new HashSet<SourceToBuild>();
-
-            string[] sourceFileExtensions = { ".c", ".s" };
-
-            var baseCompilerFlags = CompilationSettings.BuildCompilerFlags(IncludePaths);
-
-            var currentDirectory = Directory.GetCurrentDirectory();
-
-            foreach (var sourceSet in m_sourceSets)
-            {
-                foreach (var sourcePath in sourceSet.SourcePaths)
-                {
-                    if (Utils.IsFile(sourcePath))
-                    {
-                        string relativePath = Path.GetRelativePath(currentDirectory, sourcePath);
-
-                        sourceFilesToBuild.Add(new SourceToBuild(relativePath,
-                                               CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                               baseCompilerFlags,
-                                               sourceSet.Bank));
-
-                    }
-                    else if (Utils.IsFileOrFileSpec(sourcePath))
-                    {
-                        var filenames = Utils.GetFilesFromWildcardPath(sourcePath);
-
-                        foreach (var filename in filenames)
-                        {
-                            string relativePath = Path.GetRelativePath(currentDirectory, filename);
-
-                            sourceFilesToBuild.Add(new SourceToBuild(relativePath,
-                                                                     CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                                                     baseCompilerFlags,
-                                                                     sourceSet.Bank));
-                        }
-                    }
-                    else if (Directory.Exists(sourcePath))
-                    {
-                        DirectoryInfo directoryInfo = new DirectoryInfo(sourcePath);
-                        FileInfo[] files = directoryInfo.GetFiles();
-
-                        var filteredFiles = files.Where(file => sourceFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
-
-                        foreach (var filteredFile in filteredFiles)
-                        {
-                            string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
-
-                            sourceFilesToBuild.Add(new SourceToBuild(relativePath,
-                                                                     CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                                                     baseCompilerFlags,
-                                                                     sourceSet.Bank));
-                        }
-                    }
-                }
-            }
-
-            return sourceFilesToBuild;
-        }
-
-
-        public IEnumerable<string> BuildListOfHeaderFiles()
-        {
-            var headerFiles = new HashSet<string>();
-
-            string[] headerFileExtensions = { ".h" };
-
-            var currentDirectory = Directory.GetCurrentDirectory();
-
-            foreach (var sourceSet in m_sourceSets)
-            {
-                foreach (var sourceFolder in sourceSet.SourceFolders)
-                {
-                    if (Directory.Exists(sourceFolder))
-                    {
-                        DirectoryInfo directoryInfo = new DirectoryInfo(sourceFolder);
-                        FileInfo[] files = directoryInfo.GetFiles();
-
-                        var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
-
-                        foreach (var filteredFile in filteredFiles)
-                        {
-                            string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
-
-                            headerFiles.Add(relativePath);
-                        }
-                    }
-                }
-            }
-
-            foreach (var toolDestinationFolder in m_toolDestinationFolders)
-            {
-                if (Directory.Exists(toolDestinationFolder))
-                {
-                    DirectoryInfo directoryInfo = new DirectoryInfo(toolDestinationFolder);
-                    FileInfo[] files = directoryInfo.GetFiles();
-
-                    var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
-
-                    foreach (var filteredFile in filteredFiles)
-                    {
-                        string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
-
-                        headerFiles.Add(relativePath);
-                    }
-                }
-            }
-
-            return headerFiles;
         }
 
         private void LoadSettings(XmlDocument xmlDocument)
@@ -417,42 +226,6 @@ namespace BuildMaster
         }
 
         HashSet<SourceSet> m_sourceSets = new HashSet<SourceSet>();
-        private void LoadSourceSets(XmlDocument xmlDocument)
-        {
-            XmlNodeList sourceSetNodes = xmlDocument.SelectNodes("/BuildMaster/SourceSet");
-
-            if (sourceSetNodes != null)
-            {
-                foreach (XmlNode sourceSetNode in sourceSetNodes)
-                {
-                    string bank = sourceSetNode.Attributes["bank"]?.Value ?? "";
-
-                    var sourceSet = new SourceSet(bank);
-
-                    foreach (XmlNode sourceNode in sourceSetNode)
-                    {
-                        string sourcePath = sourceNode.Attributes["path"].Value;
-
-                        if (Utils.IsFileOrFileSpec(sourcePath))
-                        {
-                            sourceSet.SourceFolders.Add(Utils.GetPathFromFileOrFileSpec(sourcePath));
-                        }
-                        else
-                        {
-                            sourcePath = Utils.NormalizePath(sourcePath);
-                            sourceSet.SourceFolders.Add(sourcePath);
-                        }
-
-
-                        sourceSet.SourcePaths.Add(sourcePath);
-                    }
-
-                    m_sourceSets.Add(sourceSet);
-                }
-            }
-        }
-
-        
 
         // Settings
         Dictionary<string, string> m_settings = new Dictionary<string, string>();
@@ -467,7 +240,6 @@ namespace BuildMaster
 
         public string ProjectName { get { return GetSetting("ProjectName"); } }
         public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); } }
-        public string ResourceInfoExportFolder { get { return GetSetting("resourceInfoExportFolder"); } }
 
         // Tools
 

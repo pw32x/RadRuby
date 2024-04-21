@@ -3,6 +3,8 @@
     <Settings>
         <Setting name="ProjectName" value="RadRuby"/>
 		<Setting name="WorkingDirectory" value=""/> --><!-- root of the project folder -->
+
+		<Setting name="MakefilePath" value="build\makefile.gen"/>
 		
 		<!-- paths are relative to the WorkingDirectory -->
 		<!-- customize these to your setup -->
@@ -10,12 +12,7 @@
 		<Setting name="dailyVersionsFolder" value="..\dailyversions" />
 		<Setting name="CopyToDailyFolder" value="true" />
 		
-		<!--<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
-		<Setting name="UseVisualStudioStylePaths" value="true"/>-->
-				
 		<Setting name="outFolder" value="out"/>
-		<Setting name="resourceInfoExportFolder" value="source/client/generated" />
-		
     </Settings>
 
 	<Tools>

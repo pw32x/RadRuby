@@ -2,7 +2,7 @@
   "profiles": {
     "BuildMaster": {
       "commandName": "Project",
-      "commandLineArgs": "build\\config.bm builddata",
+      "commandLineArgs": "build\\config.bm build",
       "workingDirectory": "C:\\Dropbox\\GenesisDev\\projects\\RadRuby\\project\\"
     }
   }
