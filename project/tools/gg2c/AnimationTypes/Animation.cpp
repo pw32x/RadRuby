@@ -131,7 +131,7 @@ void Animation::WriteAnimationHeaderFile(const std::string& outputFolder, const 
     headerfile << "\n";
 
 	// includes
-    headerfile << "#include \"AnimationTypes.h\"\n";
+    headerfile << "#include \"engine\\AnimationTypes.h\"\n";
     headerfile << "\n";
 
 	// exported types
@@ -338,7 +338,7 @@ void Animation::WriteAnimationSourceFile(const std::string& outputFolder, const 
     // includes
     sourceFile << "#include <genesis.h>\n";
     sourceFile << "#include \"" << outputName << ".h\"\n";
-	sourceFile << "#include \"FrameTriggers.h\"\n";
+	sourceFile << "#include \"engine\\FrameTriggers.h\"\n";
 	
     sourceFile << "\n";
     sourceFile << "\n";

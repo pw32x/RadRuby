@@ -1,5 +1,18 @@
 DONE figure out how to use gdb with genskmod
 
-convert .gal to genesis compatible format
-load gal to vdp
-display sprite
+DONE convert .gal to genesis compatible format
+DONE load gal to vdp
+DONE display sprite
+
+create client folder
+
+create engine folder
+
+Use BuildMaster to build assets
+add the folders collected in BuildMaster to the makefile
+
+
+
+
+create an object
+add the object manager

@@ -13,18 +13,16 @@ INCLUDE := inc
 
 TARGET  ?= rom
 
-
-
 SRC_C= $(wildcard *.c)
 SRC_C+= $(wildcard $(SRC)/*.c)
 SRC_C+= $(wildcard $(SRC)/*/*.c)
 SRC_C+= $(wildcard $(SRC)/*/*/*.c)
-SRC_C:= $(filter-out $(SRC)/boot/rom_head.c,$(SRC_C))
+SRC_C:= $(filter-out $(SRC)/Genesis/boot/rom_head.c,$(SRC_C))
 SRC_S= $(wildcard *.s)
 SRC_S+= $(wildcard $(SRC)/*.s)
 SRC_S+= $(wildcard $(SRC)/*/*.s)
 SRC_S+= $(wildcard $(SRC)/*/*/*.s)
-SRC_S:= $(filter-out $(SRC)/boot/sega.s,$(SRC_S))
+SRC_S:= $(filter-out $(SRC)/Genesis/boot/sega.s,$(SRC_S))
 SRC_ASM= $(wildcard *.asm)
 SRC_ASM+= $(wildcard $(SRC)/*.asm)
 SRC_ASM+= $(wildcard $(SRC)/*/*.asm)
@@ -131,7 +129,7 @@ cleanDebug: cleandebug
 cleanAsm: cleanasm
 
 pre-build:
-	$(MKDIR) -p $(SRC)/boot
+	$(MKDIR) -p $(SRC)/Genesis/boot
 	$(MKDIR) -p out
 
 
@@ -149,19 +147,19 @@ out/rom.out: out/sega.o out/cmd_ $(LIBMD)
 out/cmd_: $(OBJS)
 	$(ECHO) "$(OBJS)" > out/cmd_
 
-out/sega.o: $(SRC)/boot/sega.s out/rom_head.bin
-	$(CC) -x assembler-with-cpp -Wa,--register-prefix-optional,--bitwise-or $(AFLAGS) -c $(SRC)/boot/sega.s -o $@
+out/sega.o: $(SRC)/Genesis/boot/sega.s out/rom_head.bin
+	$(CC) -x assembler-with-cpp -Wa,--register-prefix-optional,--bitwise-or $(AFLAGS) -c $(SRC)/Genesis/boot/sega.s -o $@
 
 out/rom_head.bin: out/rom_head.o
 	$(OBJCPY) -O binary $< $@
 
-out/rom_head.o: $(SRC)/boot/rom_head.c
+out/rom_head.o: $(SRC)/Genesis/boot/rom_head.c
 	$(CC) $(DEFAULT_FLAGS) -c $< -o $@
 
-$(SRC)/boot/sega.s: $(SRC_LIB)/boot/sega.s
+$(SRC)/Genesis/boot/sega.s: $(SRC_LIB)/boot/sega.s
 	$(CP) $< $@
 
-$(SRC)/boot/rom_head.c: $(SRC_LIB)/boot/rom_head.c
+$(SRC)/Genesis/boot/rom_head.c: $(SRC_LIB)/boot/rom_head.c
 	$(CP) $< $@
 
 

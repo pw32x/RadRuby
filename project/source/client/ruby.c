@@ -1,6 +1,6 @@
 #include <genesis.h>
 #include "ruby.h"
-#include "FrameTriggers.h"
+#include "engine\FrameTriggers.h"
 
 
 const unsigned short const rubyTileData[1280] = // 80 tiles 

@@ -1,7 +1,7 @@
 #include "genesis.h"
-#include "ruby.h"
-#include "global_palette.h"
-#include "AnimationDraw.h"
+#include "..\client\ruby.h"
+#include "..\client\global_palette.h"
+#include "..\engine\AnimationDraw.h"
 
 void SetupSystem() 
 {
@@ -35,18 +35,15 @@ void VDPTileManager_LoadGGAnimationToVDP(u16 region, const GGAnimation* animatio
 	//vdpRegionTileIndex[region] += animation->totalTiles;
 	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadGGAnim too many tiles loaded in vdp region");
 
-	VDP_loadTileData(animation->allSpriteData, *vdpTileIndex, animation->totalTiles, 1);
+	VDP_loadTileData(animation->allSpriteData, *vdpTileIndex, animation->totalTiles, DMA);
 
 	VDP_waitDMACompletion();
 }
 
 int main(bool hardReset)
 {
-	VDP_drawText("Hello world !", 12, 12);
-
-	KLog_U1("Hello Gens KMod - ", 1010);
-
-	PAL_setPalette(PAL0, global_palette.palette, 1);
+	PAL_setPalette(PAL0, global_palette.palette, DMA);
+	VDP_waitDMACompletion();
 
 	VDPTileIndex vdpTileIndex = 1;
 	VDPTileManager_LoadGGAnimationToVDP(0, &ruby, &vdpTileIndex);

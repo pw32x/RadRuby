@@ -2,7 +2,7 @@
 #ifndef RUBY_ANIMATION_INCLUDE_H
 #define RUBY_ANIMATION_INCLUDE_H
 
-#include "AnimationTypes.h"
+#include "engine\AnimationTypes.h"
 
 RESOURCE() extern const GGAnimation ruby;
 
