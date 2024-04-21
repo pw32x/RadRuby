@@ -17,6 +17,8 @@
 # out folder
 project/out/*
 project/raw
+
+
 # Mono auto generated files
 mono_crash.*
 
