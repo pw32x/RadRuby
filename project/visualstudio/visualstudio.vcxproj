@@ -66,10 +66,11 @@
     <ClInclude Include="..\..\..\..\sgdk200\inc\z80_ctrl.h" />
     <ClInclude Include="..\source\client\exported\animations\ruby.h" />
     <ClInclude Include="..\source\client\exported\palettes\global_palette.h" />
-    <ClInclude Include="..\source\client\generated\resource_infos.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h" />
     <ClInclude Include="..\source\engine\AnimationDraw.h" />
     <ClInclude Include="..\source\engine\AnimationTypes.h" />
     <ClInclude Include="..\source\engine\FrameTriggers.h" />
+    <ClInclude Include="..\source\engine\map_types.h" />
     <ClInclude Include="..\source\engine\palette_types.h" />
     <ClInclude Include="..\source\engine\resource_types.h" />
     <ClInclude Include="..\source\engine\vdptypes.h" />
@@ -109,8 +110,9 @@
     <ClCompile Include="..\..\..\..\sgdk200\src\z80_ctrl.c" />
     <ClCompile Include="..\source\client\exported\animations\ruby.c" />
     <ClCompile Include="..\source\client\exported\palettes\global_palette.c" />
-    <ClCompile Include="..\source\client\generated\resource_infos.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c" />
     <ClCompile Include="..\source\engine\AnimationDraw.c" />
+    <ClCompile Include="..\source\engine\map_types.c" />
     <ClCompile Include="..\source\engine\vdptypes.c" />
     <ClCompile Include="..\source\Genesis\main.c" />
   </ItemGroup>
@@ -128,6 +130,7 @@
     <None Include="..\..\..\..\sgdk200\src\vdp_tile_a.s" />
     <None Include="..\build\build.bat" />
     <None Include="..\build\clean.bat" />
+    <None Include="..\build\config.bm" />
     <None Include="..\build\debug.bat" />
     <None Include="..\build\deploy.bat" />
     <None Include="..\build\makefile.gen" />

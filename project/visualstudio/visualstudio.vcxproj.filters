@@ -30,7 +30,10 @@
       <UniqueIdentifier>{a18c2c46-f0df-428d-ae10-e30b1e9a7f06}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\client\generated">
-      <UniqueIdentifier>{46d7a3a5-9c4e-43af-ae3b-031cb330b182}</UniqueIdentifier>
+      <UniqueIdentifier>{a09bc2e3-e807-4c8e-812d-00f311498423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\generated\tilesets">
+      <UniqueIdentifier>{290a8f8e-4c37-4ea8-82b3-b1dfd26fd36c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -163,14 +166,17 @@
     <ClInclude Include="..\source\engine\AnimationTypes.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\generated\resource_infos.h">
-      <Filter>Source Files\client\generated</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\ruby.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\exported\palettes\global_palette.h">
       <Filter>Source Files\client\exported\palettes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h">
+      <Filter>Source Files\client\generated\tilesets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\map_types.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -279,14 +285,17 @@
     <ClCompile Include="..\source\Genesis\main.c">
       <Filter>Source Files\Genesis</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\generated\resource_infos.c">
-      <Filter>Source Files\client\generated</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\ruby.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\palettes\global_palette.c">
       <Filter>Source Files\client\exported\palettes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c">
+      <Filter>Source Files\client\generated\tilesets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\map_types.c">
+      <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +348,9 @@
       <Filter>build</Filter>
     </None>
     <None Include="..\..\..\..\sgdk200\common.mk">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\config.bm">
       <Filter>build</Filter>
     </None>
   </ItemGroup>

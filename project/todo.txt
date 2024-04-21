@@ -4,14 +4,13 @@ DONE convert .gal to genesis compatible format
 DONE load gal to vdp
 DONE display sprite
 
-create client folder
+DONE create client folder
+DONE create engine folder
 
-create engine folder
+DONE Use BuildMaster to build assets
+NAH add the folders collected in BuildMaster to the makefile
 
-Use BuildMaster to build assets
-add the folders collected in BuildMaster to the makefile
-
-
+import level?
 
 
 create an object
