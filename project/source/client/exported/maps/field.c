@@ -145,8 +145,8 @@ RESOURCE() const Ruby_StripMap const field_map =
     STRIP_MAP_RESOURCE_TYPE,
     field_strip_map, // strip map data
     (const Resource*)&field_tileset, 
-    124, // map width
-    28, // map height
+    62, // map width
+    14, // map height
     field_terrain_map, // terrain map data
     62, // terrain map width
     14, // terrain map height
