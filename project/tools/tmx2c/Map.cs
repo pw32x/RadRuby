@@ -715,8 +715,8 @@ namespace tmx2c
 
             exported.Append("    (const Resource*)&" + usedTilesets.First().TilesetName + ", \n");
 
-            exported.Append("    " + MapWidth * 2 + ", // map width\n");
-            exported.Append("    " + MapHeight * 2 + ", // map height\n");
+            exported.Append("    " + MapWidth + ", // map width\n");
+            exported.Append("    " + MapHeight + ", // map height\n");
 
             exported.Append("    " + terrainMapArrayName + ", // terrain map data\n");
             exported.Append("    " + MapWidth + ", // terrain map width\n");
