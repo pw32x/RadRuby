@@ -444,8 +444,6 @@ namespace tmx2c
                     Tile tile = mTilemap[mapLocation];
 
                     ExportTile(exported, tile, mapLocation);
-
-                    uint tileIndex = tile.Index;
                 }
 
                 exported.Append("\n    ");
