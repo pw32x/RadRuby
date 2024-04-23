@@ -10,6 +10,8 @@
         {
             Steps.RunAllTools(config);
 
+            NewSteps.GenerateResourcesHeader(config);
+
             bool result = Utils.BenchmarkStep(NewSteps.BuildCode, config, "New Build Code");
 
             if (result && config.GetSetting("CopyToDailyFolder") == "true")

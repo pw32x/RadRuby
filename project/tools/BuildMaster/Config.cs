@@ -28,6 +28,8 @@ namespace BuildMaster
             LoadTools(xmlDocument);
             LoadToolJobs(xmlDocument);
 
+            LoadIncludes(xmlDocument);
+
             BuildToolDestinationFoldersList();
 
 
@@ -61,6 +63,57 @@ namespace BuildMaster
             }
 
             return toolExportFolders;
+        }
+
+
+        public IEnumerable<string> BuildListOfHeaderFiles()
+        {
+            var headerFiles = new HashSet<string>();
+
+            string[] headerFileExtensions = { ".h" };
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            foreach (var sourceSet in m_sourceSets)
+            {
+                foreach (var sourceFolder in sourceSet.SourceFolders)
+                {
+                    if (Directory.Exists(sourceFolder))
+                    {
+                        DirectoryInfo directoryInfo = new DirectoryInfo(sourceFolder);
+                        FileInfo[] files = directoryInfo.GetFiles();
+
+                        var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
+
+                        foreach (var filteredFile in filteredFiles)
+                        {
+                            string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
+
+                            headerFiles.Add(relativePath);
+                        }
+                    }
+                }
+            }
+
+            foreach (var toolDestinationFolder in m_toolDestinationFolders)
+            {
+                if (Directory.Exists(toolDestinationFolder))
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(toolDestinationFolder);
+                    FileInfo[] files = directoryInfo.GetFiles();
+
+                    var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
+
+                    foreach (var filteredFile in filteredFiles)
+                    {
+                        string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
+
+                        headerFiles.Add(relativePath);
+                    }
+                }
+            }
+
+            return headerFiles;
         }
 
         private void LoadSettings(XmlDocument xmlDocument)
@@ -240,6 +293,7 @@ namespace BuildMaster
 
         public string ProjectName { get { return GetSetting("ProjectName"); } }
         public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); } }
+        public string ResourceIncludeExportFolder { get { return GetSetting("resourceIncludeExportFolder"); } }
 
         // Tools
 
