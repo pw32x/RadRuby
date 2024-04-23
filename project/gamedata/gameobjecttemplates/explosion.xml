@@ -1,0 +1,8 @@
+<GameObjectTemplate >
+	<Name value="Explosion"/>
+	<GameProperties>
+		<GameObjectType value="Effect" />
+		<Resource value="explosion" />		
+		<InitFunction value="BasicEffect_Init"/>
+	</GameProperties>
+</GameObjectTemplate>

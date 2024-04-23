@@ -13,20 +13,24 @@
 		<Setting name="CopyToDailyFolder" value="true" />
 		
 		<Setting name="outFolder" value="out"/>
-    </Settings>
+
+		<Setting name="resourceIncludeExportFolder" value="source/client/generated" />
+	</Settings>
 
 	<Tools>
 		<Tool name="gg2c_animations" path="tools\gg2c\Release\gg2c.exe" flags="-updateonly" info="Export Animations"/>
 		<Tool name="gg2c_palettes" path="tools\gg2c\Release\gg2c.exe" flags="-palette -updateonly" info="Export Palettes"/>
 
 		<Tool name="gal2tmx" path="tools\gal2tmx\Release\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
-			<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>
+			<!--<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>-->
+			<AdditionalExportFolderFlag flag="tilesetdest" />
 		</Tool>
 
 		<Tool name="tmx2c" path="tools\tmx2c\Release\tmx2c.exe" info="Export backgrounds"/>
-
+		<Tool name="TemplateMaster" path="tools\TemplateMaster\bin\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
+		
 		<!--		
-		<Tool name="TemplateMaster" path="tools\bin\TemplateMaster\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
+		
 		<Tool name="SceneMaster_export" path="tools\bin\SceneMaster\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
 
 
@@ -36,11 +40,12 @@
 	<!-- Tool Jobs are run in the order they're listed. -->
 	<ToolJobs>
 		<!--
-		<ToolJob tool="TemplateMaster" source="gamedata\gameobjecttemplates" destination="source\client\generated\gameobjecttemplates"/>
+		
 		<ToolJob tool="gal2tmx" source="gamedata\animations\animatedtilesets\*.gal" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets"/>
 		<ToolJob tool="SceneMaster_export" source="gamedata\scenes" destination="source\client\exported\scenes" />
 		-->
 
+		<ToolJob tool="TemplateMaster" source="gamedata\gameobjecttemplates" destination="source\client\generated\gameobjecttemplates"/>
 		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\generated\mapthemes" tilesetdest="source\client\generated\tilesets"/>
 		<ToolJob tool="gg2c_animations" source="gamedata\animations" destination="source\client\exported\animations"/>
 		<ToolJob tool="gg2c_palettes" source="gamedata\palettes" destination="source\client\exported\palettes"/>
@@ -51,4 +56,8 @@
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps"/>
 		-->
 	</ToolJobs>
+
+
+	<Include path ="source"/>
+	
 </BuildMaster>

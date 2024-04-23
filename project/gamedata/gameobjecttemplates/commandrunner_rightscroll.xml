@@ -1,0 +1,12 @@
+<GameObjectTemplate >
+	<Name value="CommandRunner RightScroll"/>
+	<EditorProperties>
+		<Visual>
+			<Image filename="commandrunner_rightscroll.png"/>
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<GameObjectType value="CommandRunner" />
+		<InitFunction value="CommandRunner_RightScroll_Init"/>		
+	</GameProperties>
+</GameObjectTemplate>

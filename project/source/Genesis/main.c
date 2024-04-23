@@ -1,10 +1,8 @@
 #include "genesis.h"
-#include "..\client\exported\animations\ruby.h"
-#include "..\client\exported\palettes\global_palette.h"
-#include "..\client\generated\tilesets\field_tileset.h"
-#include "..\client\exported\maps\field.h"
+#include "..\client\generated\resources.h"
 #include "..\engine\AnimationDraw.h"
 #include "..\engine\map_types.h"
+#include "..\engine\terrain_manager.h"
 
 void SetupSystem() 
 {
@@ -152,6 +150,8 @@ int main(bool hardReset)
 
 	VDPTileIndex vdpTilesetTileIndex = vdpAnimationTileIndex + ruby.totalTiles;
 	VDPTileManager_LoadTilesetDataToVDP(0, &field_tileset, &vdpTilesetTileIndex);
+
+	TerrainManager_Init_Strip(&field_map);
 
 	// bool DMA_transfer(TransferMethod tm, u8 location, void* from, u16 to, u16 len, u16 step);
 

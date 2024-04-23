@@ -10,8 +10,15 @@ DONE create engine folder
 DONE Use BuildMaster to build assets
 NAH add the folders collected in BuildMaster to the makefile
 
-import level?
+DONE init background
 
+terrain
+
+templates
+object
+object manager
+
+move player
 
 create an object
 add the object manager

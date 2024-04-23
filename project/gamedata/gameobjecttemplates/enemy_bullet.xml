@@ -1,0 +1,13 @@
+<GameObjectTemplate >
+	<Name value="Enemy Bullet"/>
+	<GameProperties>
+		<Damage value="1"/>
+		<RectLeft value="-4"/>
+		<RectTop value="-4"/>
+		<RectRight value="4"/>
+		<RectBottom value="4"/>
+		<GameObjectType value="Enemy_Projectile" />
+		<Resource value="enemy_bullet" />		
+		<InitFunction value="Bullet_Init"/>
+	</GameProperties>
+</GameObjectTemplate>
