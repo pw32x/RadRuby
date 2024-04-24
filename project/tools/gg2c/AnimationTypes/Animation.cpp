@@ -1,6 +1,7 @@
 #include "..\stdafx.h"
 #include "Animation.h"
 #include "..\Utils\WriteUtils.h"
+#include "..\Utils\StringUtils.h"
 #include <fstream>
 #include <algorithm>
 #include <sstream>
@@ -131,12 +132,15 @@ void Animation::WriteAnimationHeaderFile(const std::string& outputFolder, const 
     headerfile << "\n";
 
 	// includes
-    headerfile << "#include \"engine\\AnimationTypes.h\"\n";
+    headerfile << "#include \"engine\\animation_types.h\"\n";
     headerfile << "\n";
 
 	// exported types
     headerfile << "RESOURCE() extern const GGAnimation " << outputName << ";\n"; 
     headerfile << "\n";
+
+	headerfile << "#define " << StringUtils::str_toupper(outputName) << "_NUMFRAMES " << m_frames.size() << "\n";
+	headerfile << "\n";
 
     // end header guard
     headerfile << "#endif\n\n";

@@ -2,9 +2,11 @@
 #ifndef SHOTGUN_ANIMATION_INCLUDE_H
 #define SHOTGUN_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation shotgun;
+
+#define SHOTGUN_NUMFRAMES 3
 
 #endif
 

@@ -2,9 +2,11 @@
 #ifndef ROBOTRUNNER_ANIMATION_INCLUDE_H
 #define ROBOTRUNNER_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation robotrunner;
+
+#define ROBOTRUNNER_NUMFRAMES 4
 
 #endif
 

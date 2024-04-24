@@ -2,8 +2,8 @@
 #define ANIMATION_TYPES_INCLUDE_H
 
 #include <genesis.h>
-#include "vdptypes.h"
-#include "resource_types.h"
+#include "engine\vdptypes.h"
+#include "engine\resource_types.h"
 
 typedef struct
 {

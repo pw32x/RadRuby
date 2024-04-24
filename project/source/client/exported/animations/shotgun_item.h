@@ -2,9 +2,11 @@
 #ifndef SHOTGUN_ITEM_ANIMATION_INCLUDE_H
 #define SHOTGUN_ITEM_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation shotgun_item;
+
+#define SHOTGUN_ITEM_NUMFRAMES 1
 
 #endif
 

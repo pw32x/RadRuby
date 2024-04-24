@@ -2,9 +2,11 @@
 #ifndef DELIVERYROBOT_ANIMATION_INCLUDE_H
 #define DELIVERYROBOT_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation deliveryrobot;
+
+#define DELIVERYROBOT_NUMFRAMES 6
 
 #endif
 

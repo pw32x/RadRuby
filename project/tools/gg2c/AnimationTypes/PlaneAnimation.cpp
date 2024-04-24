@@ -82,7 +82,7 @@ void PlaneAnimation::WritePlaneAnimationHeaderFile(const std::string& outputFold
     headerfile << "\n";
 
 	// includes
-    headerfile << "#include \"AnimationTypes.h\"\n";
+    headerfile << "#include \"animation_types.h\"\n";
     headerfile << "\n";
 
 	// exported types

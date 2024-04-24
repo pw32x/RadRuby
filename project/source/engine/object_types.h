@@ -22,6 +22,9 @@
 	void (*Draw)(struct game_object* gameObject);\
 	BOOL (*UpdateAnimation)(struct game_object* gameObject);\
 	\
+	u8 currentAnimationFrameIndex;\
+	u8 animationTime;\
+	\
 	s16 x;\
 	s16 y;\
 	s8 speedx;\

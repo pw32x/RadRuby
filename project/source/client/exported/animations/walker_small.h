@@ -2,9 +2,11 @@
 #ifndef WALKER_SMALL_ANIMATION_INCLUDE_H
 #define WALKER_SMALL_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation walker_small;
+
+#define WALKER_SMALL_NUMFRAMES 2
 
 #endif
 

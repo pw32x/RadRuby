@@ -2,9 +2,11 @@
 #ifndef ENEMY_BULLET_ANIMATION_INCLUDE_H
 #define ENEMY_BULLET_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation enemy_bullet;
+
+#define ENEMY_BULLET_NUMFRAMES 2
 
 #endif
 

@@ -2,7 +2,7 @@
 #define GRAPHICSGALE_ANIMATION_DRAW_HEADER_H
 
 #include <genesis.h>
-#include "AnimationTypes.h"
+#include "animation_types.h"
 //#include "engine\ObjectStruct.h"
 
 void GGAnimation_Draw(s16 x, s16 y, const GGAnimation* animation, u16 frameNumber, u16 tileAttribute);

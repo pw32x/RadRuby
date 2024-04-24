@@ -2,9 +2,11 @@
 #ifndef EXPLOSION_ANIMATION_INCLUDE_H
 #define EXPLOSION_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation explosion;
+
+#define EXPLOSION_NUMFRAMES 9
 
 #endif
 

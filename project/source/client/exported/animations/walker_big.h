@@ -2,9 +2,11 @@
 #ifndef WALKER_BIG_ANIMATION_INCLUDE_H
 #define WALKER_BIG_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation walker_big;
+
+#define WALKER_BIG_NUMFRAMES 8
 
 #endif
 

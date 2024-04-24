@@ -2,9 +2,11 @@
 #ifndef IMPACT_ANIMATION_INCLUDE_H
 #define IMPACT_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation impact;
+
+#define IMPACT_NUMFRAMES 3
 
 #endif
 

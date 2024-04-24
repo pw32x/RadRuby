@@ -2,9 +2,11 @@
 #ifndef WHEELER_ANIMATION_INCLUDE_H
 #define WHEELER_ANIMATION_INCLUDE_H
 
-#include "engine\AnimationTypes.h"
+#include "engine\animation_types.h"
 
 RESOURCE() extern const GGAnimation wheeler;
+
+#define WHEELER_NUMFRAMES 11
 
 #endif
 
