@@ -441,8 +441,8 @@ const unsigned short const robotrunnerTileData[768] = // 48 tiles
 
 const GGSprite robotrunnerSprite0 = 
 {
-    0, // x position offset
-    1, // y position offset
+    -12, // x position offset
+    -15, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -450,8 +450,8 @@ const GGSprite robotrunnerSprite0 =
 
 const GGSprite robotrunnerSprite1 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 12), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -459,8 +459,8 @@ const GGSprite robotrunnerSprite1 =
 
 const GGSprite robotrunnerSprite2 = 
 {
-    1, // x position offset
-    1, // y position offset
+    -11, // x position offset
+    -15, // y position offset
     -1, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 24), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -468,8 +468,8 @@ const GGSprite robotrunnerSprite2 =
 
 const GGSprite robotrunnerSprite3 = 
 {
-    1, // x position offset
-    0, // y position offset
+    -11, // x position offset
+    -16, // y position offset
     -1, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 36), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size

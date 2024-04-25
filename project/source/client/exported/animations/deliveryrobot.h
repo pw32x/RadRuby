@@ -8,5 +8,11 @@ RESOURCE() extern const GGAnimation deliveryrobot;
 
 #define DELIVERYROBOT_NUMFRAMES 6
 
+// frame numbers for specific animations.
+#define DELIVERYROBOT_RIGHT_FRAME_INDEX 0
+#define DELIVERYROBOT_LEFT_FRAME_INDEX 2
+#define DELIVERYROBOT_PARTS1_FRAME_INDEX 4
+#define DELIVERYROBOT_PARTS2_FRAME_INDEX 5
+
 #endif
 

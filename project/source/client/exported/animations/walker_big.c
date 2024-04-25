@@ -585,8 +585,8 @@ const unsigned short const walker_bigTileData[1024] = // 64 tiles
 
 const GGSprite walker_bigSprite0 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -16, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -594,8 +594,8 @@ const GGSprite walker_bigSprite0 =
 
 const GGSprite walker_bigSprite1 = 
 {
-    0, // x position offset
-    2, // y position offset
+    -16, // x position offset
+    -14, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 16), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -603,8 +603,8 @@ const GGSprite walker_bigSprite1 =
 
 const GGSprite walker_bigSprite2 = 
 {
-    0, // x position offset
-    2, // y position offset
+    -16, // x position offset
+    -14, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 32), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -612,8 +612,8 @@ const GGSprite walker_bigSprite2 =
 
 const GGSprite walker_bigSprite3 = 
 {
-    2, // x position offset
-    0, // y position offset
+    -14, // x position offset
+    -16, // y position offset
     -2, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 48), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -621,8 +621,8 @@ const GGSprite walker_bigSprite3 =
 
 const GGSprite walker_bigSprite4 = 
 {
-    0, // x position offset
-    2, // y position offset
+    -16, // x position offset
+    -14, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 1, 16), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -630,8 +630,8 @@ const GGSprite walker_bigSprite4 =
 
 const GGSprite walker_bigSprite5 = 
 {
-    0, // x position offset
-    2, // y position offset
+    -16, // x position offset
+    -14, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 1, 32), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size

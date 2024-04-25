@@ -8,5 +8,8 @@ RESOURCE() extern const GGAnimation ruby;
 
 #define RUBY_NUMFRAMES 6
 
+// frame numbers for specific animations.
+#define RUBY_RUN_RIGHT_FRAME_INDEX 0
+
 #endif
 

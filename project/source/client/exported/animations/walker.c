@@ -81,8 +81,8 @@ const unsigned short const walkerTileData[128] = // 8 tiles
 
 const GGSprite walkerSprite0 = 
 {
-    0, // x position offset
-    1, // y position offset
+    -8, // x position offset
+    -7, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size
@@ -90,8 +90,8 @@ const GGSprite walkerSprite0 =
 
 const GGSprite walkerSprite1 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 4), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size

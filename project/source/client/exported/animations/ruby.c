@@ -729,8 +729,8 @@ const unsigned short const rubyTileData[1280] = // 80 tiles
 
 const GGSprite rubySprite0 = 
 {
-    12, // x position offset
-    16, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -738,8 +738,8 @@ const GGSprite rubySprite0 =
 
 const GGSprite rubySprite1 = 
 {
-    11, // x position offset
-    16, // y position offset
+    -9, // x position offset
+    -16, // y position offset
     -3, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 12), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -747,8 +747,8 @@ const GGSprite rubySprite1 =
 
 const GGSprite rubySprite2 = 
 {
-    11, // x position offset
-    17, // y position offset
+    -9, // x position offset
+    -15, // y position offset
     -3, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 28), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(4, 4), // sgdk sprite size
@@ -756,8 +756,8 @@ const GGSprite rubySprite2 =
 
 const GGSprite rubySprite3 = 
 {
-    12, // x position offset
-    16, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 44), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -765,8 +765,8 @@ const GGSprite rubySprite3 =
 
 const GGSprite rubySprite4 = 
 {
-    12, // x position offset
-    16, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 56), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -774,8 +774,8 @@ const GGSprite rubySprite4 =
 
 const GGSprite rubySprite5 = 
 {
-    12, // x position offset
-    17, // y position offset
+    -8, // x position offset
+    -15, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 68), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size

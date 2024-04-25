@@ -207,8 +207,8 @@ const unsigned short const explosionTileData[352] = // 22 tiles
 
 const GGSprite explosionSprite0 = 
 {
-    16, // x position offset
-    32, // y position offset
+    -16, // x position offset
+    0, // y position offset
     32, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size
@@ -216,8 +216,8 @@ const GGSprite explosionSprite0 =
 
 const GGSprite explosionSprite1 = 
 {
-    13, // x position offset
-    29, // y position offset
+    -19, // x position offset
+    -3, // y position offset
     27, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 4), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -225,8 +225,8 @@ const GGSprite explosionSprite1 =
 
 const GGSprite explosionSprite2 = 
 {
-    12, // x position offset
-    28, // y position offset
+    -20, // x position offset
+    -4, // y position offset
     28, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 13), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -234,8 +234,8 @@ const GGSprite explosionSprite2 =
 
 const GGSprite explosionSprite3 = 
 {
-    24, // x position offset
-    16, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     24, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size
@@ -243,8 +243,8 @@ const GGSprite explosionSprite3 =
 
 const GGSprite explosionSprite4 = 
 {
-    21, // x position offset
-    13, // y position offset
+    -11, // x position offset
+    -19, // y position offset
     19, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 4), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -252,8 +252,8 @@ const GGSprite explosionSprite4 =
 
 const GGSprite explosionSprite5 = 
 {
-    20, // x position offset
-    12, // y position offset
+    -12, // x position offset
+    -20, // y position offset
     20, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 13), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -261,8 +261,8 @@ const GGSprite explosionSprite5 =
 
 const GGSprite explosionSprite6 = 
 {
-    32, // x position offset
-    32, // y position offset
+    0, // x position offset
+    0, // y position offset
     16, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size
@@ -270,8 +270,8 @@ const GGSprite explosionSprite6 =
 
 const GGSprite explosionSprite7 = 
 {
-    29, // x position offset
-    29, // y position offset
+    -3, // x position offset
+    -3, // y position offset
     11, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 4), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -279,8 +279,8 @@ const GGSprite explosionSprite7 =
 
 const GGSprite explosionSprite8 = 
 {
-    28, // x position offset
-    28, // y position offset
+    -4, // x position offset
+    -4, // y position offset
     12, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 13), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size

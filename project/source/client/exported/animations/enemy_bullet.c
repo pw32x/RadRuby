@@ -27,8 +27,8 @@ const unsigned short const enemy_bulletTileData[32] = // 2 tiles
 
 const GGSprite enemy_bulletSprite0 = 
 {
-    0, // x position offset
-    4, // y position offset
+    -4, // x position offset
+    -4, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 1), // sgdk sprite size
@@ -36,8 +36,8 @@ const GGSprite enemy_bulletSprite0 =
 
 const GGSprite enemy_bulletSprite1 = 
 {
-    0, // x position offset
-    4, // y position offset
+    -4, // x position offset
+    -4, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 1), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 1), // sgdk sprite size

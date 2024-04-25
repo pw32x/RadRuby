@@ -32,11 +32,6 @@
 void Player_Draw(GameObject* object);
 void Player_FireWeapon(GameObject* object);
 
-#define PLAYER_METASPRITE_MAX_SIZE 1024
-
-s8 playerMetaSprites[PLAYER_METASPRITE_MAX_SIZE];
-u16 playerMetaSpriteFrameIndexes[RUBY_NUMFRAMES];
-
 s16 playerX;
 s16 playerY;
 s8 playerSpeedX;
@@ -208,84 +203,10 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	playerRectTopV = P2V(object->rectTop);
 	playerRectBottomV = P2V(object->rectBottom);
 
-	Player_BuildMetaSprite(object);
-
 	return object;
 }
 
-void Player_BuildMetaSprite(GameObject* object)
-{
-	//playerMetaSprites
-	//playerMetaSpriteFrameIndexes
 
-	u16 currentMetaSpriteFrameIndex = 0;
-
-	const BatchedAnimation* animation = object->batchedAnimation;
-
-	u16 vdpLocation = *animation->vdpLocation;
-
-	s8* playerMetaSpritesRunner = playerMetaSprites;
-
-	for (u16 loop = 0; loop < animation->numFrames; loop++)
-	{
-		playerMetaSpriteFrameIndexes[loop] = currentMetaSpriteFrameIndex;
-
-		const BatchedAnimationFrame* frame = animation->frames[loop];
-
-		const BatchedAnimationSpriteStrip* stripRunner = frame->spriteStrips;
-
-		u8 tileIndex = 0;//*animation->vdpLocation;
-
-		while (stripRunner->count)
-		{
-			s8 xoffset = stripRunner->xOffset;
-			s8 yoffset = stripRunner->yOffset;
-
-
-			for (u8 stripLoop = 0; stripLoop < stripRunner->count; stripLoop++)
-			{
-				playerMetaSpritesRunner[0] = xoffset;
-				playerMetaSpritesRunner[1] = yoffset;
-				playerMetaSpritesRunner[2] = (s8)tileIndex;
-
-				xoffset += 8;
-				tileIndex += 2;
-
-				playerMetaSpritesRunner += 3;
-				currentMetaSpriteFrameIndex += 3;
-			}
-
-			stripRunner++;
-		}
-
-		playerMetaSpritesRunner[0] = (s8)METASPRITE_END;
-		playerMetaSpritesRunner++;
-		currentMetaSpriteFrameIndex++;
-	}
-
-	/*
-	SMS_debugPrintf("size: %d\n", playerMetaSpritesRunner - playerMetaSprites);
-
-	playerMetaSpritesRunner = playerMetaSprites;
-
-	for (u8 loop = 0; loop < animation->numFrames; loop++)
-	{
-		playerMetaSpritesRunner = &playerMetaSprites[playerMetaSpriteFrameIndexes[loop]];
-
-		SMS_debugPrintf("%d: ", loop);
-		SMS_debugPrintf("%d: ", playerMetaSpriteFrameIndexes[loop]);		
-
-		while (*playerMetaSpritesRunner != (s8)METASPRITE_END)
-		{
-			SMS_debugPrintf("%d, ", *playerMetaSpritesRunner);
-			playerMetaSpritesRunner++;
-		}
-
-		SMS_debugPrintf("\n");
-	}
-	*/
-
-}
 
 void Player_FireWeapon(GameObject* object)
 {
@@ -299,7 +220,7 @@ void Player_FireWeapon(GameObject* object)
 		0
 	};
 
-	//ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&effectCreateInfo);
 
 
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
@@ -417,6 +338,7 @@ s16 oldBlockY = 0;
 
 void Player_UpdateStand(GameObject* object)
 {
+	/*
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)// || jumpWhenLanding)
 	{
 		//setPlayerState(PLAYER_STATE_JUMP);
@@ -444,7 +366,7 @@ void Player_UpdateStand(GameObject* object)
 		setPlayerState(PLAYER_STATE_DUCK);
 		return;
 	}
-
+	
 	playerSpeedX = 0;
 
 	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
@@ -465,10 +387,12 @@ void Player_UpdateStand(GameObject* object)
 		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
+	*/
 }
 
 void Player_UpdateRun(GameObject* object)
 {
+	/*
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
 		setPlayerState(PLAYER_STATE_JUMP);
@@ -494,7 +418,7 @@ void Player_UpdateRun(GameObject* object)
 		setPlayerState(PLAYER_STATE_STAND);
 		return;
 	}
-
+	
 	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
 	pointingDown = FALSE;
 
@@ -514,10 +438,12 @@ void Player_UpdateRun(GameObject* object)
 		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
+	*/
 }
 
 void Player_UpdateFall(GameObject* object)
 {
+	/*
 	if (canStillJumpFrames)
 	{
 		if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
@@ -595,10 +521,12 @@ void Player_UpdateFall(GameObject* object)
 	oldBottomTileTypeLeft = bottomTileTypeLeft;
 	oldBottomTileTypeRight = bottomTileTypeRight;
 	oldBlockY = blockY;
+	*/
 }
 
 void Player_UpdateJump(GameObject* object)
 {
+	/*
 	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
 		playerFlipped = TRUE;
@@ -656,10 +584,12 @@ void Player_UpdateJump(GameObject* object)
 		canStillJumpFrames = 0;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
+	*/
 }
 
 void Player_UpdateDuck(GameObject* object)
 {
+	/*
 	if (!(JoystickManager_buttonState & PORT_A_KEY_DOWN))
 	{
 		setPlayerState(PLAYER_STATE_STAND);
@@ -702,19 +632,20 @@ void Player_UpdateDuck(GameObject* object)
 		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
+	*/
 }
 
 
 void Player_Update(GameObject* object)
 {
-
+	/*
 	u8 oldFlip = playerFlipped;
 	u8 oldPointingUp = pointingUp;
 	u8 oldPointingDown = pointingDown;
 
 	player_SubUpdate(object);
 
-	if (JoystickManager_buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_1 )
 		Player_FireWeapon(object);
 
 	object->x = V2P(playerX);
@@ -734,10 +665,12 @@ void Player_Update(GameObject* object)
 		//updateAnimationStream = FALSE; // uncomment me to only update when needed, and not every frame.
 		ObjectManager_QueueVDPDraw(object, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}
+	*/
 }
 
 void Player_Draw(GameObject* object)
 {
+	/*
 	MetaSpriteBaseTile = *object->batchedAnimation->vdpLocation;
 
 	const s8* playerMetaSpritesStart = &playerMetaSprites[playerMetaSpriteFrameIndexes[object->currentBatchedAnimationFrame->frameNumber]];
@@ -745,6 +678,6 @@ void Player_Draw(GameObject* object)
 	SMS_addMetaSprite(object->screenx,
 					  object->screeny,
 					  playerMetaSpritesStart);
-
+	*/
 }
 

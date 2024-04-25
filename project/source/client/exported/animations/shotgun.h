@@ -8,5 +8,8 @@ RESOURCE() extern const GGAnimation shotgun;
 
 #define SHOTGUN_NUMFRAMES 3
 
+// frame numbers for specific animations.
+#define SHOTGUN_RUN_RIGHT_FRAME_INDEX 0
+
 #endif
 

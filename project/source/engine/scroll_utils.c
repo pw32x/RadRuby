@@ -6,7 +6,7 @@
 
 u16 ScrollUtils_mapColumnToBuild;
 
-void ScrollUtils_buildColumn(u8* buffer)
+void ScrollUtils_buildColumn(u16* buffer)
 {
 /*
 

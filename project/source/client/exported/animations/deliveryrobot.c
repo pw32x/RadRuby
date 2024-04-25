@@ -369,8 +369,8 @@ const unsigned short const deliveryrobotTileData[640] = // 40 tiles
 
 const GGSprite deliveryrobotSprite0 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -378,8 +378,8 @@ const GGSprite deliveryrobotSprite0 =
 
 const GGSprite deliveryrobotSprite1 = 
 {
-    2, // x position offset
-    0, // y position offset
+    -10, // x position offset
+    -16, // y position offset
     -2, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 12), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -387,8 +387,8 @@ const GGSprite deliveryrobotSprite1 =
 
 const GGSprite deliveryrobotSprite2 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 1, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -396,8 +396,8 @@ const GGSprite deliveryrobotSprite2 =
 
 const GGSprite deliveryrobotSprite3 = 
 {
-    3, // x position offset
-    0, // y position offset
+    -9, // x position offset
+    -16, // y position offset
     -3, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 24), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -405,8 +405,8 @@ const GGSprite deliveryrobotSprite3 =
 
 const GGSprite deliveryrobotSprite4 = 
 {
-    8, // x position offset
-    10, // y position offset
+    -4, // x position offset
+    -6, // y position offset
     8, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 36), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 2), // sgdk sprite size
@@ -414,8 +414,8 @@ const GGSprite deliveryrobotSprite4 =
 
 const GGSprite deliveryrobotSprite5 = 
 {
-    8, // x position offset
-    8, // y position offset
+    -4, // x position offset
+    -8, // y position offset
     8, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 38), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 2), // sgdk sprite size

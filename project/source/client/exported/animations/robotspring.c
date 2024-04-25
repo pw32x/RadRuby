@@ -189,8 +189,8 @@ const unsigned short const robotspringTileData[320] = // 20 tiles
 
 const GGSprite robotspringSprite0 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 3), // sgdk sprite size
@@ -198,8 +198,8 @@ const GGSprite robotspringSprite0 =
 
 const GGSprite robotspringSprite1 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 6), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 4), // sgdk sprite size
@@ -207,8 +207,8 @@ const GGSprite robotspringSprite1 =
 
 const GGSprite robotspringSprite2 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 14), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 3), // sgdk sprite size

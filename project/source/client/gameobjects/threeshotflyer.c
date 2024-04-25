@@ -146,6 +146,7 @@ void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
 		V2P(object->x),
 		V2P(object->y),
 		0,
+		0,
 		0
 	};
 

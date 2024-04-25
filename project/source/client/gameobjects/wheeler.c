@@ -17,7 +17,7 @@
 // music and sfx
 //#include "PSGlib.h"
 //#include "client/generated/bank2.h"
-//#include "client/exported/animations/enemies/wheeler.h"
+#include "client/exported/animations/wheeler.h"
 
 void Wheeler_Update(WheelerObjectType* object);
 

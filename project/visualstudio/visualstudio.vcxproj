@@ -65,7 +65,21 @@
     <ClInclude Include="..\..\..\..\sgdk200\inc\ym2612.h" />
     <ClInclude Include="..\..\..\..\sgdk200\inc\z80_ctrl.h" />
     <ClInclude Include="..\source\client\ai_commands.h" />
+    <ClInclude Include="..\source\client\exported\animations\bullet.h" />
+    <ClInclude Include="..\source\client\exported\animations\deliveryrobot.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemy_bullet.h" />
+    <ClInclude Include="..\source\client\exported\animations\explosion.h" />
+    <ClInclude Include="..\source\client\exported\animations\impact.h" />
+    <ClInclude Include="..\source\client\exported\animations\robotrunner.h" />
+    <ClInclude Include="..\source\client\exported\animations\robotspring.h" />
     <ClInclude Include="..\source\client\exported\animations\ruby.h" />
+    <ClInclude Include="..\source\client\exported\animations\shotgun.h" />
+    <ClInclude Include="..\source\client\exported\animations\shotgun_item.h" />
+    <ClInclude Include="..\source\client\exported\animations\threeshotflyer.h" />
+    <ClInclude Include="..\source\client\exported\animations\walker.h" />
+    <ClInclude Include="..\source\client\exported\animations\walker_big.h" />
+    <ClInclude Include="..\source\client\exported\animations\walker_small.h" />
+    <ClInclude Include="..\source\client\exported\animations\wheeler.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />
     <ClInclude Include="..\source\client\exported\palettes\global_palette.h" />
     <ClInclude Include="..\source\client\gameobjects\basic_effect.h" />
@@ -106,6 +120,7 @@
     <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\FrameTriggers.h" />
     <ClInclude Include="..\source\engine\gameobject_template_types.h" />
+    <ClInclude Include="..\source\engine\joystick_manager.h" />
     <ClInclude Include="..\source\engine\map_load.h" />
     <ClInclude Include="..\source\engine\map_types.h" />
     <ClInclude Include="..\source\engine\math_utils.h" />
@@ -158,7 +173,21 @@
     <ClCompile Include="..\..\..\..\sgdk200\src\ym2612.c" />
     <ClCompile Include="..\..\..\..\sgdk200\src\z80_ctrl.c" />
     <ClCompile Include="..\source\client\ai_commands.c" />
+    <ClCompile Include="..\source\client\exported\animations\bullet.c" />
+    <ClCompile Include="..\source\client\exported\animations\deliveryrobot.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemy_bullet.c" />
+    <ClCompile Include="..\source\client\exported\animations\explosion.c" />
+    <ClCompile Include="..\source\client\exported\animations\impact.c" />
+    <ClCompile Include="..\source\client\exported\animations\robotrunner.c" />
+    <ClCompile Include="..\source\client\exported\animations\robotspring.c" />
     <ClCompile Include="..\source\client\exported\animations\ruby.c" />
+    <ClCompile Include="..\source\client\exported\animations\shotgun.c" />
+    <ClCompile Include="..\source\client\exported\animations\shotgun_item.c" />
+    <ClCompile Include="..\source\client\exported\animations\threeshotflyer.c" />
+    <ClCompile Include="..\source\client\exported\animations\walker.c" />
+    <ClCompile Include="..\source\client\exported\animations\walker_big.c" />
+    <ClCompile Include="..\source\client\exported\animations\walker_small.c" />
+    <ClCompile Include="..\source\client\exported\animations\wheeler.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
     <ClCompile Include="..\source\client\exported\palettes\global_palette.c" />
     <ClCompile Include="..\source\client\gameobjects\basic_effect.c" />
@@ -206,6 +235,7 @@
     <ClCompile Include="..\source\engine\command_manager.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
+    <ClCompile Include="..\source\engine\joystick_manager.c" />
     <ClCompile Include="..\source\engine\map_load.c" />
     <ClCompile Include="..\source\engine\map_types.c" />
     <ClCompile Include="..\source\engine\object_manager.c" />
@@ -307,6 +337,7 @@
     <NMakeBuildCommandLine>..\build\build.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>..\build\rebuild.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>..\build\clean.bat</NMakeCleanCommandLine>
+    <IncludePath>C:\Dropbox\GenesisDev\sgdk200\inc;C:\Dropbox\GenesisDev\projects\RadRuby\project\source\engine;C:\Dropbox\GenesisDev\projects\RadRuby\project\source\client;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Deploy|Win32'">
     <NMakeOutput>..\out\untitled_project.sms</NMakeOutput>
@@ -329,6 +360,7 @@
     <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
     <NMakeCleanCommandLine>..\build\vs_clean.bat</NMakeCleanCommandLine>
+    <IncludePath>C:\Dropbox\GenesisDev\sgdk200\inc;C:\Dropbox\GenesisDev\projects\RadRuby\project\source\engine;C:\Dropbox\GenesisDev\projects\RadRuby\project\source\client;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakeOutput>visualstudio.exe</NMakeOutput>

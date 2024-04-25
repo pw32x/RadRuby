@@ -60,9 +60,6 @@ GameObject* RightScroller_Init(const Map* map)
 	*/
 	
 	ScrollManager_updateMapVDP = FALSE;
-	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
-
-	ScrollManager_updateMapVDP = FALSE;
 
 	return NULL;
 }
@@ -117,7 +114,7 @@ void RightScroll_Update(GameObject* target)
 	columnToUpdate = ScrollManager_horizontalScroll >> 3;
 	terrainColumnToUpdate = ScrollManager_horizontalScroll >> 4;
 
-	u8 tileDiff = columnToUpdate - oldColumn;
+	//u8 tileDiff = columnToUpdate - oldColumn;
 
 	//u8 currentRomBank = SMS_getROMBank();
 	//if (tileDiff) // when we hit a new column, prep a new column to display
@@ -151,11 +148,6 @@ void RightScroll_Update(GameObject* target)
 
 void RightScroll_Update_Strip(GameObject* target)
 {
-	// 2836
-	// 2788 
-	// 2691
-	// 890
-
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	//SMS_debugPrintf("playerSpeedX: %d\n", playerSpeedX);
@@ -170,7 +162,7 @@ void RightScroll_Update_Strip(GameObject* target)
 	// tile map
 
 	//u8 scrollSpeedX = 0;
-
+	/*
 	u8 oldColumn = columnToUpdate;
 	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
@@ -218,18 +210,16 @@ void RightScroll_Update_Strip(GameObject* target)
 		TerrainManager_UpdateTerrain_Strip(terrainColumnToUpdate + 15);
 	}
 
-	//SMS_mapROMBank(currentRomBank);
-
+	*/
 
 	//SMS_setBackdropColor(COLOR_RED);
-
 	//SMS_setBackdropColor(COLOR_BLUE);
 }
 
 void RightScroll_UpdateVDP(void)
 {
 	//SMS_setBackdropColor(COLOR_DARK_BLUE);
-
+	/*
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 	
 	if (ScrollManager_updateMapVDP)
@@ -237,6 +227,7 @@ void RightScroll_UpdateVDP(void)
 		ScrollManager_updateMapVDP = FALSE;
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 26);
 	}
+	*/
 	//SMS_setBackdropColor(COLOR_RED);
 }
 
@@ -244,6 +235,7 @@ void RightScroll_UpdateVDP_Strip(void)
 {
 	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
+	/*
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 
 	if (ScrollManager_updateMapVDP)
@@ -251,5 +243,6 @@ void RightScroll_UpdateVDP_Strip(void)
 		ScrollManager_updateMapVDP = FALSE;
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_currentMapStrip, 24);
 	}
+	*/
 	//SMS_setBackdropColor(COLOR_RED);
 }

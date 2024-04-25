@@ -8,5 +8,9 @@ RESOURCE() extern const GGAnimation walker_big;
 
 #define WALKER_BIG_NUMFRAMES 8
 
+// frame numbers for specific animations.
+#define WALKER_BIG_RUN_RIGHT_FRAME_INDEX 0
+#define WALKER_BIG_RUN_LEFT_FRAME_INDEX 4
+
 #endif
 

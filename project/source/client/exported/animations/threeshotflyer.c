@@ -171,8 +171,8 @@ const unsigned short const threeshotflyerTileData[288] = // 18 tiles
 
 const GGSprite threeshotflyerSprite0 = 
 {
-    1, // x position offset
-    0, // y position offset
+    -11, // x position offset
+    -12, // y position offset
     -1, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size
@@ -180,8 +180,8 @@ const GGSprite threeshotflyerSprite0 =
 
 const GGSprite threeshotflyerSprite1 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -12, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 9), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 3), // sgdk sprite size

@@ -63,8 +63,8 @@ const unsigned short const shotgunTileData[96] = // 6 tiles
 
 const GGSprite shotgunSprite0 = 
 {
-    5, // x position offset
-    5, // y position offset
+    -3, // x position offset
+    -3, // y position offset
     3, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 1), // sgdk sprite size
@@ -72,8 +72,8 @@ const GGSprite shotgunSprite0 =
 
 const GGSprite shotgunSprite1 = 
 {
-    4, // x position offset
-    4, // y position offset
+    -4, // x position offset
+    -4, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 1), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 1), // sgdk sprite size
@@ -81,8 +81,8 @@ const GGSprite shotgunSprite1 =
 
 const GGSprite shotgunSprite2 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 2), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size

@@ -783,8 +783,8 @@ const unsigned short const wheelerTileData[1376] = // 86 tiles
 
 const GGSprite wheelerSprite0 = 
 {
-    2, // x position offset
-    0, // y position offset
+    -10, // x position offset
+    -16, // y position offset
     -2, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -792,8 +792,8 @@ const GGSprite wheelerSprite0 =
 
 const GGSprite wheelerSprite1 = 
 {
-    2, // x position offset
-    1, // y position offset
+    -10, // x position offset
+    -15, // y position offset
     -2, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 12), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -801,8 +801,8 @@ const GGSprite wheelerSprite1 =
 
 const GGSprite wheelerSprite2 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 24), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -810,8 +810,8 @@ const GGSprite wheelerSprite2 =
 
 const GGSprite wheelerSprite3 = 
 {
-    0, // x position offset
-    1, // y position offset
+    -12, // x position offset
+    -15, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 36), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -819,8 +819,8 @@ const GGSprite wheelerSprite3 =
 
 const GGSprite wheelerSprite4 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -12, // x position offset
+    -16, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 48), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(3, 4), // sgdk sprite size
@@ -828,8 +828,8 @@ const GGSprite wheelerSprite4 =
 
 const GGSprite wheelerSprite5 = 
 {
-    4, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 60), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 4), // sgdk sprite size
@@ -837,8 +837,8 @@ const GGSprite wheelerSprite5 =
 
 const GGSprite wheelerSprite6 = 
 {
-    4, // x position offset
-    0, // y position offset
+    -8, // x position offset
+    -16, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 68), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 4), // sgdk sprite size
@@ -846,8 +846,8 @@ const GGSprite wheelerSprite6 =
 
 const GGSprite wheelerSprite7 = 
 {
-    4, // x position offset
-    9, // y position offset
+    -8, // x position offset
+    -7, // y position offset
     4, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 76), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size
@@ -855,8 +855,8 @@ const GGSprite wheelerSprite7 =
 
 const GGSprite wheelerSprite8 = 
 {
-    8, // x position offset
-    11, // y position offset
+    -4, // x position offset
+    -5, // y position offset
     8, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 80), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 2), // sgdk sprite size
@@ -864,8 +864,8 @@ const GGSprite wheelerSprite8 =
 
 const GGSprite wheelerSprite9 = 
 {
-    8, // x position offset
-    11, // y position offset
+    -4, // x position offset
+    -5, // y position offset
     8, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 1, 80), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 2), // sgdk sprite size
@@ -873,8 +873,8 @@ const GGSprite wheelerSprite9 =
 
 const GGSprite wheelerSprite10 = 
 {
-    6, // x position offset
-    12, // y position offset
+    -6, // x position offset
+    -4, // y position offset
     2, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 82), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(2, 2), // sgdk sprite size

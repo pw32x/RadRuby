@@ -27,8 +27,8 @@ const unsigned short const shotgun_itemTileData[32] = // 2 tiles
 
 const GGSprite shotgun_itemSprite0 = 
 {
-    0, // x position offset
-    0, // y position offset
+    -4, // x position offset
+    -8, // y position offset
     0, // x flipped position offset
     TILE_ATTR_FULL(PAL0, 0, 0, 0, 0), // tile attribute and tile offset in sprite tile data
     SPRITE_SIZE(1, 2), // sgdk sprite size
