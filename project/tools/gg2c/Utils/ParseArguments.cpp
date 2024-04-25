@@ -32,7 +32,11 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 
     ProgramArguments programArguments;
 
-    programArguments.m_filepath = FileUtils::ensureBackslash(program.get<std::string>("path"));
+    programArguments.m_filepath = program.get<std::string>("path");
+
+    if (programArguments.m_filepath.rfind(".gal") == std::string::npos)
+        programArguments.m_filepath = FileUtils::ensureBackslash(programArguments.m_filepath);
+
 
     #define BUFSIZE MAX_PATH
     char currentDirectory[BUFSIZE];

@@ -20,8 +20,10 @@ Animation::Animation(const GraphicsGaleObject& ggo, const Options& options)
 	unsigned int numberOfFrames = m_ggo.getFrameCount();
 	m_frames.resize(numberOfFrames);
 
+
 	m_maxTilesInFrame = 0;
 
+	/*
     for (DWORD loop = 0; loop < numberOfFrames; loop++)
     {
 		AnimationFrame& frame = m_frames[loop];
@@ -36,18 +38,15 @@ Animation::Animation(const GraphicsGaleObject& ggo, const Options& options)
 
 		m_totalFrameTime += frame.GetFrameDelayTime();
     }
+	*/
 
-/*
     for (DWORD loop = 0; loop < numberOfFrames; loop++)
     {
 		AnimationFrame& frame = m_frames[loop];
 
-		frame.Init(loop, 
-                   m_ggo, 
-                   m_spriteStripStore,
-                   m_animationProperties);
+		frame.Init(loop, ggo, m_rawSprites, m_spriteProperties, m_spriteArrays, m_options, m_animationProperties, m_tileCount);
 
-        m_maxTilesInFrame = max(m_maxTilesInFrame, frame.GetMaxTilesInAFrame());
+        m_maxTilesInFrame = max(m_maxTilesInFrame, frame.GetTileCount());
 
 		m_totalFrameTime += frame.GetFrameDelayTime();
 
@@ -108,8 +107,6 @@ Animation::Animation(const GraphicsGaleObject& ggo, const Options& options)
             m_frames[lastFrameIndex].setNextFrameIndex(lastFrameIndex);
         }
     }
-*/
-
 }
 
 void Animation::Write(const std::string& outputFolder, const std::string& outputName)
@@ -141,6 +138,17 @@ void Animation::WriteAnimationHeaderFile(const std::string& outputFolder, const 
 
 	headerfile << "#define " << StringUtils::str_toupper(outputName) << "_NUMFRAMES " << m_frames.size() << "\n";
 	headerfile << "\n";
+
+	if (m_animationProperties.animationFrameNames.size() > 0)
+	{
+		headerfile << "// frame numbers for specific animations.\n";
+		for (const auto& pair : m_animationProperties.animationFrameNames) 
+		{
+			std::transform(headerGuard.begin(), headerGuard.end(), headerGuard.begin(), ::toupper);
+			headerfile << "#define " << StringUtils::str_toupper(outputName) << "_" << StringUtils::str_toupper(pair.second) << "_FRAME_INDEX" << " " << pair.first << "\n";
+		}
+		headerfile << "\n";
+	}
 
     // end header guard
     headerfile << "#endif\n\n";

@@ -21,6 +21,7 @@ void AnimationFrame::Init(int frameNumber,
 						  int& tileStartIndex)
 {
 	mFrameNumber = frameNumber;
+	GetGGInfo(ggo, animationProperties);
 	BuildFrame(ggo, animationProperties);
 	BuildSprites(ggo, rawSprites, spriteProperties, spriteArrays, options, tileStartIndex);
 }
