@@ -17,6 +17,10 @@ namespace TemplateMaster
         private static void ExportSource(GameObjectTemplate gameObjectTemplate, string templateName, string sourceDestinationPath)
         {
             var sb = new StringBuilder();
+
+            if (gameObjectTemplate.CustomDataFields.Count > 0)
+                sb.AppendLine("#include \"" + templateName + ".h\"");
+
             sb.AppendLine("#include \"engine\\gameobject_template_types.h\"");
             sb.AppendLine("#include \"engine\\object_types.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
@@ -26,8 +30,12 @@ namespace TemplateMaster
             // declare the extra resource infos used
             ExportExtraResources(gameObjectTemplate, templateName, sb);
 
+            string gameObjectType = gameObjectTemplate.CustomDataFields.Count == 0 ? "GameObject" : gameObjectTemplate.Name.Replace(" ", "") + "ObjectType";
+
+            string createInfoTypeName = string.IsNullOrEmpty(gameObjectTemplate.CreateInfo) ? "CreateInfo" : gameObjectTemplate.CreateInfo;
+
             // forward declare the init function
-            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* object, const CreateInfo* createInfo);");
+            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(" + gameObjectType + "* object, const " + createInfoTypeName + "* createInfo);");
             sb.AppendLine();
             ExportGameTemplateStruct(gameObjectTemplate, templateName, sb);
 
@@ -46,8 +54,12 @@ namespace TemplateMaster
             sb.AppendLine("#define " + templateName.ToUpper() + "_INCLUDE_H");
             sb.AppendLine();
             sb.AppendLine("#include \"engine\\object_types.h\"");
-            sb.AppendLine();
+            foreach (var include in gameObjectTemplate.AdditionalIncludes)
+            {
+                sb.AppendLine("#include \"" + include + "\"");
+            }
 
+            sb.AppendLine();
             ExportCustomObjectStruct(gameObjectTemplate, templateName, sb);
 
             sb.AppendLine();
@@ -100,7 +112,12 @@ namespace TemplateMaster
 
             AppendField(extraResources, sb, "Error", "extra resources");
 
-            AppendField(gameObjectTemplate.InitFunction, sb, "Error", "init function");
+            string initFunction = gameObjectTemplate.InitFunction;
+
+            if (gameObjectTemplate.CustomDataFields.Count > 0 || !string.IsNullOrEmpty(gameObjectTemplate.CreateInfo)) 
+                initFunction = "(InitObjectFunctionType)" + initFunction;
+
+            AppendField(initFunction, sb, "Error", "init function");
 
             sb.AppendLine("};");
 

@@ -15,8 +15,10 @@ namespace TemplateMaster
         public string GameObjectType { get; set; } = "";
         public string Resource { get; set; } = "";
         public string InitFunction { get; set; } = "";
+        public string CreateInfo { get; set; } = "";
         public List<string> ExtraResources { get; set; } = new List<string>();
         public List<string> CustomDataFields { get; set; } = new List<string>();
+        public List<string> AdditionalIncludes { get; set; } = new List<string>();
 
         public void LoadGameProperties(XmlElement gamePropertiesNode)
         {
@@ -31,6 +33,7 @@ namespace TemplateMaster
             GameObjectType = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(GameObjectType));
             Resource = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(Resource));
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
+            CreateInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction), "createInfo");
 
             if (gamePropertiesNode["ExtraResources"] is var extraResourcesNode && extraResourcesNode != null) 
             {
@@ -65,6 +68,11 @@ namespace TemplateMaster
                         continue;
 
                     CustomDataFields.Add(value);
+
+                    var include = XmlUtils.GetValue<string>(dataNode, "include");
+
+                    if (!string.IsNullOrEmpty(include))
+                        AdditionalIncludes.Add(include);
                 }
             }
         }
