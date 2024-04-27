@@ -1,6 +1,7 @@
 #ifndef PHYSICS_MANAGER_INCLUDE_H
 #define PHYSICS_MANAGER_INCLUDE_H
 
+#include "genesis.h"
 #include "engine\base_types.h"
 
 // variables you can use to compute physics stuff

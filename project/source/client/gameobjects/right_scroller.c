@@ -88,7 +88,7 @@ void RightScroll_Update(GameObject* target)
 
 	u8 scrollSpeedX = 0;
 
-	u8 oldColumn = columnToUpdate;
+	//u8 oldColumn = columnToUpdate;
 	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
 	if (target->x > ScrollManager_horizontalScroll + SCROLL_START_POINT)

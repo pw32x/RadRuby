@@ -17,7 +17,7 @@
 		<Resource value="deliveryrobot" />	
 		<InitFunction value="DeliveryRobot_Init"/>	
 		<CustomData>
-			<Data value="MotionSequenceRunner motionSequenceRunner"/>
+			<Data value="MotionSequenceRunner motionSequenceRunner" include="client\motion_sequence.h"/>
 		</CustomData>			
 		<InstanceData>
 			<Data value="" />

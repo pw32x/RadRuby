@@ -11,12 +11,12 @@ void AICommandUtils_updateAICommandsRunner(struct game_object* object, AICommand
 		aiCommandsRunner->currentAICommandItem++;
 
 		const AICommandItem* aiCommandItem = 	aiCommandsRunner->currentAICommandItem;
-		u16 data = (u16)aiCommandItem->data;
+		u32 data = (u32)aiCommandItem->data;
 
-		switch ((u16)aiCommandItem->command)
+		switch ((u32)aiCommandItem->command)
 		{
 		case AI_COMMAND_WAIT:
-			aiCommandsRunner->waitTime = data;
+			aiCommandsRunner->waitTime = (u16)data;
 			//SMS_debugPrintf("waitTime: %d\n", (u16)data);
 			return; // we're done, so just return
 		case AI_COMMAND_JUMP:

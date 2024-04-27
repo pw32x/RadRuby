@@ -1,6 +1,7 @@
 #ifndef BACKGROUND_COMMANDS_INCLUDE_H
 #define BACKGROUND_COMMANDS_INCLUDE_H
 
+#include "genesis.h"
 #include "engine/resource_types.h"
 
 

@@ -20,8 +20,8 @@ void TerrainManager_UpdateTerrain(u16 mapColumnIndex);
 void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex);
 
 // row first
-#define GET_TERRAIN(terrain_x, terrain_y) (TerrainManager_terrain[(terrain_y & TERRAIN_SIDE_MINUS_ONE) + ((terrain_x & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)])
-#define SET_TERRAIN_VALUE(terrain_x, terrain_y, value) (TerrainManager_terrain[(terrain_y & TERRAIN_SIDE_MINUS_ONE) + ((terrain_x & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)] = value)
+#define GET_TERRAIN(terrain_x, terrain_y) (TerrainManager_terrain[((terrain_y) & TERRAIN_SIDE_MINUS_ONE) + (((terrain_x) & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)])
+#define SET_TERRAIN_VALUE(terrain_x, terrain_y, value) (TerrainManager_terrain[((terrain_y) & TERRAIN_SIDE_MINUS_ONE) + (((terrain_x) & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)] = value)
 
 // terrain types
 #define TERRAIN_EMPTY				0

@@ -1,9 +1,10 @@
+#include "threeshotflyer_template.h"
 #include "engine\gameobject_template_types.h"
 #include "engine\object_types.h"
 #include "engine\createinfo_types.h"
 #include "client\generated\resources.h"
 
-GameObject* ThreeShotFlyer_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo);
 
 const GameObjectTemplate threeshotflyer_template = 
 {
@@ -16,5 +17,5 @@ const GameObjectTemplate threeshotflyer_template =
     OBJECTTYPE_ENEMY, // object type
     (const Resource*)&threeshotflyer, // resource
     NULL, // extra resources
-    ThreeShotFlyer_Init, // init function
+    (InitObjectFunctionType)ThreeShotFlyer_Init, // init function
 };

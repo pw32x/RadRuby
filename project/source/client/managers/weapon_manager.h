@@ -1,6 +1,7 @@
 #ifndef WEAPON_MANAGER_INCLUDE_H
 #define WEAPON_MANAGER_INCLUDE_H
 
+#include "genesis.h"
 #include "engine/base_types.h"
 
 #define WEAPON_DEFAULT		0

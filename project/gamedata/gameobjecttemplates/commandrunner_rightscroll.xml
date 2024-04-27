@@ -7,6 +7,6 @@
 	</EditorProperties>
 	<GameProperties>
 		<GameObjectType value="CommandRunner" />
-		<InitFunction value="CommandRunner_RightScroll_Init"/>		
+		<InitFunction value="CommandRunner_RightScroll_Init" createInfo="CommandRunnerCreateInfo"/>		
 	</GameProperties>
 </GameObjectTemplate>

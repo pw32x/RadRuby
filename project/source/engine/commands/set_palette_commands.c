@@ -5,12 +5,12 @@
 
 void SetBackgroundPalette(const Resource* resource)
 {
-	PaletteResource* paletteResource = (PaletteResource*)resource;
-	SMS_loadBGPalette(paletteResource->palette);
+	//PaletteResource* paletteResource = (PaletteResource*)resource;
+	//SMS_loadBGPalette(paletteResource->palette);
 }
 
 void SetSpritePalette(const Resource* resource)
 {
-	PaletteResource* paletteResource = (PaletteResource*)resource;
-	SMS_loadSpritePalette(paletteResource->palette);
+	//PaletteResource* paletteResource = (PaletteResource*)resource;
+	//SMS_loadSpritePalette(paletteResource->palette);
 }

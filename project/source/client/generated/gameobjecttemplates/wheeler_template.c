@@ -1,9 +1,10 @@
+#include "wheeler_template.h"
 #include "engine\gameobject_template_types.h"
 #include "engine\object_types.h"
 #include "engine\createinfo_types.h"
 #include "client\generated\resources.h"
 
-GameObject* Wheeler_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo);
 
 const GameObjectTemplate wheeler_template = 
 {
@@ -16,5 +17,5 @@ const GameObjectTemplate wheeler_template =
     OBJECTTYPE_ENEMY, // object type
     (const Resource*)&wheeler, // resource
     NULL, // extra resources
-    Wheeler_Init, // init function
+    (InitObjectFunctionType)Wheeler_Init, // init function
 };

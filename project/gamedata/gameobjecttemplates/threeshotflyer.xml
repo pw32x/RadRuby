@@ -17,7 +17,7 @@
 		<Resource value="threeshotflyer" />	
 		<InitFunction value="ThreeShotFlyer_Init"/>	
 		<CustomData>
-			<Data value="AICommandsRunner aiCommandsRunner"/>
+			<Data value="AICommandsRunner aiCommandsRunner" include="client\ai_commands.h"/>
 		</CustomData>			
 	</GameProperties>
 	<References>
