@@ -7,15 +7,15 @@
 //#include "Config.h"
 //#include "engine\defines.h"
 
-void GGAnimation_Draw(s16 x, 
+void Ruby_Animation_Draw(s16 x, 
                       s16 y, 
-                      const GGAnimation* animation, 
+                      const Ruby_Animation* animation, 
                       u16 frameNumber, 
                       u16 tileAttribute)
 {
-    const GGFrame* frame = *(animation->frames + frameNumber);
-	const GGSprite* const* spritePtr = frame->sprites;
-    const GGSprite* sprite;
+    const Ruby_Frame* frame = *(animation->frames + frameNumber);
+	const Ruby_Sprite* const* spritePtr = frame->sprites;
+    const Ruby_Sprite* sprite;
 
     u16 loop = frame->numSprites;
 
@@ -48,16 +48,16 @@ void GGAnimation_Draw(s16 x,
     }
 }
 
-void GGAnimation_DrawNoFlip(s16 x, 
+void Ruby_Animation_DrawNoFlip(s16 x, 
                             s16 y, 
-                            const GGAnimation* animation, 
+                            const Ruby_Animation* animation, 
                             u16 frameNumber, 
                             u16 tileAttribute)
 {
-    const GGFrame* frame = *(animation->frames + frameNumber);
+    const Ruby_Frame* frame = *(animation->frames + frameNumber);
 
-	const GGSprite* const* spritePtr = frame->sprites;
-    const GGSprite* sprite;
+	const Ruby_Sprite* const* spritePtr = frame->sprites;
+    const Ruby_Sprite* sprite;
 
     u16 loop = frame->numSprites;
 
@@ -82,15 +82,15 @@ void GGAnimation_DrawNoFlip(s16 x,
     }
 }
 /*
-void GGAnimation_DrawObject(ObjectStruct* object)
+void Ruby_Animation_DrawObject(ObjectStruct* object)
 {
     if (object->currentAnimationFrame == NULL) 
 	{
 		return;
 	}
 
-	const GGSprite* const* spritePtr = object->currentAnimationFrame->sprites;
-	const GGSprite* sprite;
+	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+	const Ruby_Sprite* sprite;
 
     u16 loop = object->currentAnimationFrame->numSprites;
 
@@ -123,10 +123,10 @@ void GGAnimation_DrawObject(ObjectStruct* object)
     }
 }
 
-void GGAnimation_DrawObjectNoFlip(ObjectStruct* object)
+void Ruby_Animation_DrawObjectNoFlip(ObjectStruct* object)
 {
-	const GGSprite* const* spritePtr = object->currentAnimationFrame->sprites;
-    const GGSprite* sprite;
+	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+    const Ruby_Sprite* sprite;
 
     u16 loop = object->currentAnimationFrame->numSprites;
 
@@ -151,13 +151,13 @@ void GGAnimation_DrawObjectNoFlip(ObjectStruct* object)
     }
 }
 
-void GGAnimation_DrawObjectOnPlane(ObjectStruct* object)
+void Ruby_Animation_DrawObjectOnPlane(ObjectStruct* object)
 {
 	s16 screenx = V2P(object->x) - object->background->screenx;
     s16 screeny = V2P(object->y) - object->background->screeny;
 
-	const GGSprite* const* spritePtr = object->currentAnimationFrame->sprites;
-    const GGSprite* sprite;
+	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+    const Ruby_Sprite* sprite;
     u16 loop = object->currentAnimationFrame->numSprites;
 
     if (spriteDrawIndex + object->currentAnimationFrame->numSprites > SAT_MAX_SIZE)
@@ -190,7 +190,7 @@ void GGAnimation_DrawObjectOnPlane(ObjectStruct* object)
 }
 
 
-void GGAnimation_DrawObjectStub(UNUSED ObjectStruct* object)
+void Ruby_Animation_DrawObjectStub(UNUSED ObjectStruct* object)
 {
 
 }*/

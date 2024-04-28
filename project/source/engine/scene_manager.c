@@ -10,12 +10,20 @@
 void SceneManager_Init(const Scene* scene)
 {
 	// init systems
+	kprintf("object manager init\n");
+
 	ObjectManager_Init();
+
+	kprintf("vdp tile manager init\n");
+
 	VDPTileManager_Init();
 
+	kprintf("starting command init\n");
 	CommandManager_currentCommand = scene->commands;
 
 	// we assume the first item is a command processor
 	CommandFunction firstCommand = CommandManager_currentCommand->command;
 	firstCommand(CommandManager_currentCommand->data);
+
+	kprintf("scene manager init end\n");
 }

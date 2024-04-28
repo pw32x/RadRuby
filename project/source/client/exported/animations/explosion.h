@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation explosion;
+RESOURCE() extern const Ruby_Animation explosion;
 
 #define EXPLOSION_NUMFRAMES 9
 

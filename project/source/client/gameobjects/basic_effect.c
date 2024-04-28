@@ -37,7 +37,7 @@ void BasicEffect_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
-	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
+	if (AnimationUtils_updateStandardAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);

@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation wheeler;
+RESOURCE() extern const Ruby_Animation wheeler;
 
 #define WHEELER_NUMFRAMES 11
 

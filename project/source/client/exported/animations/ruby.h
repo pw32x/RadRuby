@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation ruby;
+RESOURCE() extern const Ruby_Animation ruby;
 
 #define RUBY_NUMFRAMES 6
 

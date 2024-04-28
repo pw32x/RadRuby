@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation deliveryrobot;
+RESOURCE() extern const Ruby_Animation deliveryrobot;
 
 #define DELIVERYROBOT_NUMFRAMES 6
 

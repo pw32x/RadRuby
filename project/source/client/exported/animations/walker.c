@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "walker.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const walkerTileData[128] = // 8 tiles 
@@ -79,7 +81,7 @@ const unsigned short const walkerTileData[128] = // 8 tiles
     0x1111, 0x0,
 };
 
-const GGSprite walkerSprite0 = 
+const Ruby_Sprite walkerSprite0 = 
 {
     -8, // x position offset
     -7, // y position offset
@@ -88,7 +90,7 @@ const GGSprite walkerSprite0 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite walkerSprite1 = 
+const Ruby_Sprite walkerSprite1 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -97,24 +99,24 @@ const GGSprite walkerSprite1 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite* const walkerSpriteArray0[1] = 
+const Ruby_Sprite* const walkerSpriteArray0[1] = 
 {
     &walkerSprite0,
 };
 
-const GGSprite* const walkerSpriteArray1[1] = 
+const Ruby_Sprite* const walkerSpriteArray1[1] = 
 {
     &walkerSprite1,
 };
 
-extern const GGFrame walkerFrame0;
-extern const GGFrame walkerFrame1;
+extern const Ruby_Frame walkerFrame0;
+extern const Ruby_Frame walkerFrame1;
 
 
 
 
 
-const GGFrame walkerFrame0 = 
+const Ruby_Frame walkerFrame0 = 
 {
     walkerSpriteArray0,
     1, // number of sprites
@@ -124,7 +126,7 @@ const GGFrame walkerFrame0 =
 };
 
 
-const GGFrame walkerFrame1 = 
+const Ruby_Frame walkerFrame1 = 
 {
     walkerSpriteArray1,
     1, // number of sprites
@@ -133,17 +135,27 @@ const GGFrame walkerFrame1 =
     &walkerFrame0, // loop to next frame. 
 };
 
-const GGFrame* const walkerFrames[2] = 
+const Ruby_Frame* const walkerFrames[2] = 
 {
     &walkerFrame0,
     &walkerFrame1,
 };
 
+const Ruby_AnimationSetup const walkerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &walkerFrame0,
+    0,
+    12,
+};
 
+u16 walkerVdpLocation;
 
-const GGAnimation walker = 
+const Ruby_Animation walker = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &walkerSetup,
     walkerFrames,
     2, // number of frames
     16, // width in pixels
@@ -152,4 +164,5 @@ const GGAnimation walker =
     8, // the total number of tiles in the animation
     (const u32*)walkerTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &walkerVdpLocation, // location in vdp when loaded
 };

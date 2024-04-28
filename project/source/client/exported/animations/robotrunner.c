@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "robotrunner.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const robotrunnerTileData[768] = // 48 tiles 
@@ -439,7 +441,7 @@ const unsigned short const robotrunnerTileData[768] = // 48 tiles
     0x0200, 0x0,
 };
 
-const GGSprite robotrunnerSprite0 = 
+const Ruby_Sprite robotrunnerSprite0 = 
 {
     -12, // x position offset
     -15, // y position offset
@@ -448,7 +450,7 @@ const GGSprite robotrunnerSprite0 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite robotrunnerSprite1 = 
+const Ruby_Sprite robotrunnerSprite1 = 
 {
     -12, // x position offset
     -16, // y position offset
@@ -457,7 +459,7 @@ const GGSprite robotrunnerSprite1 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite robotrunnerSprite2 = 
+const Ruby_Sprite robotrunnerSprite2 = 
 {
     -11, // x position offset
     -15, // y position offset
@@ -466,7 +468,7 @@ const GGSprite robotrunnerSprite2 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite robotrunnerSprite3 = 
+const Ruby_Sprite robotrunnerSprite3 = 
 {
     -11, // x position offset
     -16, // y position offset
@@ -475,36 +477,36 @@ const GGSprite robotrunnerSprite3 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite* const robotrunnerSpriteArray0[1] = 
+const Ruby_Sprite* const robotrunnerSpriteArray0[1] = 
 {
     &robotrunnerSprite0,
 };
 
-const GGSprite* const robotrunnerSpriteArray1[1] = 
+const Ruby_Sprite* const robotrunnerSpriteArray1[1] = 
 {
     &robotrunnerSprite1,
 };
 
-const GGSprite* const robotrunnerSpriteArray2[1] = 
+const Ruby_Sprite* const robotrunnerSpriteArray2[1] = 
 {
     &robotrunnerSprite2,
 };
 
-const GGSprite* const robotrunnerSpriteArray3[1] = 
+const Ruby_Sprite* const robotrunnerSpriteArray3[1] = 
 {
     &robotrunnerSprite3,
 };
 
-extern const GGFrame robotrunnerFrame0;
-extern const GGFrame robotrunnerFrame1;
-extern const GGFrame robotrunnerFrame2;
-extern const GGFrame robotrunnerFrame3;
+extern const Ruby_Frame robotrunnerFrame0;
+extern const Ruby_Frame robotrunnerFrame1;
+extern const Ruby_Frame robotrunnerFrame2;
+extern const Ruby_Frame robotrunnerFrame3;
 
 
 
 
 
-const GGFrame robotrunnerFrame0 = 
+const Ruby_Frame robotrunnerFrame0 = 
 {
     robotrunnerSpriteArray0,
     1, // number of sprites
@@ -514,7 +516,7 @@ const GGFrame robotrunnerFrame0 =
 };
 
 
-const GGFrame robotrunnerFrame1 = 
+const Ruby_Frame robotrunnerFrame1 = 
 {
     robotrunnerSpriteArray1,
     1, // number of sprites
@@ -524,7 +526,7 @@ const GGFrame robotrunnerFrame1 =
 };
 
 
-const GGFrame robotrunnerFrame2 = 
+const Ruby_Frame robotrunnerFrame2 = 
 {
     robotrunnerSpriteArray2,
     1, // number of sprites
@@ -534,7 +536,7 @@ const GGFrame robotrunnerFrame2 =
 };
 
 
-const GGFrame robotrunnerFrame3 = 
+const Ruby_Frame robotrunnerFrame3 = 
 {
     robotrunnerSpriteArray3,
     1, // number of sprites
@@ -543,7 +545,7 @@ const GGFrame robotrunnerFrame3 =
     &robotrunnerFrame0, // loop to next frame. 
 };
 
-const GGFrame* const robotrunnerFrames[4] = 
+const Ruby_Frame* const robotrunnerFrames[4] = 
 {
     &robotrunnerFrame0,
     &robotrunnerFrame1,
@@ -551,11 +553,21 @@ const GGFrame* const robotrunnerFrames[4] =
     &robotrunnerFrame3,
 };
 
+const Ruby_AnimationSetup const robotrunnerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &robotrunnerFrame0,
+    0,
+    5,
+};
 
+u16 robotrunnerVdpLocation;
 
-const GGAnimation robotrunner = 
+const Ruby_Animation robotrunner = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &robotrunnerSetup,
     robotrunnerFrames,
     4, // number of frames
     24, // width in pixels
@@ -564,4 +576,5 @@ const GGAnimation robotrunner =
     48, // the total number of tiles in the animation
     (const u32*)robotrunnerTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &robotrunnerVdpLocation, // location in vdp when loaded
 };

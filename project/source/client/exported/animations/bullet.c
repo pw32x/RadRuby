@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "bullet.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const bulletTileData[16] = // 1 tiles 
@@ -16,7 +18,7 @@ const unsigned short const bulletTileData[16] = // 1 tiles
     0x0000, 0x0,
 };
 
-const GGSprite bulletSprite0 = 
+const Ruby_Sprite bulletSprite0 = 
 {
     -3, // x position offset
     -3, // y position offset
@@ -25,18 +27,18 @@ const GGSprite bulletSprite0 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite* const bulletSpriteArray0[1] = 
+const Ruby_Sprite* const bulletSpriteArray0[1] = 
 {
     &bulletSprite0,
 };
 
-extern const GGFrame bulletFrame0;
+extern const Ruby_Frame bulletFrame0;
 
 
 
 
 
-const GGFrame bulletFrame0 = 
+const Ruby_Frame bulletFrame0 = 
 {
     bulletSpriteArray0,
     1, // number of sprites
@@ -45,16 +47,26 @@ const GGFrame bulletFrame0 =
     &bulletFrame0, // loop to next frame. 
 };
 
-const GGFrame* const bulletFrames[1] = 
+const Ruby_Frame* const bulletFrames[1] = 
 {
     &bulletFrame0,
 };
 
+const Ruby_AnimationSetup const bulletSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &bulletFrame0,
+    0,
+    5,
+};
 
+u16 bulletVdpLocation;
 
-const GGAnimation bullet = 
+const Ruby_Animation bullet = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &bulletSetup,
     bulletFrames,
     1, // number of frames
     8, // width in pixels
@@ -63,4 +75,5 @@ const GGAnimation bullet =
     1, // the total number of tiles in the animation
     (const u32*)bulletTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &bulletVdpLocation, // location in vdp when loaded
 };

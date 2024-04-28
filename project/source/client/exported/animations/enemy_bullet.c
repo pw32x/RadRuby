@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "enemy_bullet.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const enemy_bulletTileData[32] = // 2 tiles 
@@ -25,7 +27,7 @@ const unsigned short const enemy_bulletTileData[32] = // 2 tiles
     0x00aa, 0xaa00,
 };
 
-const GGSprite enemy_bulletSprite0 = 
+const Ruby_Sprite enemy_bulletSprite0 = 
 {
     -4, // x position offset
     -4, // y position offset
@@ -34,7 +36,7 @@ const GGSprite enemy_bulletSprite0 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite enemy_bulletSprite1 = 
+const Ruby_Sprite enemy_bulletSprite1 = 
 {
     -4, // x position offset
     -4, // y position offset
@@ -43,24 +45,24 @@ const GGSprite enemy_bulletSprite1 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite* const enemy_bulletSpriteArray0[1] = 
+const Ruby_Sprite* const enemy_bulletSpriteArray0[1] = 
 {
     &enemy_bulletSprite0,
 };
 
-const GGSprite* const enemy_bulletSpriteArray1[1] = 
+const Ruby_Sprite* const enemy_bulletSpriteArray1[1] = 
 {
     &enemy_bulletSprite1,
 };
 
-extern const GGFrame enemy_bulletFrame0;
-extern const GGFrame enemy_bulletFrame1;
+extern const Ruby_Frame enemy_bulletFrame0;
+extern const Ruby_Frame enemy_bulletFrame1;
 
 
 
 
 
-const GGFrame enemy_bulletFrame0 = 
+const Ruby_Frame enemy_bulletFrame0 = 
 {
     enemy_bulletSpriteArray0,
     1, // number of sprites
@@ -70,7 +72,7 @@ const GGFrame enemy_bulletFrame0 =
 };
 
 
-const GGFrame enemy_bulletFrame1 = 
+const Ruby_Frame enemy_bulletFrame1 = 
 {
     enemy_bulletSpriteArray1,
     1, // number of sprites
@@ -79,17 +81,27 @@ const GGFrame enemy_bulletFrame1 =
     &enemy_bulletFrame0, // loop to next frame. 
 };
 
-const GGFrame* const enemy_bulletFrames[2] = 
+const Ruby_Frame* const enemy_bulletFrames[2] = 
 {
     &enemy_bulletFrame0,
     &enemy_bulletFrame1,
 };
 
+const Ruby_AnimationSetup const enemy_bulletSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &enemy_bulletFrame0,
+    0,
+    4,
+};
 
+u16 enemy_bulletVdpLocation;
 
-const GGAnimation enemy_bullet = 
+const Ruby_Animation enemy_bullet = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &enemy_bulletSetup,
     enemy_bulletFrames,
     2, // number of frames
     8, // width in pixels
@@ -98,4 +110,5 @@ const GGAnimation enemy_bullet =
     2, // the total number of tiles in the animation
     (const u32*)enemy_bulletTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &enemy_bulletVdpLocation, // location in vdp when loaded
 };

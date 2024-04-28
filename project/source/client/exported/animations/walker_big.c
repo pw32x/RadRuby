@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "walker_big.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const walker_bigTileData[1024] = // 64 tiles 
@@ -583,7 +585,7 @@ const unsigned short const walker_bigTileData[1024] = // 64 tiles
     0x0000, 0x0,
 };
 
-const GGSprite walker_bigSprite0 = 
+const Ruby_Sprite walker_bigSprite0 = 
 {
     -16, // x position offset
     -16, // y position offset
@@ -592,7 +594,7 @@ const GGSprite walker_bigSprite0 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite walker_bigSprite1 = 
+const Ruby_Sprite walker_bigSprite1 = 
 {
     -16, // x position offset
     -14, // y position offset
@@ -601,7 +603,7 @@ const GGSprite walker_bigSprite1 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite walker_bigSprite2 = 
+const Ruby_Sprite walker_bigSprite2 = 
 {
     -16, // x position offset
     -14, // y position offset
@@ -610,7 +612,7 @@ const GGSprite walker_bigSprite2 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite walker_bigSprite3 = 
+const Ruby_Sprite walker_bigSprite3 = 
 {
     -14, // x position offset
     -16, // y position offset
@@ -619,7 +621,7 @@ const GGSprite walker_bigSprite3 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite walker_bigSprite4 = 
+const Ruby_Sprite walker_bigSprite4 = 
 {
     -16, // x position offset
     -14, // y position offset
@@ -628,7 +630,7 @@ const GGSprite walker_bigSprite4 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite walker_bigSprite5 = 
+const Ruby_Sprite walker_bigSprite5 = 
 {
     -16, // x position offset
     -14, // y position offset
@@ -637,50 +639,50 @@ const GGSprite walker_bigSprite5 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite* const walker_bigSpriteArray0[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray0[1] = 
 {
     &walker_bigSprite0,
 };
 
-const GGSprite* const walker_bigSpriteArray1[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray1[1] = 
 {
     &walker_bigSprite1,
 };
 
-const GGSprite* const walker_bigSpriteArray2[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray2[1] = 
 {
     &walker_bigSprite2,
 };
 
-const GGSprite* const walker_bigSpriteArray3[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray3[1] = 
 {
     &walker_bigSprite3,
 };
 
-const GGSprite* const walker_bigSpriteArray4[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray4[1] = 
 {
     &walker_bigSprite4,
 };
 
-const GGSprite* const walker_bigSpriteArray5[1] = 
+const Ruby_Sprite* const walker_bigSpriteArray5[1] = 
 {
     &walker_bigSprite5,
 };
 
-extern const GGFrame walker_bigFrame0;
-extern const GGFrame walker_bigFrame1;
-extern const GGFrame walker_bigFrame2;
-extern const GGFrame walker_bigFrame3;
-extern const GGFrame walker_bigFrame4;
-extern const GGFrame walker_bigFrame5;
-extern const GGFrame walker_bigFrame6;
-extern const GGFrame walker_bigFrame7;
+extern const Ruby_Frame walker_bigFrame0;
+extern const Ruby_Frame walker_bigFrame1;
+extern const Ruby_Frame walker_bigFrame2;
+extern const Ruby_Frame walker_bigFrame3;
+extern const Ruby_Frame walker_bigFrame4;
+extern const Ruby_Frame walker_bigFrame5;
+extern const Ruby_Frame walker_bigFrame6;
+extern const Ruby_Frame walker_bigFrame7;
 
 
 
 
 
-const GGFrame walker_bigFrame0 = 
+const Ruby_Frame walker_bigFrame0 = 
 {
     walker_bigSpriteArray0,
     1, // number of sprites
@@ -690,7 +692,7 @@ const GGFrame walker_bigFrame0 =
 };
 
 
-const GGFrame walker_bigFrame1 = 
+const Ruby_Frame walker_bigFrame1 = 
 {
     walker_bigSpriteArray1,
     1, // number of sprites
@@ -700,7 +702,7 @@ const GGFrame walker_bigFrame1 =
 };
 
 
-const GGFrame walker_bigFrame2 = 
+const Ruby_Frame walker_bigFrame2 = 
 {
     walker_bigSpriteArray0,
     1, // number of sprites
@@ -710,7 +712,7 @@ const GGFrame walker_bigFrame2 =
 };
 
 
-const GGFrame walker_bigFrame3 = 
+const Ruby_Frame walker_bigFrame3 = 
 {
     walker_bigSpriteArray2,
     1, // number of sprites
@@ -720,7 +722,7 @@ const GGFrame walker_bigFrame3 =
 };
 
 
-const GGFrame walker_bigFrame4 = 
+const Ruby_Frame walker_bigFrame4 = 
 {
     walker_bigSpriteArray3,
     1, // number of sprites
@@ -730,7 +732,7 @@ const GGFrame walker_bigFrame4 =
 };
 
 
-const GGFrame walker_bigFrame5 = 
+const Ruby_Frame walker_bigFrame5 = 
 {
     walker_bigSpriteArray4,
     1, // number of sprites
@@ -740,7 +742,7 @@ const GGFrame walker_bigFrame5 =
 };
 
 
-const GGFrame walker_bigFrame6 = 
+const Ruby_Frame walker_bigFrame6 = 
 {
     walker_bigSpriteArray3,
     1, // number of sprites
@@ -750,7 +752,7 @@ const GGFrame walker_bigFrame6 =
 };
 
 
-const GGFrame walker_bigFrame7 = 
+const Ruby_Frame walker_bigFrame7 = 
 {
     walker_bigSpriteArray5,
     1, // number of sprites
@@ -759,7 +761,7 @@ const GGFrame walker_bigFrame7 =
     &walker_bigFrame0, // loop to next frame. 
 };
 
-const GGFrame* const walker_bigFrames[8] = 
+const Ruby_Frame* const walker_bigFrames[8] = 
 {
     &walker_bigFrame0,
     &walker_bigFrame1,
@@ -771,11 +773,21 @@ const GGFrame* const walker_bigFrames[8] =
     &walker_bigFrame7,
 };
 
+const Ruby_AnimationSetup const walker_bigSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &walker_bigFrame0,
+    0,
+    14,
+};
 
+u16 walker_bigVdpLocation;
 
-const GGAnimation walker_big = 
+const Ruby_Animation walker_big = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &walker_bigSetup,
     walker_bigFrames,
     8, // number of frames
     32, // width in pixels
@@ -784,4 +796,5 @@ const GGAnimation walker_big =
     64, // the total number of tiles in the animation
     (const u32*)walker_bigTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &walker_bigVdpLocation, // location in vdp when loaded
 };

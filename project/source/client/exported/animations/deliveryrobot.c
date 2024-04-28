@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "deliveryrobot.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const deliveryrobotTileData[640] = // 40 tiles 
@@ -367,7 +369,7 @@ const unsigned short const deliveryrobotTileData[640] = // 40 tiles
     0x0000, 0x0,
 };
 
-const GGSprite deliveryrobotSprite0 = 
+const Ruby_Sprite deliveryrobotSprite0 = 
 {
     -12, // x position offset
     -16, // y position offset
@@ -376,7 +378,7 @@ const GGSprite deliveryrobotSprite0 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite deliveryrobotSprite1 = 
+const Ruby_Sprite deliveryrobotSprite1 = 
 {
     -10, // x position offset
     -16, // y position offset
@@ -385,7 +387,7 @@ const GGSprite deliveryrobotSprite1 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite deliveryrobotSprite2 = 
+const Ruby_Sprite deliveryrobotSprite2 = 
 {
     -12, // x position offset
     -16, // y position offset
@@ -394,7 +396,7 @@ const GGSprite deliveryrobotSprite2 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite deliveryrobotSprite3 = 
+const Ruby_Sprite deliveryrobotSprite3 = 
 {
     -9, // x position offset
     -16, // y position offset
@@ -403,7 +405,7 @@ const GGSprite deliveryrobotSprite3 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite deliveryrobotSprite4 = 
+const Ruby_Sprite deliveryrobotSprite4 = 
 {
     -4, // x position offset
     -6, // y position offset
@@ -412,7 +414,7 @@ const GGSprite deliveryrobotSprite4 =
     SPRITE_SIZE(1, 2), // sgdk sprite size
 };
 
-const GGSprite deliveryrobotSprite5 = 
+const Ruby_Sprite deliveryrobotSprite5 = 
 {
     -4, // x position offset
     -8, // y position offset
@@ -421,48 +423,48 @@ const GGSprite deliveryrobotSprite5 =
     SPRITE_SIZE(1, 2), // sgdk sprite size
 };
 
-const GGSprite* const deliveryrobotSpriteArray0[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray0[1] = 
 {
     &deliveryrobotSprite0,
 };
 
-const GGSprite* const deliveryrobotSpriteArray1[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray1[1] = 
 {
     &deliveryrobotSprite1,
 };
 
-const GGSprite* const deliveryrobotSpriteArray2[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray2[1] = 
 {
     &deliveryrobotSprite2,
 };
 
-const GGSprite* const deliveryrobotSpriteArray3[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray3[1] = 
 {
     &deliveryrobotSprite3,
 };
 
-const GGSprite* const deliveryrobotSpriteArray4[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray4[1] = 
 {
     &deliveryrobotSprite4,
 };
 
-const GGSprite* const deliveryrobotSpriteArray5[1] = 
+const Ruby_Sprite* const deliveryrobotSpriteArray5[1] = 
 {
     &deliveryrobotSprite5,
 };
 
-extern const GGFrame deliveryrobotFrame0;
-extern const GGFrame deliveryrobotFrame1;
-extern const GGFrame deliveryrobotFrame2;
-extern const GGFrame deliveryrobotFrame3;
-extern const GGFrame deliveryrobotFrame4;
-extern const GGFrame deliveryrobotFrame5;
+extern const Ruby_Frame deliveryrobotFrame0;
+extern const Ruby_Frame deliveryrobotFrame1;
+extern const Ruby_Frame deliveryrobotFrame2;
+extern const Ruby_Frame deliveryrobotFrame3;
+extern const Ruby_Frame deliveryrobotFrame4;
+extern const Ruby_Frame deliveryrobotFrame5;
 
 
 
 
 
-const GGFrame deliveryrobotFrame0 = 
+const Ruby_Frame deliveryrobotFrame0 = 
 {
     deliveryrobotSpriteArray0,
     1, // number of sprites
@@ -472,7 +474,7 @@ const GGFrame deliveryrobotFrame0 =
 };
 
 
-const GGFrame deliveryrobotFrame1 = 
+const Ruby_Frame deliveryrobotFrame1 = 
 {
     deliveryrobotSpriteArray1,
     1, // number of sprites
@@ -482,7 +484,7 @@ const GGFrame deliveryrobotFrame1 =
 };
 
 
-const GGFrame deliveryrobotFrame2 = 
+const Ruby_Frame deliveryrobotFrame2 = 
 {
     deliveryrobotSpriteArray2,
     1, // number of sprites
@@ -492,7 +494,7 @@ const GGFrame deliveryrobotFrame2 =
 };
 
 
-const GGFrame deliveryrobotFrame3 = 
+const Ruby_Frame deliveryrobotFrame3 = 
 {
     deliveryrobotSpriteArray3,
     1, // number of sprites
@@ -502,7 +504,7 @@ const GGFrame deliveryrobotFrame3 =
 };
 
 
-const GGFrame deliveryrobotFrame4 = 
+const Ruby_Frame deliveryrobotFrame4 = 
 {
     deliveryrobotSpriteArray4,
     1, // number of sprites
@@ -512,7 +514,7 @@ const GGFrame deliveryrobotFrame4 =
 };
 
 
-const GGFrame deliveryrobotFrame5 = 
+const Ruby_Frame deliveryrobotFrame5 = 
 {
     deliveryrobotSpriteArray5,
     1, // number of sprites
@@ -521,7 +523,7 @@ const GGFrame deliveryrobotFrame5 =
     &deliveryrobotFrame0, // loop to next frame. 
 };
 
-const GGFrame* const deliveryrobotFrames[6] = 
+const Ruby_Frame* const deliveryrobotFrames[6] = 
 {
     &deliveryrobotFrame0,
     &deliveryrobotFrame1,
@@ -531,11 +533,21 @@ const GGFrame* const deliveryrobotFrames[6] =
     &deliveryrobotFrame5,
 };
 
+const Ruby_AnimationSetup const deliveryrobotSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &deliveryrobotFrame0,
+    0,
+    4,
+};
 
+u16 deliveryrobotVdpLocation;
 
-const GGAnimation deliveryrobot = 
+const Ruby_Animation deliveryrobot = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &deliveryrobotSetup,
     deliveryrobotFrames,
     6, // number of frames
     24, // width in pixels
@@ -544,4 +556,5 @@ const GGAnimation deliveryrobot =
     40, // the total number of tiles in the animation
     (const u32*)deliveryrobotTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &deliveryrobotVdpLocation, // location in vdp when loaded
 };

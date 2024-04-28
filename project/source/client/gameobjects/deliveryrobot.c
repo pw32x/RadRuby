@@ -58,7 +58,7 @@ GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo
 	/*
 	if (ObjectManager_player.x < object->x)
 	{
-		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
+		AnimationUtils_setStandardAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
@@ -146,7 +146,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		createInfo.startFrameIndex = DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX;
 
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setMetaSpriteAnimationFrame(effect, );
+		AnimationUtils_setStandardAnimationFrame(effect, );
 
 		*/
 

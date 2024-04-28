@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "threeshotflyer.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const threeshotflyerTileData[288] = // 18 tiles 
@@ -169,7 +171,7 @@ const unsigned short const threeshotflyerTileData[288] = // 18 tiles
     0x0000, 0x0,
 };
 
-const GGSprite threeshotflyerSprite0 = 
+const Ruby_Sprite threeshotflyerSprite0 = 
 {
     -11, // x position offset
     -12, // y position offset
@@ -178,7 +180,7 @@ const GGSprite threeshotflyerSprite0 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite threeshotflyerSprite1 = 
+const Ruby_Sprite threeshotflyerSprite1 = 
 {
     -12, // x position offset
     -12, // y position offset
@@ -187,24 +189,24 @@ const GGSprite threeshotflyerSprite1 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite* const threeshotflyerSpriteArray0[1] = 
+const Ruby_Sprite* const threeshotflyerSpriteArray0[1] = 
 {
     &threeshotflyerSprite0,
 };
 
-const GGSprite* const threeshotflyerSpriteArray1[1] = 
+const Ruby_Sprite* const threeshotflyerSpriteArray1[1] = 
 {
     &threeshotflyerSprite1,
 };
 
-extern const GGFrame threeshotflyerFrame0;
-extern const GGFrame threeshotflyerFrame1;
+extern const Ruby_Frame threeshotflyerFrame0;
+extern const Ruby_Frame threeshotflyerFrame1;
 
 
 
 
 
-const GGFrame threeshotflyerFrame0 = 
+const Ruby_Frame threeshotflyerFrame0 = 
 {
     threeshotflyerSpriteArray0,
     1, // number of sprites
@@ -214,7 +216,7 @@ const GGFrame threeshotflyerFrame0 =
 };
 
 
-const GGFrame threeshotflyerFrame1 = 
+const Ruby_Frame threeshotflyerFrame1 = 
 {
     threeshotflyerSpriteArray1,
     1, // number of sprites
@@ -223,17 +225,27 @@ const GGFrame threeshotflyerFrame1 =
     &threeshotflyerFrame0, // loop to next frame. 
 };
 
-const GGFrame* const threeshotflyerFrames[2] = 
+const Ruby_Frame* const threeshotflyerFrames[2] = 
 {
     &threeshotflyerFrame0,
     &threeshotflyerFrame1,
 };
 
+const Ruby_AnimationSetup const threeshotflyerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &threeshotflyerFrame0,
+    0,
+    6,
+};
 
+u16 threeshotflyerVdpLocation;
 
-const GGAnimation threeshotflyer = 
+const Ruby_Animation threeshotflyer = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &threeshotflyerSetup,
     threeshotflyerFrames,
     2, // number of frames
     24, // width in pixels
@@ -242,4 +254,5 @@ const GGAnimation threeshotflyer =
     18, // the total number of tiles in the animation
     (const u32*)threeshotflyerTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &threeshotflyerVdpLocation, // location in vdp when loaded
 };

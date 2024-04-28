@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "explosion.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const explosionTileData[352] = // 22 tiles 
@@ -205,7 +207,7 @@ const unsigned short const explosionTileData[352] = // 22 tiles
     0x0000, 0x0,
 };
 
-const GGSprite explosionSprite0 = 
+const Ruby_Sprite explosionSprite0 = 
 {
     -16, // x position offset
     0, // y position offset
@@ -214,7 +216,7 @@ const GGSprite explosionSprite0 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite explosionSprite1 = 
+const Ruby_Sprite explosionSprite1 = 
 {
     -19, // x position offset
     -3, // y position offset
@@ -223,7 +225,7 @@ const GGSprite explosionSprite1 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite explosionSprite2 = 
+const Ruby_Sprite explosionSprite2 = 
 {
     -20, // x position offset
     -4, // y position offset
@@ -232,7 +234,7 @@ const GGSprite explosionSprite2 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite explosionSprite3 = 
+const Ruby_Sprite explosionSprite3 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -241,7 +243,7 @@ const GGSprite explosionSprite3 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite explosionSprite4 = 
+const Ruby_Sprite explosionSprite4 = 
 {
     -11, // x position offset
     -19, // y position offset
@@ -250,7 +252,7 @@ const GGSprite explosionSprite4 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite explosionSprite5 = 
+const Ruby_Sprite explosionSprite5 = 
 {
     -12, // x position offset
     -20, // y position offset
@@ -259,7 +261,7 @@ const GGSprite explosionSprite5 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite explosionSprite6 = 
+const Ruby_Sprite explosionSprite6 = 
 {
     0, // x position offset
     0, // y position offset
@@ -268,7 +270,7 @@ const GGSprite explosionSprite6 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite explosionSprite7 = 
+const Ruby_Sprite explosionSprite7 = 
 {
     -3, // x position offset
     -3, // y position offset
@@ -277,7 +279,7 @@ const GGSprite explosionSprite7 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite explosionSprite8 = 
+const Ruby_Sprite explosionSprite8 = 
 {
     -4, // x position offset
     -4, // y position offset
@@ -286,66 +288,66 @@ const GGSprite explosionSprite8 =
     SPRITE_SIZE(3, 3), // sgdk sprite size
 };
 
-const GGSprite* const explosionSpriteArray0[1] = 
+const Ruby_Sprite* const explosionSpriteArray0[1] = 
 {
     &explosionSprite0,
 };
 
-const GGSprite* const explosionSpriteArray1[1] = 
+const Ruby_Sprite* const explosionSpriteArray1[1] = 
 {
     &explosionSprite1,
 };
 
-const GGSprite* const explosionSpriteArray2[1] = 
+const Ruby_Sprite* const explosionSpriteArray2[1] = 
 {
     &explosionSprite2,
 };
 
-const GGSprite* const explosionSpriteArray3[1] = 
+const Ruby_Sprite* const explosionSpriteArray3[1] = 
 {
     &explosionSprite3,
 };
 
-const GGSprite* const explosionSpriteArray4[1] = 
+const Ruby_Sprite* const explosionSpriteArray4[1] = 
 {
     &explosionSprite4,
 };
 
-const GGSprite* const explosionSpriteArray5[1] = 
+const Ruby_Sprite* const explosionSpriteArray5[1] = 
 {
     &explosionSprite5,
 };
 
-const GGSprite* const explosionSpriteArray6[1] = 
+const Ruby_Sprite* const explosionSpriteArray6[1] = 
 {
     &explosionSprite6,
 };
 
-const GGSprite* const explosionSpriteArray7[1] = 
+const Ruby_Sprite* const explosionSpriteArray7[1] = 
 {
     &explosionSprite7,
 };
 
-const GGSprite* const explosionSpriteArray8[1] = 
+const Ruby_Sprite* const explosionSpriteArray8[1] = 
 {
     &explosionSprite8,
 };
 
-extern const GGFrame explosionFrame0;
-extern const GGFrame explosionFrame1;
-extern const GGFrame explosionFrame2;
-extern const GGFrame explosionFrame3;
-extern const GGFrame explosionFrame4;
-extern const GGFrame explosionFrame5;
-extern const GGFrame explosionFrame6;
-extern const GGFrame explosionFrame7;
-extern const GGFrame explosionFrame8;
+extern const Ruby_Frame explosionFrame0;
+extern const Ruby_Frame explosionFrame1;
+extern const Ruby_Frame explosionFrame2;
+extern const Ruby_Frame explosionFrame3;
+extern const Ruby_Frame explosionFrame4;
+extern const Ruby_Frame explosionFrame5;
+extern const Ruby_Frame explosionFrame6;
+extern const Ruby_Frame explosionFrame7;
+extern const Ruby_Frame explosionFrame8;
 
 
 
 
 
-const GGFrame explosionFrame0 = 
+const Ruby_Frame explosionFrame0 = 
 {
     explosionSpriteArray0,
     1, // number of sprites
@@ -355,7 +357,7 @@ const GGFrame explosionFrame0 =
 };
 
 
-const GGFrame explosionFrame1 = 
+const Ruby_Frame explosionFrame1 = 
 {
     explosionSpriteArray1,
     1, // number of sprites
@@ -365,7 +367,7 @@ const GGFrame explosionFrame1 =
 };
 
 
-const GGFrame explosionFrame2 = 
+const Ruby_Frame explosionFrame2 = 
 {
     explosionSpriteArray2,
     1, // number of sprites
@@ -375,7 +377,7 @@ const GGFrame explosionFrame2 =
 };
 
 
-const GGFrame explosionFrame3 = 
+const Ruby_Frame explosionFrame3 = 
 {
     explosionSpriteArray3,
     1, // number of sprites
@@ -385,7 +387,7 @@ const GGFrame explosionFrame3 =
 };
 
 
-const GGFrame explosionFrame4 = 
+const Ruby_Frame explosionFrame4 = 
 {
     explosionSpriteArray4,
     1, // number of sprites
@@ -395,7 +397,7 @@ const GGFrame explosionFrame4 =
 };
 
 
-const GGFrame explosionFrame5 = 
+const Ruby_Frame explosionFrame5 = 
 {
     explosionSpriteArray5,
     1, // number of sprites
@@ -405,7 +407,7 @@ const GGFrame explosionFrame5 =
 };
 
 
-const GGFrame explosionFrame6 = 
+const Ruby_Frame explosionFrame6 = 
 {
     explosionSpriteArray6,
     1, // number of sprites
@@ -415,7 +417,7 @@ const GGFrame explosionFrame6 =
 };
 
 
-const GGFrame explosionFrame7 = 
+const Ruby_Frame explosionFrame7 = 
 {
     explosionSpriteArray7,
     1, // number of sprites
@@ -425,7 +427,7 @@ const GGFrame explosionFrame7 =
 };
 
 
-const GGFrame explosionFrame8 = 
+const Ruby_Frame explosionFrame8 = 
 {
     explosionSpriteArray8,
     1, // number of sprites
@@ -434,7 +436,7 @@ const GGFrame explosionFrame8 =
     &explosionFrame0, // loop to next frame. 
 };
 
-const GGFrame* const explosionFrames[9] = 
+const Ruby_Frame* const explosionFrames[9] = 
 {
     &explosionFrame0,
     &explosionFrame1,
@@ -447,11 +449,21 @@ const GGFrame* const explosionFrames[9] =
     &explosionFrame8,
 };
 
+const Ruby_AnimationSetup const explosionSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &explosionFrame0,
+    0,
+    2,
+};
 
+u16 explosionVdpLocation;
 
-const GGAnimation explosion = 
+const Ruby_Animation explosion = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &explosionSetup,
     explosionFrames,
     9, // number of frames
     64, // width in pixels
@@ -460,4 +472,5 @@ const GGAnimation explosion =
     22, // the total number of tiles in the animation
     (const u32*)explosionTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &explosionVdpLocation, // location in vdp when loaded
 };

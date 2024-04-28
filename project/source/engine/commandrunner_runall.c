@@ -18,27 +18,53 @@ const GameObjectTemplate commandrunner_runall_template =
 
 GameObject* CommandRunner_RunAll_Init(GameObject* object, const CommandRunnerCreateInfo* createInfo)
 {
+	kprintf("CommandRunner_RunAll_Init\n");
+
 	UNUSED(createInfo);
+
+	kprintf("**************************\n");
+
+	const Command* runner = CommandManager_currentCommand;
+	while (runner->command != NULL)
+	{
+		kprintf("command counter %d\n", runner->counter);
+		runner++;
+	}
+
+	kprintf("**************************\n");
 
 	// move to the next command because the current one is
 	// the one that created us.
 	CommandManager_currentCommand++;
 
-	u8 objectId = object->objectId;
+	//u8 objectId = object->objectId;
 
 	while (CommandManager_currentCommand->command != NULL)
 	{
+		kprintf("running command %04lx\n", (u32)CommandManager_currentCommand->command);
+
+		kprintf("command counter: %d\n", CommandManager_currentCommand->counter);
+
 		CommandManager_currentCommand->command(CommandManager_currentCommand->data);
 
+		/*
 		// check if the command runner changed while processing the
 		// commands.
 		if (objectId != object->objectId)
+		{
+			kprintf("command runner changed\n");
 			return NULL;
+		}
+		*/
 
 		CommandManager_currentCommand++;
+
+		kprintf("finished running command\n");
 	}
 
 	object->Update = ObjectUtils_gameObjectDoNothing;
+
+	kprintf("CommandRunner_RunAll_Init end\n");
 
 	return NULL;
 }

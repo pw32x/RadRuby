@@ -9,7 +9,7 @@ void CommandRunner_RightScroll_Update(GameObject* object);
 GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunnerCreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-
+	/*
 	// move to the next command because the current one is
 	// the one that created us.
 	CommandManager_currentCommand++;
@@ -32,7 +32,7 @@ GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunn
 	}
 
 	object->Update = CommandRunner_RightScroll_Update;
-
+	*/
 	return object;
 }
 
@@ -40,7 +40,7 @@ GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunn
 void CommandRunner_RightScroll_Update(GameObject* object)
 {
 	UNUSED(object);
-
+	/*
 	CommandRunner_counter = ScrollManager_horizontalScroll + SCREEN_WIDTH;
 
 	u8 objectId = object->objectId;
@@ -57,4 +57,5 @@ void CommandRunner_RightScroll_Update(GameObject* object)
 
 		CommandManager_currentCommand++;		
 	}
+	*/
 }

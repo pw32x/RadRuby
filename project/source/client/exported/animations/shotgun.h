@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation shotgun;
+RESOURCE() extern const Ruby_Animation shotgun;
 
 #define SHOTGUN_NUMFRAMES 3
 

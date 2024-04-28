@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation threeshotflyer;
+RESOURCE() extern const Ruby_Animation threeshotflyer;
 
 #define THREESHOTFLYER_NUMFRAMES 2
 

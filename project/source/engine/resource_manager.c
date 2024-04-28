@@ -20,8 +20,8 @@ void printResourceTypeName(u8 resourceType)
 {
 	switch (resourceType)
 	{
-	case STANDARD_ANIMATION_RESOURCE_TYPE			: MSG("Streamed Batched Animation"); return;
-	case STREAMED_ANIMATION_RESOURCE_TYPE			: MSG("Streamed Batched Animation"); return;
+	case STANDARD_ANIMATION_RESOURCE_TYPE			: MSG("Standard Animation"); return;
+	case STREAMED_ANIMATION_RESOURCE_TYPE			: MSG("Streamed Animation"); return;
 	case PLANE_ANIMATION_RESOURCE_TYPE				: MSG("Plane Animation"); return;
 	case TILE_ANIMATION_RESOURCE_TYPE				: MSG("Tile Animation"); return;
 	case MAP_RESOURCE_TYPE							: MSG("Map"); return;
@@ -39,9 +39,8 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	memset(ResourceManager_setupFunctions, 0, sizeof(ResourceManager_setupFunctions));
 
 	// Load
-	//ResourceManager_loadFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_BatchedAnimationResource;
-	//ResourceManager_loadFunctions[METASPRITE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_MetaSpriteBatchedAnimationResource;
-	//ResourceManager_loadFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedBatchedAnimationResource;
+	ResourceManager_loadFunctions[STANDARD_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StandardAnimationResource;
+	ResourceManager_loadFunctions[STREAMED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedAnimationResource;
 	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
 	ResourceManager_loadFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_TileAnimationResource;
 	ResourceManager_loadFunctions[MAP_RESOURCE_TYPE] = (LoadFunc)Load_MapResource;
@@ -50,9 +49,8 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	ResourceManager_loadFunctions[ANIMATED_TILESET_RESOURCE_TYPE] = (LoadFunc)Load_AnimatedTilesetResource;
 
 	// Setup
-	//ResourceManager_setupFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
-	//ResourceManager_setupFunctions[METASPRITE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_MetaSpriteAnimationResource;
-	//ResourceManager_setupFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
+	ResourceManager_setupFunctions[STANDARD_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StandardAnimationResource;
+	ResourceManager_setupFunctions[STREAMED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedAnimationResource;
 	ResourceManager_setupFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_PlaneAnimationResource;
 	ResourceManager_setupFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_TileAnimationResource;
 

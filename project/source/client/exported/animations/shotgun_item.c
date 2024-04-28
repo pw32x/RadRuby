@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "shotgun_item.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const shotgun_itemTileData[32] = // 2 tiles 
@@ -25,7 +27,7 @@ const unsigned short const shotgun_itemTileData[32] = // 2 tiles
     0x0022, 0x2200,
 };
 
-const GGSprite shotgun_itemSprite0 = 
+const Ruby_Sprite shotgun_itemSprite0 = 
 {
     -4, // x position offset
     -8, // y position offset
@@ -34,18 +36,18 @@ const GGSprite shotgun_itemSprite0 =
     SPRITE_SIZE(1, 2), // sgdk sprite size
 };
 
-const GGSprite* const shotgun_itemSpriteArray0[1] = 
+const Ruby_Sprite* const shotgun_itemSpriteArray0[1] = 
 {
     &shotgun_itemSprite0,
 };
 
-extern const GGFrame shotgun_itemFrame0;
+extern const Ruby_Frame shotgun_itemFrame0;
 
 
 
 
 
-const GGFrame shotgun_itemFrame0 = 
+const Ruby_Frame shotgun_itemFrame0 = 
 {
     shotgun_itemSpriteArray0,
     1, // number of sprites
@@ -54,16 +56,26 @@ const GGFrame shotgun_itemFrame0 =
     &shotgun_itemFrame0, // loop to next frame. 
 };
 
-const GGFrame* const shotgun_itemFrames[1] = 
+const Ruby_Frame* const shotgun_itemFrames[1] = 
 {
     &shotgun_itemFrame0,
 };
 
+const Ruby_AnimationSetup const shotgun_itemSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &shotgun_itemFrame0,
+    0,
+    3,
+};
 
+u16 shotgun_itemVdpLocation;
 
-const GGAnimation shotgun_item = 
+const Ruby_Animation shotgun_item = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &shotgun_itemSetup,
     shotgun_itemFrames,
     1, // number of frames
     8, // width in pixels
@@ -72,4 +84,5 @@ const GGAnimation shotgun_item =
     2, // the total number of tiles in the animation
     (const u32*)shotgun_itemTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &shotgun_itemVdpLocation, // location in vdp when loaded
 };

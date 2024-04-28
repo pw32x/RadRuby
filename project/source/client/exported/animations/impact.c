@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "impact.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const impactTileData[192] = // 12 tiles 
@@ -115,7 +117,7 @@ const unsigned short const impactTileData[192] = // 12 tiles
     0x0000, 0x0,
 };
 
-const GGSprite impactSprite0 = 
+const Ruby_Sprite impactSprite0 = 
 {
     -6, // x position offset
     -6, // y position offset
@@ -124,7 +126,7 @@ const GGSprite impactSprite0 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite impactSprite1 = 
+const Ruby_Sprite impactSprite1 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -133,7 +135,7 @@ const GGSprite impactSprite1 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite impactSprite2 = 
+const Ruby_Sprite impactSprite2 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -142,30 +144,30 @@ const GGSprite impactSprite2 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite* const impactSpriteArray0[1] = 
+const Ruby_Sprite* const impactSpriteArray0[1] = 
 {
     &impactSprite0,
 };
 
-const GGSprite* const impactSpriteArray1[1] = 
+const Ruby_Sprite* const impactSpriteArray1[1] = 
 {
     &impactSprite1,
 };
 
-const GGSprite* const impactSpriteArray2[1] = 
+const Ruby_Sprite* const impactSpriteArray2[1] = 
 {
     &impactSprite2,
 };
 
-extern const GGFrame impactFrame0;
-extern const GGFrame impactFrame1;
-extern const GGFrame impactFrame2;
+extern const Ruby_Frame impactFrame0;
+extern const Ruby_Frame impactFrame1;
+extern const Ruby_Frame impactFrame2;
 
 
 
 
 
-const GGFrame impactFrame0 = 
+const Ruby_Frame impactFrame0 = 
 {
     impactSpriteArray0,
     1, // number of sprites
@@ -175,7 +177,7 @@ const GGFrame impactFrame0 =
 };
 
 
-const GGFrame impactFrame1 = 
+const Ruby_Frame impactFrame1 = 
 {
     impactSpriteArray1,
     1, // number of sprites
@@ -185,7 +187,7 @@ const GGFrame impactFrame1 =
 };
 
 
-const GGFrame impactFrame2 = 
+const Ruby_Frame impactFrame2 = 
 {
     impactSpriteArray2,
     1, // number of sprites
@@ -194,18 +196,28 @@ const GGFrame impactFrame2 =
     &impactFrame0, // loop to next frame. 
 };
 
-const GGFrame* const impactFrames[3] = 
+const Ruby_Frame* const impactFrames[3] = 
 {
     &impactFrame0,
     &impactFrame1,
     &impactFrame2,
 };
 
+const Ruby_AnimationSetup const impactSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &impactFrame0,
+    0,
+    3,
+};
 
+u16 impactVdpLocation;
 
-const GGAnimation impact = 
+const Ruby_Animation impact = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &impactSetup,
     impactFrames,
     3, // number of frames
     16, // width in pixels
@@ -214,4 +226,5 @@ const GGAnimation impact =
     12, // the total number of tiles in the animation
     (const u32*)impactTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &impactVdpLocation, // location in vdp when loaded
 };

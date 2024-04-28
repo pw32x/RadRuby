@@ -3,7 +3,7 @@
 
 #include "genesis.h"
 #include "engine/base_types.h"
-//#include "engine/animation_types.h"
+#include "engine/animation_types.h"
 #include "engine/math_utils.h"
 #include "engine/resource_types.h"
 
@@ -22,8 +22,10 @@
 	void (*Draw)(struct game_object* gameObject);\
 	BOOL (*UpdateAnimation)(struct game_object* gameObject);\
 	\
+	const Ruby_Frame* currentFrame;\
 	u8 currentAnimationFrameIndex;\
 	u8 animationTime;\
+	const Ruby_Animation* animation;\
 	\
 	s16 x;\
 	s16 y;\

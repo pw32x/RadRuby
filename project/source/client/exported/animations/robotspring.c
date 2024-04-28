@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "robotspring.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const robotspringTileData[320] = // 20 tiles 
@@ -187,7 +189,7 @@ const unsigned short const robotspringTileData[320] = // 20 tiles
     0x0000, 0x0,
 };
 
-const GGSprite robotspringSprite0 = 
+const Ruby_Sprite robotspringSprite0 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -196,7 +198,7 @@ const GGSprite robotspringSprite0 =
     SPRITE_SIZE(2, 3), // sgdk sprite size
 };
 
-const GGSprite robotspringSprite1 = 
+const Ruby_Sprite robotspringSprite1 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -205,7 +207,7 @@ const GGSprite robotspringSprite1 =
     SPRITE_SIZE(2, 4), // sgdk sprite size
 };
 
-const GGSprite robotspringSprite2 = 
+const Ruby_Sprite robotspringSprite2 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -214,30 +216,30 @@ const GGSprite robotspringSprite2 =
     SPRITE_SIZE(2, 3), // sgdk sprite size
 };
 
-const GGSprite* const robotspringSpriteArray0[1] = 
+const Ruby_Sprite* const robotspringSpriteArray0[1] = 
 {
     &robotspringSprite0,
 };
 
-const GGSprite* const robotspringSpriteArray1[1] = 
+const Ruby_Sprite* const robotspringSpriteArray1[1] = 
 {
     &robotspringSprite1,
 };
 
-const GGSprite* const robotspringSpriteArray2[1] = 
+const Ruby_Sprite* const robotspringSpriteArray2[1] = 
 {
     &robotspringSprite2,
 };
 
-extern const GGFrame robotspringFrame0;
-extern const GGFrame robotspringFrame1;
-extern const GGFrame robotspringFrame2;
+extern const Ruby_Frame robotspringFrame0;
+extern const Ruby_Frame robotspringFrame1;
+extern const Ruby_Frame robotspringFrame2;
 
 
 
 
 
-const GGFrame robotspringFrame0 = 
+const Ruby_Frame robotspringFrame0 = 
 {
     robotspringSpriteArray0,
     1, // number of sprites
@@ -247,7 +249,7 @@ const GGFrame robotspringFrame0 =
 };
 
 
-const GGFrame robotspringFrame1 = 
+const Ruby_Frame robotspringFrame1 = 
 {
     robotspringSpriteArray1,
     1, // number of sprites
@@ -257,7 +259,7 @@ const GGFrame robotspringFrame1 =
 };
 
 
-const GGFrame robotspringFrame2 = 
+const Ruby_Frame robotspringFrame2 = 
 {
     robotspringSpriteArray2,
     1, // number of sprites
@@ -266,18 +268,28 @@ const GGFrame robotspringFrame2 =
     &robotspringFrame0, // loop to next frame. 
 };
 
-const GGFrame* const robotspringFrames[3] = 
+const Ruby_Frame* const robotspringFrames[3] = 
 {
     &robotspringFrame0,
     &robotspringFrame1,
     &robotspringFrame2,
 };
 
+const Ruby_AnimationSetup const robotspringSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &robotspringFrame0,
+    0,
+    5,
+};
 
+u16 robotspringVdpLocation;
 
-const GGAnimation robotspring = 
+const Ruby_Animation robotspring = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &robotspringSetup,
     robotspringFrames,
     3, // number of frames
     16, // width in pixels
@@ -286,4 +298,5 @@ const GGAnimation robotspring =
     20, // the total number of tiles in the animation
     (const u32*)robotspringTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &robotspringVdpLocation, // location in vdp when loaded
 };

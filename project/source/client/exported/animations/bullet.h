@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation bullet;
+RESOURCE() extern const Ruby_Animation bullet;
 
 #define BULLET_NUMFRAMES 1
 

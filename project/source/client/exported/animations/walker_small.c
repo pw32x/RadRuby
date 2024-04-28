@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "walker_small.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const walker_smallTileData[32] = // 2 tiles 
@@ -25,7 +27,7 @@ const unsigned short const walker_smallTileData[32] = // 2 tiles
     0x0017, 0x7710,
 };
 
-const GGSprite walker_smallSprite0 = 
+const Ruby_Sprite walker_smallSprite0 = 
 {
     -4, // x position offset
     -3, // y position offset
@@ -34,7 +36,7 @@ const GGSprite walker_smallSprite0 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite walker_smallSprite1 = 
+const Ruby_Sprite walker_smallSprite1 = 
 {
     -4, // x position offset
     -4, // y position offset
@@ -43,24 +45,24 @@ const GGSprite walker_smallSprite1 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite* const walker_smallSpriteArray0[1] = 
+const Ruby_Sprite* const walker_smallSpriteArray0[1] = 
 {
     &walker_smallSprite0,
 };
 
-const GGSprite* const walker_smallSpriteArray1[1] = 
+const Ruby_Sprite* const walker_smallSpriteArray1[1] = 
 {
     &walker_smallSprite1,
 };
 
-extern const GGFrame walker_smallFrame0;
-extern const GGFrame walker_smallFrame1;
+extern const Ruby_Frame walker_smallFrame0;
+extern const Ruby_Frame walker_smallFrame1;
 
 
 
 
 
-const GGFrame walker_smallFrame0 = 
+const Ruby_Frame walker_smallFrame0 = 
 {
     walker_smallSpriteArray0,
     1, // number of sprites
@@ -70,7 +72,7 @@ const GGFrame walker_smallFrame0 =
 };
 
 
-const GGFrame walker_smallFrame1 = 
+const Ruby_Frame walker_smallFrame1 = 
 {
     walker_smallSpriteArray1,
     1, // number of sprites
@@ -79,17 +81,27 @@ const GGFrame walker_smallFrame1 =
     &walker_smallFrame0, // loop to next frame. 
 };
 
-const GGFrame* const walker_smallFrames[2] = 
+const Ruby_Frame* const walker_smallFrames[2] = 
 {
     &walker_smallFrame0,
     &walker_smallFrame1,
 };
 
+const Ruby_AnimationSetup const walker_smallSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &walker_smallFrame0,
+    0,
+    8,
+};
 
+u16 walker_smallVdpLocation;
 
-const GGAnimation walker_small = 
+const Ruby_Animation walker_small = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &walker_smallSetup,
     walker_smallFrames,
     2, // number of frames
     8, // width in pixels
@@ -98,4 +110,5 @@ const GGAnimation walker_small =
     2, // the total number of tiles in the animation
     (const u32*)walker_smallTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &walker_smallVdpLocation, // location in vdp when loaded
 };

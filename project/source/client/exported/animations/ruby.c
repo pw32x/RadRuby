@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "ruby.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const rubyTileData[1280] = // 80 tiles 
@@ -727,7 +729,7 @@ const unsigned short const rubyTileData[1280] = // 80 tiles
     0x0000, 0x0,
 };
 
-const GGSprite rubySprite0 = 
+const Ruby_Sprite rubySprite0 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -736,7 +738,7 @@ const GGSprite rubySprite0 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite rubySprite1 = 
+const Ruby_Sprite rubySprite1 = 
 {
     -9, // x position offset
     -16, // y position offset
@@ -745,7 +747,7 @@ const GGSprite rubySprite1 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite rubySprite2 = 
+const Ruby_Sprite rubySprite2 = 
 {
     -9, // x position offset
     -15, // y position offset
@@ -754,7 +756,7 @@ const GGSprite rubySprite2 =
     SPRITE_SIZE(4, 4), // sgdk sprite size
 };
 
-const GGSprite rubySprite3 = 
+const Ruby_Sprite rubySprite3 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -763,7 +765,7 @@ const GGSprite rubySprite3 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite rubySprite4 = 
+const Ruby_Sprite rubySprite4 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -772,7 +774,7 @@ const GGSprite rubySprite4 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite rubySprite5 = 
+const Ruby_Sprite rubySprite5 = 
 {
     -8, // x position offset
     -15, // y position offset
@@ -781,48 +783,48 @@ const GGSprite rubySprite5 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite* const rubySpriteArray0[1] = 
+const Ruby_Sprite* const rubySpriteArray0[1] = 
 {
     &rubySprite0,
 };
 
-const GGSprite* const rubySpriteArray1[1] = 
+const Ruby_Sprite* const rubySpriteArray1[1] = 
 {
     &rubySprite1,
 };
 
-const GGSprite* const rubySpriteArray2[1] = 
+const Ruby_Sprite* const rubySpriteArray2[1] = 
 {
     &rubySprite2,
 };
 
-const GGSprite* const rubySpriteArray3[1] = 
+const Ruby_Sprite* const rubySpriteArray3[1] = 
 {
     &rubySprite3,
 };
 
-const GGSprite* const rubySpriteArray4[1] = 
+const Ruby_Sprite* const rubySpriteArray4[1] = 
 {
     &rubySprite4,
 };
 
-const GGSprite* const rubySpriteArray5[1] = 
+const Ruby_Sprite* const rubySpriteArray5[1] = 
 {
     &rubySprite5,
 };
 
-extern const GGFrame rubyFrame0;
-extern const GGFrame rubyFrame1;
-extern const GGFrame rubyFrame2;
-extern const GGFrame rubyFrame3;
-extern const GGFrame rubyFrame4;
-extern const GGFrame rubyFrame5;
+extern const Ruby_Frame rubyFrame0;
+extern const Ruby_Frame rubyFrame1;
+extern const Ruby_Frame rubyFrame2;
+extern const Ruby_Frame rubyFrame3;
+extern const Ruby_Frame rubyFrame4;
+extern const Ruby_Frame rubyFrame5;
 
 
 
 
 
-const GGFrame rubyFrame0 = 
+const Ruby_Frame rubyFrame0 = 
 {
     rubySpriteArray0,
     1, // number of sprites
@@ -832,7 +834,7 @@ const GGFrame rubyFrame0 =
 };
 
 
-const GGFrame rubyFrame1 = 
+const Ruby_Frame rubyFrame1 = 
 {
     rubySpriteArray1,
     1, // number of sprites
@@ -842,7 +844,7 @@ const GGFrame rubyFrame1 =
 };
 
 
-const GGFrame rubyFrame2 = 
+const Ruby_Frame rubyFrame2 = 
 {
     rubySpriteArray2,
     1, // number of sprites
@@ -852,7 +854,7 @@ const GGFrame rubyFrame2 =
 };
 
 
-const GGFrame rubyFrame3 = 
+const Ruby_Frame rubyFrame3 = 
 {
     rubySpriteArray3,
     1, // number of sprites
@@ -862,7 +864,7 @@ const GGFrame rubyFrame3 =
 };
 
 
-const GGFrame rubyFrame4 = 
+const Ruby_Frame rubyFrame4 = 
 {
     rubySpriteArray4,
     1, // number of sprites
@@ -872,7 +874,7 @@ const GGFrame rubyFrame4 =
 };
 
 
-const GGFrame rubyFrame5 = 
+const Ruby_Frame rubyFrame5 = 
 {
     rubySpriteArray5,
     1, // number of sprites
@@ -881,7 +883,7 @@ const GGFrame rubyFrame5 =
     &rubyFrame0, // loop to next frame. 
 };
 
-const GGFrame* const rubyFrames[6] = 
+const Ruby_Frame* const rubyFrames[6] = 
 {
     &rubyFrame0,
     &rubyFrame1,
@@ -891,11 +893,21 @@ const GGFrame* const rubyFrames[6] =
     &rubyFrame5,
 };
 
+const Ruby_AnimationSetup const rubySetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &rubyFrame0,
+    0,
+    5,
+};
 
+u16 rubyVdpLocation;
 
-const GGAnimation ruby = 
+const Ruby_Animation ruby = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &rubySetup,
     rubyFrames,
     6, // number of frames
     40, // width in pixels
@@ -904,4 +916,5 @@ const GGAnimation ruby =
     80, // the total number of tiles in the animation
     (const u32*)rubyTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &rubyVdpLocation, // location in vdp when loaded
 };

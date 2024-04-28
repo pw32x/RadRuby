@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation enemy_bullet;
+RESOURCE() extern const Ruby_Animation enemy_bullet;
 
 #define ENEMY_BULLET_NUMFRAMES 2
 

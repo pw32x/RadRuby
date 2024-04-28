@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation impact;
+RESOURCE() extern const Ruby_Animation impact;
 
 #define IMPACT_NUMFRAMES 3
 

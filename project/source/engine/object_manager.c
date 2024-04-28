@@ -39,14 +39,21 @@ u8 drawOrderToggle = FALSE;
 
 void ObjectManager_Update(void)
 {
+	kprintf("ObjectManager_Update start\n");
+
 	ObjectManager_numVdpDrawItems = 0;
 
 	//SMS_setBackdropColor(COLOR_RED);
 	
+	kprintf("player update\n");
+
 	ObjectManager_player.Update(&ObjectManager_player);
 	
+	kprintf("scroll manager update\n");
+
 	ScrollManager_Update(&ObjectManager_player);
 	
+	kprintf("projectile update\n");
 	switch (ObjectManager_numActiveProjectiles)
 	{
 		case 3: ObjectManager_activeProjectileSlots[2]->Update(ObjectManager_activeProjectileSlots[2]);
@@ -54,8 +61,10 @@ void ObjectManager_Update(void)
 		case 1: ObjectManager_activeProjectileSlots[0]->Update(ObjectManager_activeProjectileSlots[0]);
 	}
 
+	kprintf("process projectile deletes\n");
 	ObjectManager_processProjectileDeletes();
 
+	kprintf("enemy projectile update\n");
 	switch (ObjectManager_numActiveEnemyProjectiles)
 	{
 	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Update(ObjectManager_activeEnemyProjectileSlots[2]);
@@ -63,6 +72,7 @@ void ObjectManager_Update(void)
 	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Update(ObjectManager_activeEnemyProjectileSlots[0]);
 	}
 
+	kprintf("process enemy projectile deletes\n");
 	ObjectManager_processEnemyProjectileDeletes();
 
 	/*
@@ -73,10 +83,12 @@ void ObjectManager_Update(void)
 
 	// add new objects and enemies only after we've done the collision checks for the currently 
 	// active ones.
+	kprintf("update command runner\n");
 	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
 	
 	//SMS_setBackdropColor(COLOR_ORANGE);
 
+	kprintf("update enemies\n");
 	switch (ObjectManager_numActiveEnemies)
 	{
 	case 8: ObjectManager_activeEnemySlots[7]->Update(ObjectManager_activeEnemySlots[7]);
@@ -88,9 +100,13 @@ void ObjectManager_Update(void)
 	case 2: ObjectManager_activeEnemySlots[1]->Update(ObjectManager_activeEnemySlots[1]);
 	case 1: ObjectManager_activeEnemySlots[0]->Update(ObjectManager_activeEnemySlots[0]);
 	}
+
+	kprintf("process enemy deletes\n");
 	
 	ObjectManager_processEnemyDeletes();
 	
+	kprintf("update effects\n");
+
 	switch (ObjectManager_numActiveEffects)
 	{
 	case 8: ObjectManager_activeEffectSlots[7]->Update(ObjectManager_activeEffectSlots[7]);
@@ -103,10 +119,13 @@ void ObjectManager_Update(void)
 	case 1: ObjectManager_activeEffectSlots[0]->Update(ObjectManager_activeEffectSlots[0]);
 	}
 	
+	kprintf("process effect deletes\n");
+
 	ObjectManager_processEffectDeletes();
 
 	// perform collisions against projectiles
 
+	kprintf("do projectile collisions\n");
 	ObjectManager_doProjectileCollisions();
 
 	/*
@@ -126,6 +145,7 @@ void ObjectManager_Update(void)
 	/*
 	ObjectManager_Item.Update(&ObjectManager_Item);
 	*/
+
 
 	ObjectManager_player.screenx = ObjectManager_player.x - ScrollManager_horizontalScroll;
 	ObjectManager_player.screeny = ObjectManager_player.y;
@@ -155,9 +175,12 @@ void ObjectManager_Update(void)
 
 	//DrawUtils_spritesDrawn = 0;
 
+	kprintf("player draw\n");
 	ObjectManager_player.Draw(&ObjectManager_player);
 	
 	//SMS_setBackdropColor(COLOR_GRAY);
+
+	kprintf("projectile draw\n");
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
@@ -173,12 +196,16 @@ void ObjectManager_Update(void)
 
 	//SMS_setBackdropColor(COLOR_PINK);
 	
+	kprintf("enemy projectile draw\n");
+
 	switch (ObjectManager_numActiveEnemyProjectiles)
 	{
 	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Draw(ObjectManager_activeEnemyProjectileSlots[2]);
 	case 2: ObjectManager_activeEnemyProjectileSlots[1]->Draw(ObjectManager_activeEnemyProjectileSlots[1]);
 	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Draw(ObjectManager_activeEnemyProjectileSlots[0]);
 	}
+
+	kprintf("effects and enemies draw\n");
 
 	if (drawOrderToggle)
 	{
@@ -196,8 +223,12 @@ void ObjectManager_Update(void)
 	// 9856
 	// 7249 without function
 	// 2607
+
+	kprintf("process new objects\n");
 	
 	ObjectManager_processNewObjects();
+
+	kprintf("ObjectManager_Update end\n");
 	
 }
 

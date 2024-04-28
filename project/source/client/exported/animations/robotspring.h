@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation robotspring;
+RESOURCE() extern const Ruby_Animation robotspring;
 
 #define ROBOTSPRING_NUMFRAMES 3
 

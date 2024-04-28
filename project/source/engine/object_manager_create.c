@@ -462,29 +462,68 @@ GameObject* FindFreeGameObject(u8 objectType)
 	return NULL;
 }
 
+const char* objectTypeToString(u8 objectType)
+{
+	switch (objectType)
+	{
+	case OBJECTTYPE_PROJECTILE:
+		return "projectile";
+		break;
+	case OBJECTTYPE_ENEMY:
+		return "enemy";
+		break;
+	case OBJECTTYPE_EFFECT:
+		return "effect";
+		break;
+	case OBJECTTYPE_ENEMY_PROJECTILE:
+		return "enemy projectile";
+		break;
+	case OBJECTTYPE_PLAYER:
+		return "player";
+		break;
+	case OBJECTTYPE_COMMANDRUNNER:
+		return "command runner";
+		break;
+	case OBJECTTYPE_ITEM:
+		return "item";
+		break;
+	}
+
+	return "unknown type";
+}
+
 GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 {
-	// 4880/359969/117125.2
-	// 3957/355303/115453.6
-	// 3851/354986/115326.8
-	// 3778/354780/115244.4
+	kprintf("ObjectManager_CreateObjectByCreateInfo\n");
 
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 	u8 objectType = gameObjectTemplate->objectType;
 
+	kprintf("find free object of type %s\n", objectTypeToString(objectType));
+
 	GameObject* gameObject = FindFreeGameObject(objectType);
 	if (gameObject == NULL)
 		return NULL;
+
+	kprintf("setup new object %04lx\n", (u32)gameObject);
+
+	kprintf("x: %d, y: %d\n", createInfo->startX, createInfo->startY);
 
 	gameObject->objectId = ObjectManager_objectId++;
 
 	memcpy(&gameObject->x, &createInfo->startX, 4);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
+	kprintf("setup object's resource\n");
+
 	if (gameObjectTemplate->resource != NULL)
 		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resource);
 
+	kprintf("call object init function %04lx\n", (u32)gameObjectTemplate->initFunction);
+
 	gameObjectTemplate->initFunction(gameObject, createInfo);
+
+	kprintf("ObjectManager_CreateObjectByCreateInfo end for game object %lx\n", (u32)gameObject);
 
 	return gameObject;
 }

@@ -100,46 +100,46 @@ void setPlayerAnimation(void)
 	{
 	case PLAYER_STATE_STAND:
 		if (!pointingUp)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
 		else
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_UP_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		if (!pointingUp)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
 		else
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_UP_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_FALL:
 		if (pointingUp)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		if (pointingUp)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+			AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 													playerFlipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_DUCK:
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+		AnimationUtils_setStandardAnimationFrame(&ObjectManager_player, 
 												playerFlipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}

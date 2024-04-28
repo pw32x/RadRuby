@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation walker_small;
+RESOURCE() extern const Ruby_Animation walker_small;
 
 #define WALKER_SMALL_NUMFRAMES 2
 

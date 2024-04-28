@@ -4,7 +4,7 @@
 
 #include "engine\animation_types.h"
 
-RESOURCE() extern const GGAnimation robotrunner;
+RESOURCE() extern const Ruby_Animation robotrunner;
 
 #define ROBOTRUNNER_NUMFRAMES 4
 

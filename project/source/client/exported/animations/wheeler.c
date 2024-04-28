@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "wheeler.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const wheelerTileData[1376] = // 86 tiles 
@@ -781,7 +783,7 @@ const unsigned short const wheelerTileData[1376] = // 86 tiles
     0x0000, 0x0,
 };
 
-const GGSprite wheelerSprite0 = 
+const Ruby_Sprite wheelerSprite0 = 
 {
     -10, // x position offset
     -16, // y position offset
@@ -790,7 +792,7 @@ const GGSprite wheelerSprite0 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite1 = 
+const Ruby_Sprite wheelerSprite1 = 
 {
     -10, // x position offset
     -15, // y position offset
@@ -799,7 +801,7 @@ const GGSprite wheelerSprite1 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite2 = 
+const Ruby_Sprite wheelerSprite2 = 
 {
     -12, // x position offset
     -16, // y position offset
@@ -808,7 +810,7 @@ const GGSprite wheelerSprite2 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite3 = 
+const Ruby_Sprite wheelerSprite3 = 
 {
     -12, // x position offset
     -15, // y position offset
@@ -817,7 +819,7 @@ const GGSprite wheelerSprite3 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite4 = 
+const Ruby_Sprite wheelerSprite4 = 
 {
     -12, // x position offset
     -16, // y position offset
@@ -826,7 +828,7 @@ const GGSprite wheelerSprite4 =
     SPRITE_SIZE(3, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite5 = 
+const Ruby_Sprite wheelerSprite5 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -835,7 +837,7 @@ const GGSprite wheelerSprite5 =
     SPRITE_SIZE(2, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite6 = 
+const Ruby_Sprite wheelerSprite6 = 
 {
     -8, // x position offset
     -16, // y position offset
@@ -844,7 +846,7 @@ const GGSprite wheelerSprite6 =
     SPRITE_SIZE(2, 4), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite7 = 
+const Ruby_Sprite wheelerSprite7 = 
 {
     -8, // x position offset
     -7, // y position offset
@@ -853,7 +855,7 @@ const GGSprite wheelerSprite7 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite8 = 
+const Ruby_Sprite wheelerSprite8 = 
 {
     -4, // x position offset
     -5, // y position offset
@@ -862,7 +864,7 @@ const GGSprite wheelerSprite8 =
     SPRITE_SIZE(1, 2), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite9 = 
+const Ruby_Sprite wheelerSprite9 = 
 {
     -4, // x position offset
     -5, // y position offset
@@ -871,7 +873,7 @@ const GGSprite wheelerSprite9 =
     SPRITE_SIZE(1, 2), // sgdk sprite size
 };
 
-const GGSprite wheelerSprite10 = 
+const Ruby_Sprite wheelerSprite10 = 
 {
     -6, // x position offset
     -4, // y position offset
@@ -880,78 +882,78 @@ const GGSprite wheelerSprite10 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite* const wheelerSpriteArray0[1] = 
+const Ruby_Sprite* const wheelerSpriteArray0[1] = 
 {
     &wheelerSprite0,
 };
 
-const GGSprite* const wheelerSpriteArray1[1] = 
+const Ruby_Sprite* const wheelerSpriteArray1[1] = 
 {
     &wheelerSprite1,
 };
 
-const GGSprite* const wheelerSpriteArray2[1] = 
+const Ruby_Sprite* const wheelerSpriteArray2[1] = 
 {
     &wheelerSprite2,
 };
 
-const GGSprite* const wheelerSpriteArray3[1] = 
+const Ruby_Sprite* const wheelerSpriteArray3[1] = 
 {
     &wheelerSprite3,
 };
 
-const GGSprite* const wheelerSpriteArray4[1] = 
+const Ruby_Sprite* const wheelerSpriteArray4[1] = 
 {
     &wheelerSprite4,
 };
 
-const GGSprite* const wheelerSpriteArray5[1] = 
+const Ruby_Sprite* const wheelerSpriteArray5[1] = 
 {
     &wheelerSprite5,
 };
 
-const GGSprite* const wheelerSpriteArray6[1] = 
+const Ruby_Sprite* const wheelerSpriteArray6[1] = 
 {
     &wheelerSprite6,
 };
 
-const GGSprite* const wheelerSpriteArray7[1] = 
+const Ruby_Sprite* const wheelerSpriteArray7[1] = 
 {
     &wheelerSprite7,
 };
 
-const GGSprite* const wheelerSpriteArray8[1] = 
+const Ruby_Sprite* const wheelerSpriteArray8[1] = 
 {
     &wheelerSprite8,
 };
 
-const GGSprite* const wheelerSpriteArray9[1] = 
+const Ruby_Sprite* const wheelerSpriteArray9[1] = 
 {
     &wheelerSprite9,
 };
 
-const GGSprite* const wheelerSpriteArray10[1] = 
+const Ruby_Sprite* const wheelerSpriteArray10[1] = 
 {
     &wheelerSprite10,
 };
 
-extern const GGFrame wheelerFrame0;
-extern const GGFrame wheelerFrame1;
-extern const GGFrame wheelerFrame2;
-extern const GGFrame wheelerFrame3;
-extern const GGFrame wheelerFrame4;
-extern const GGFrame wheelerFrame5;
-extern const GGFrame wheelerFrame6;
-extern const GGFrame wheelerFrame7;
-extern const GGFrame wheelerFrame8;
-extern const GGFrame wheelerFrame9;
-extern const GGFrame wheelerFrame10;
+extern const Ruby_Frame wheelerFrame0;
+extern const Ruby_Frame wheelerFrame1;
+extern const Ruby_Frame wheelerFrame2;
+extern const Ruby_Frame wheelerFrame3;
+extern const Ruby_Frame wheelerFrame4;
+extern const Ruby_Frame wheelerFrame5;
+extern const Ruby_Frame wheelerFrame6;
+extern const Ruby_Frame wheelerFrame7;
+extern const Ruby_Frame wheelerFrame8;
+extern const Ruby_Frame wheelerFrame9;
+extern const Ruby_Frame wheelerFrame10;
 
 
 
 
 
-const GGFrame wheelerFrame0 = 
+const Ruby_Frame wheelerFrame0 = 
 {
     wheelerSpriteArray0,
     1, // number of sprites
@@ -961,7 +963,7 @@ const GGFrame wheelerFrame0 =
 };
 
 
-const GGFrame wheelerFrame1 = 
+const Ruby_Frame wheelerFrame1 = 
 {
     wheelerSpriteArray1,
     1, // number of sprites
@@ -971,7 +973,7 @@ const GGFrame wheelerFrame1 =
 };
 
 
-const GGFrame wheelerFrame2 = 
+const Ruby_Frame wheelerFrame2 = 
 {
     wheelerSpriteArray2,
     1, // number of sprites
@@ -981,7 +983,7 @@ const GGFrame wheelerFrame2 =
 };
 
 
-const GGFrame wheelerFrame3 = 
+const Ruby_Frame wheelerFrame3 = 
 {
     wheelerSpriteArray3,
     1, // number of sprites
@@ -991,7 +993,7 @@ const GGFrame wheelerFrame3 =
 };
 
 
-const GGFrame wheelerFrame4 = 
+const Ruby_Frame wheelerFrame4 = 
 {
     wheelerSpriteArray4,
     1, // number of sprites
@@ -1001,7 +1003,7 @@ const GGFrame wheelerFrame4 =
 };
 
 
-const GGFrame wheelerFrame5 = 
+const Ruby_Frame wheelerFrame5 = 
 {
     wheelerSpriteArray5,
     1, // number of sprites
@@ -1011,7 +1013,7 @@ const GGFrame wheelerFrame5 =
 };
 
 
-const GGFrame wheelerFrame6 = 
+const Ruby_Frame wheelerFrame6 = 
 {
     wheelerSpriteArray6,
     1, // number of sprites
@@ -1021,7 +1023,7 @@ const GGFrame wheelerFrame6 =
 };
 
 
-const GGFrame wheelerFrame7 = 
+const Ruby_Frame wheelerFrame7 = 
 {
     wheelerSpriteArray7,
     1, // number of sprites
@@ -1031,7 +1033,7 @@ const GGFrame wheelerFrame7 =
 };
 
 
-const GGFrame wheelerFrame8 = 
+const Ruby_Frame wheelerFrame8 = 
 {
     wheelerSpriteArray8,
     1, // number of sprites
@@ -1041,7 +1043,7 @@ const GGFrame wheelerFrame8 =
 };
 
 
-const GGFrame wheelerFrame9 = 
+const Ruby_Frame wheelerFrame9 = 
 {
     wheelerSpriteArray9,
     1, // number of sprites
@@ -1051,7 +1053,7 @@ const GGFrame wheelerFrame9 =
 };
 
 
-const GGFrame wheelerFrame10 = 
+const Ruby_Frame wheelerFrame10 = 
 {
     wheelerSpriteArray10,
     1, // number of sprites
@@ -1060,7 +1062,7 @@ const GGFrame wheelerFrame10 =
     &wheelerFrame0, // loop to next frame. 
 };
 
-const GGFrame* const wheelerFrames[11] = 
+const Ruby_Frame* const wheelerFrames[11] = 
 {
     &wheelerFrame0,
     &wheelerFrame1,
@@ -1075,11 +1077,21 @@ const GGFrame* const wheelerFrames[11] =
     &wheelerFrame10,
 };
 
+const Ruby_AnimationSetup const wheelerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &wheelerFrame0,
+    0,
+    6,
+};
 
+u16 wheelerVdpLocation;
 
-const GGAnimation wheeler = 
+const Ruby_Animation wheeler = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &wheelerSetup,
     wheelerFrames,
     11, // number of frames
     24, // width in pixels
@@ -1088,4 +1100,5 @@ const GGAnimation wheeler =
     86, // the total number of tiles in the animation
     (const u32*)wheelerTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &wheelerVdpLocation, // location in vdp when loaded
 };

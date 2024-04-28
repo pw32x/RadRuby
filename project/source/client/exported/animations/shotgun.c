@@ -1,6 +1,8 @@
 #include <genesis.h>
 #include "shotgun.h"
 #include "engine\FrameTriggers.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_utils.h"
 
 
 const unsigned short const shotgunTileData[96] = // 6 tiles 
@@ -61,7 +63,7 @@ const unsigned short const shotgunTileData[96] = // 6 tiles
     0x9990, 0x0,
 };
 
-const GGSprite shotgunSprite0 = 
+const Ruby_Sprite shotgunSprite0 = 
 {
     -3, // x position offset
     -3, // y position offset
@@ -70,7 +72,7 @@ const GGSprite shotgunSprite0 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite shotgunSprite1 = 
+const Ruby_Sprite shotgunSprite1 = 
 {
     -4, // x position offset
     -4, // y position offset
@@ -79,7 +81,7 @@ const GGSprite shotgunSprite1 =
     SPRITE_SIZE(1, 1), // sgdk sprite size
 };
 
-const GGSprite shotgunSprite2 = 
+const Ruby_Sprite shotgunSprite2 = 
 {
     -8, // x position offset
     -8, // y position offset
@@ -88,30 +90,30 @@ const GGSprite shotgunSprite2 =
     SPRITE_SIZE(2, 2), // sgdk sprite size
 };
 
-const GGSprite* const shotgunSpriteArray0[1] = 
+const Ruby_Sprite* const shotgunSpriteArray0[1] = 
 {
     &shotgunSprite0,
 };
 
-const GGSprite* const shotgunSpriteArray1[1] = 
+const Ruby_Sprite* const shotgunSpriteArray1[1] = 
 {
     &shotgunSprite1,
 };
 
-const GGSprite* const shotgunSpriteArray2[1] = 
+const Ruby_Sprite* const shotgunSpriteArray2[1] = 
 {
     &shotgunSprite2,
 };
 
-extern const GGFrame shotgunFrame0;
-extern const GGFrame shotgunFrame1;
-extern const GGFrame shotgunFrame2;
+extern const Ruby_Frame shotgunFrame0;
+extern const Ruby_Frame shotgunFrame1;
+extern const Ruby_Frame shotgunFrame2;
 
 
 
 
 
-const GGFrame shotgunFrame0 = 
+const Ruby_Frame shotgunFrame0 = 
 {
     shotgunSpriteArray0,
     1, // number of sprites
@@ -121,7 +123,7 @@ const GGFrame shotgunFrame0 =
 };
 
 
-const GGFrame shotgunFrame1 = 
+const Ruby_Frame shotgunFrame1 = 
 {
     shotgunSpriteArray1,
     1, // number of sprites
@@ -131,7 +133,7 @@ const GGFrame shotgunFrame1 =
 };
 
 
-const GGFrame shotgunFrame2 = 
+const Ruby_Frame shotgunFrame2 = 
 {
     shotgunSpriteArray2,
     1, // number of sprites
@@ -140,18 +142,28 @@ const GGFrame shotgunFrame2 =
     &shotgunFrame0, // loop to next frame. 
 };
 
-const GGFrame* const shotgunFrames[3] = 
+const Ruby_Frame* const shotgunFrames[3] = 
 {
     &shotgunFrame0,
     &shotgunFrame1,
     &shotgunFrame2,
 };
 
+const Ruby_AnimationSetup const shotgunSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateStandardAnimation,
+    &shotgunFrame0,
+    0,
+    2,
+};
 
+u16 shotgunVdpLocation;
 
-const GGAnimation shotgun = 
+const Ruby_Animation shotgun = 
 {
     STANDARD_ANIMATION_RESOURCE_TYPE,
+    &shotgunSetup,
     shotgunFrames,
     3, // number of frames
     16, // width in pixels
@@ -160,4 +172,5 @@ const GGAnimation shotgun =
     6, // the total number of tiles in the animation
     (const u32*)shotgunTileData, // start of the sprite data
     NULL, // frame trigger data blob
+    &shotgunVdpLocation, // location in vdp when loaded
 };

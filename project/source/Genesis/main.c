@@ -164,30 +164,35 @@ int main(bool hardReset)
 
 	SetupSystem();
 
+	kprintf("resource manager init\n");
 	ResourceManager_Init((OnResourceLoadedCallback)OnResourceLoaded);
 
-
+	kprintf("weapon manager init\n");
 	WeaponManager_InitGame();
 
+	kprintf("scene manager init\n");
 	SceneManager_Init(&SCENE_TO_RUN);
 		
+	kprintf("game loop start\n");
 
-	
 	// game loop
 	for(;;) 
 	{ 
+		kprintf("*** start frame\n");
 		JoystickManager_Update();
 		ObjectManager_Update();
 		MyVDP_setLastSprite();
-
+		kprintf("*** wait for vsync\n");
 		// VBLANK
 		VDP_waitVSync();
+		kprintf("*** vsync period\n");
 		SYS_doVBlankProcess();
 		VDP_updateSprites(highestVDPSpriteIndex, DMA);
 
 		ObjectManager_VDPDraw();
 
 		ScrollManager_UpdateVDP();
+		kprintf("*** end frame\n");
 	}
 
 	/*

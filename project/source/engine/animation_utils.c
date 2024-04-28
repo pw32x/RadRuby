@@ -5,20 +5,18 @@
 #include "engine/draw_utils.h"
 #include <string.h>
 
-void AnimationUtils_updateBatchedAnimation(GameObject* gameObject)
+void AnimationUtils_updateStandardAnimation(GameObject* gameObject)
 {
-	/*
 	if (!gameObject->animationTime)
 	{
-		gameObject->currentBatchedAnimationFrame = gameObject->currentBatchedAnimationFrame->nextFrame;
-		gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
+		gameObject->currentFrame = gameObject->currentFrame->nextFrame;
+		gameObject->animationTime = gameObject->currentFrame->frameTime;
 	}
 
 	gameObject->animationTime--;
-	*/
 }
 
-void AnimationUtils_updateMetaSpriteAnimation(GameObject* gameObject)
+void AnimationUtils_updateStreamedAnimation(GameObject* gameObject)
 {
 	/*
 	if (!gameObject->animationTime)
@@ -31,45 +29,21 @@ void AnimationUtils_updateMetaSpriteAnimation(GameObject* gameObject)
 	*/
 }
 
-
-
-u8 AnimationUtils_updateBatchedAnimation_noLoop(GameObject* gameObject)
+u8 AnimationUtils_updateStandardAnimation_noLoop(GameObject* gameObject)
 {
-	/*
 	if (!gameObject->animationTime--)
 	{
 		gameObject->currentAnimationFrameIndex++;
 
-		if (gameObject->currentAnimationFrameIndex == gameObject->batchedAnimation->numFrames)
+		if (gameObject->currentAnimationFrameIndex == gameObject->animation->numFrames)
 		{
 			return ANIMATION_FINISHED;
 		}
 
-		gameObject->currentBatchedAnimationFrame = gameObject->batchedAnimation->frames[gameObject->currentAnimationFrameIndex];
-		gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
+		gameObject->currentFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
+		gameObject->animationTime = gameObject->currentFrame->frameTime;
 		return ANIMATION_CHANGED_FRAME;
 	}
-	*/
-	return ANIMATION_NO_CHANGE;
-}
-
-// streamed
-u8 AnimationUtils_updateStreamedBatchedAnimation(GameObject* gameObject)
-{
-	/*
-	if (!gameObject->animationTime--)
-	{
-		gameObject->currentBatchedAnimationFrame = gameObject->currentBatchedAnimationFrame->nextFrame;
-
-		if (gameObject->currentBatchedAnimationFrame == NULL)
-		{
-			return ANIMATION_FINISHED;
-		}
-
-		gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
-		return ANIMATION_CHANGED_FRAME;
-	}
-	*/
 
 	return ANIMATION_NO_CHANGE;
 }
@@ -104,50 +78,27 @@ u8 AnimationUtils_updateTileAnimation(GameObject* gameObject)
 	return ANIMATION_NO_CHANGE;
 }
 
-void AnimationUtils_setBatchedAnimationFrame(GameObject* gameObject, u8 animationFrameIndex)
+void AnimationUtils_setStandardAnimationFrame(GameObject* gameObject, u8 animationFrameIndex)
 {
-	//gameObject->currentAnimationFrameIndex = animationFrameIndex;
-	//gameObject->currentBatchedAnimationFrame = gameObject->batchedAnimation->frames[animationFrameIndex]; 
-	//gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
+	gameObject->currentAnimationFrameIndex = animationFrameIndex;
+	gameObject->currentFrame = gameObject->animation->frames[animationFrameIndex]; 
+	gameObject->animationTime = gameObject->currentFrame->frameTime;
 }
 
 
-void AnimationUtils_setMetaSpriteAnimationFrame(GameObject* gameObject, u8 animationFrameIndex)
+u16 Load_StandardAnimationResource(const Resource* resource)
 {
-	//gameObject->currentAnimationFrameIndex = animationFrameIndex;
-	//gameObject->currentMetaSpriteAnimationFrame = gameObject->metaSpriteAnimation->frames[animationFrameIndex]; 
-	//gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
-}
+	const Ruby_Animation* animation = (const Ruby_Animation*)resource;
 
-u16 Load_BatchedAnimationResource(const Resource* resource)
-{
-	/*
-	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resource->resource;
-
-	return VDPTileManager_LoadSpriteTiles(batchedAnimation->tileData, 
-										  batchedAnimation->totalTileCount,
-										  batchedAnimation->vdpLocation);
-										  */
+	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
+										  animation->numTotalTiles,
+										  animation->vdpLocation);
 
 	return 0;
 }
 
 
-
-u16 Load_MetaSpriteBatchedAnimationResource(const Resource* resource)
-{
-	/*
-	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resource->resource;
-
-	return VDPTileManager_LoadSpriteTiles(metaSpriteAnimation->tileData, 
-										  metaSpriteAnimation->totalTileCount,
-										  metaSpriteAnimation->vdpLocation);
-										  */
-
-	return 0;
-}
-
-u16 Load_StreamedBatchedAnimationResource(const Resource* resource)
+u16 Load_StreamedAnimationResource(const Resource* resource)
 {
 	/*
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resource->resource;
@@ -165,7 +116,7 @@ u16 Load_PlaneAnimationResource(const Resource* resource)
 	const PlaneAnimation* planeAnimation = (const PlaneAnimation*)resource->resource;
 
 	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, 
-												planeAnimation->totalTileCount,
+												planeAnimation->numTotalTiles,
 												planeAnimation->vdpLocation);
 												*/
 
@@ -188,19 +139,17 @@ u16 Load_TileAnimationResource(const Resource* resource)
 
 typedef BOOL (*UpdateAnimationFunctionType)(GameObject* gameObject);
 
-u16 Setup_BatchedAnimationResource(GameObject* gameObject, const Resource* resource)
+u16 Setup_StandardAnimationResource(GameObject* gameObject, const Resource* resource)
 {
-	/*
-	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resource->resource;
+	const Ruby_Animation* animation = (const Ruby_Animation*)resource;
 
-	gameObject->batchedAnimation = batchedAnimation;
-	memcpy(&gameObject->Draw, batchedAnimation->animationSetup, sizeof(AnimationSetup));
-	*/
+	gameObject->animation = animation;
+	memcpy(&gameObject->Draw, animation->animationSetup, sizeof(Ruby_AnimationSetup));
 
 	return 0;
 }
 
-u16 Setup_MetaSpriteAnimationResource(GameObject* gameObject, const Resource* resource)
+u16 Setup_StreamedAnimationResource(GameObject* gameObject, const Resource* resource)
 {
 	/*
 	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resource->resource;
@@ -244,7 +193,7 @@ u16 Setup_TileAnimationResource(GameObject* gameObject, const Resource* resource
 }
 
 
-void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
+void AnimationUtils_UpdateStreamedAnimationFrame(GameObject* gameObject)
 {
 	/*
 	//SMS_setBackdropColor(COLOR_ORANGE);
