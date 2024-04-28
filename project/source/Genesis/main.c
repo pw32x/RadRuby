@@ -1,8 +1,25 @@
 #include "genesis.h"
-#include "..\client\generated\resources.h"
-#include "..\engine\AnimationDraw.h"
-#include "..\engine\map_types.h"
-#include "..\engine\terrain_manager.h"
+#include "vdp.h"
+
+#include "engine/vdptypes.h"
+
+#include "engine/base_types.h"
+#include "engine/base_defines.h"
+#include "engine/scene_manager.h"
+#include "engine/object_manager.h"
+#include "engine/object_manager_vdp.h"
+#include "engine/scroll_manager.h"
+#include "engine/resource_manager.h"
+#include "engine/joystick_manager.h"
+
+#include "client/managers/weapon_manager.h"
+#include "client/gameobjects/on_resource_loaded_callback.h"
+#include "client/exported/scenes/scene003.h"
+
+#ifndef SCENE_TO_RUN
+#define SCENE_TO_RUN scene003
+#endif
+
 
 void SetupSystem() 
 {
@@ -17,10 +34,10 @@ void SetupSystem()
 	VDP_setSpriteListAddress(0xBC00);
 	VDP_setPlaneSize(64,32, TRUE);
 
-	//JOY_init();
+	JOY_init();
 	//FadeManager_Init();
-	//SceneManager_Init();
-	//VDP_waitVSync();
+
+	VDP_waitVSync();
 
 	// register 0x0b sets the scroll mode
 	// first two bits sets the horizontal scroll mode (whole layer mode (0x00), tile row mode(0x02), or per-line mode(0x03))
@@ -30,9 +47,10 @@ void SetupSystem()
 	//SetupAudio();
 }
 
+/*
 void VDPTileManager_LoadGGAnimationToVDP(u16 region, const GGAnimation* animation, VDPTileIndex* vdpTileIndex)
 {
-	//*vdpTileIndex = vdpRegionTileIndex[region];
+	// *vdpTileIndex = vdpRegionTileIndex[region];
 	//vdpRegionTileIndex[region] += animation->totalTiles;
 	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadGGAnim too many tiles loaded in vdp region");
 
@@ -44,7 +62,7 @@ void VDPTileManager_LoadGGAnimationToVDP(u16 region, const GGAnimation* animatio
 
 void VDPTileManager_LoadTilesetDataToVDP(u16 region, const Ruby_Tileset* tileset, VDPTileIndex* vdpTileIndex)
 {
-	//*vdpTileIndex = vdpRegionTileIndex[region];
+	// *vdpTileIndex = vdpRegionTileIndex[region];
 	//vdpRegionTileIndex[region] += tileset->numTile;
 	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadSpriteData too many tiles loaded in vdp region");
 
@@ -137,9 +155,42 @@ void VDP_setAllHorizontalScrollTiles(VDPPlane plan, s16 value)
 	*pw = value;
 #endif
 }
-
+*/
 int main(bool hardReset)
 {
+	kprintf("**********************************\n");
+	kprintf("**********************************\n");
+	kprintf("**********************************\n");
+
+	SetupSystem();
+
+	ResourceManager_Init((OnResourceLoadedCallback)OnResourceLoaded);
+
+
+	WeaponManager_InitGame();
+
+	SceneManager_Init(&SCENE_TO_RUN);
+		
+
+	
+	// game loop
+	for(;;) 
+	{ 
+		JoystickManager_Update();
+		ObjectManager_Update();
+		MyVDP_setLastSprite();
+
+		// VBLANK
+		VDP_waitVSync();
+		SYS_doVBlankProcess();
+		VDP_updateSprites(highestVDPSpriteIndex, DMA);
+
+		ObjectManager_VDPDraw();
+
+		ScrollManager_UpdateVDP();
+	}
+
+	/*
 	SetupSystem();
 
 	PAL_setPalette(PAL0, global_palette.palette, DMA);
@@ -215,6 +266,7 @@ int main(bool hardReset)
 		VDP_setVerticalScrollTile(BG_A, 0, verticalScrollBuffer, 20, DMA);
 		SYS_doVBlankProcess();
 	}
+	*/
 
 	return 0;
 }

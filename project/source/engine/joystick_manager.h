@@ -4,7 +4,7 @@
 #include "genesis.h"
 #include "engine/base_types.h"
 
-inline void JoystickManager_Update(void);
+void JoystickManager_Update(void);
 
 
 extern u32 JoystickManager_buttonState;
