@@ -133,7 +133,7 @@ void Animation::WriteAnimationHeaderFile(const std::string& outputFolder, const 
     headerfile << "\n";
 
 	// exported types
-    headerfile << "RESOURCE() extern const GGAnimation " << outputName << ";\n"; 
+    headerfile << "RESOURCE() extern const Ruby_Animation " << outputName << ";\n"; 
     headerfile << "\n";
 
 	headerfile << "#define " << StringUtils::str_toupper(outputName) << "_NUMFRAMES " << m_frames.size() << "\n";
@@ -167,7 +167,7 @@ void Animation::WriteSpritesData(const std::string& outputName, std::ofstream& s
 		const RawSprite& rawSprite = m_rawSprites[properties.rawSprite];
 		int tileStartIndex = rawSprite.tileStartIndex;
 
-        sourceFile << "const GGSprite " << spriteName << " = \n";
+        sourceFile << "const Ruby_Sprite " << spriteName << " = \n";
         sourceFile << "{\n";
         sourceFile << "    " << properties.xPositionOffset - m_animationProperties.mOffsetX << ", // x position offset\n";
         sourceFile << "    " << properties.yPositionOffset - m_animationProperties.mOffsetY  << ", // y position offset\n";
@@ -191,7 +191,7 @@ void Animation::WriteFrameSpriteArrayData(const std::string& outputName, std::of
 		if (spriteArray.size() == 0)
 			continue;
 
-		sourceFile << "const GGSprite* const " << BuildSpriteArrayName(outputName, loop) << "[" << spriteArray.size() << "] = \n";
+		sourceFile << "const Ruby_Sprite* const " << BuildSpriteArrayName(outputName, loop) << "[" << spriteArray.size() << "] = \n";
 		sourceFile << "{\n";		
 
 		for (size_t loop = 0; loop < spriteArray.size(); loop++)
@@ -212,7 +212,7 @@ void Animation::WriteFrames(const std::string& outputName, std::ofstream& source
     // forward declare frame names.
     for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
     {
-        sourceFile << "extern const GGFrame " << BuildFrameName(outputName, frameLoop) << ";\n";
+        sourceFile << "extern const Ruby_Frame " << BuildFrameName(outputName, frameLoop) << ";\n";
     }
 
 	sourceFile << "\n\n";
@@ -257,7 +257,7 @@ void Animation::WriteFrames(const std::string& outputName, std::ofstream& source
 		const AnimationFrame& frame = m_frames[frameLoop];
 
 		sourceFile << "\n";
-		sourceFile << "const GGFrame " << BuildFrameName(outputName, frameLoop) << " = \n";
+		sourceFile << "const Ruby_Frame " << BuildFrameName(outputName, frameLoop) << " = \n";
 		sourceFile << "{\n";
 
 		const std::vector<int>& spriteArray = m_spriteArrays[frame.GetSpriteArrayIndex()];
@@ -306,7 +306,7 @@ void Animation::WriteFrames(const std::string& outputName, std::ofstream& source
 
 void Animation::WriteFrameArray(const std::string& outputName, std::ofstream& sourceFile)
 {
-    sourceFile << "const GGFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
+    sourceFile << "const Ruby_Frame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
     sourceFile << "{\n";
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
@@ -317,16 +317,30 @@ void Animation::WriteFrameArray(const std::string& outputName, std::ofstream& so
     sourceFile << "};\n\n";
 }
 
+void Animation::WriteAnimationSetup(const std::string& outputName, std::ofstream& sourceFile)
+{
+    sourceFile << "const Ruby_AnimationSetup const " << outputName << "Setup = \n";
+    sourceFile << "{\n";
+    sourceFile << "    DrawUtils_drawMetasprite,\n"; //void (*Draw)(struct game_object* gameObject);
+    sourceFile << "    AnimationUtils_updateStandardAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
+    sourceFile << "    &" << outputName << "Frame0,\n"; //const void* startingAnimationFrame;
+    sourceFile << "    0,\n"; //u8 startAnimationFrameIndex;
+    sourceFile << "    " << m_frames[0].GetFrameDelayTime() << ",\n"; //u8 animationTime;
+    sourceFile << "};\n";
+}
+
 
 void Animation:: WriteAnimationStruct(const std::string& outputName, std::ofstream& sourceFile)
 {
     // final struct
     sourceFile << "\n";
-    sourceFile << "\n";
 
-    sourceFile << "const GGAnimation " << outputName << " = \n";
+	sourceFile << "u16 " << outputName << "VdpLocation;\n\n";
+
+    sourceFile << "const Ruby_Animation " << outputName << " = \n";
     sourceFile << "{\n";
 	sourceFile << "    STANDARD_ANIMATION_RESOURCE_TYPE,\n";
+	sourceFile << "    &" << outputName << "Setup,\n";
     sourceFile << "    " << outputName << "Frames,\n";
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
@@ -340,6 +354,8 @@ void Animation:: WriteAnimationStruct(const std::string& outputName, std::ofstre
 	else 
 		sourceFile << "    NULL, // frame trigger data blob\n";
 
+	sourceFile << "    &" << outputName << "VdpLocation, // location in vdp when loaded\n";
+
     sourceFile << "};\n";
 }
 
@@ -351,6 +367,8 @@ void Animation::WriteAnimationSourceFile(const std::string& outputFolder, const 
     sourceFile << "#include <genesis.h>\n";
     sourceFile << "#include \"" << outputName << ".h\"\n";
 	sourceFile << "#include \"engine\\FrameTriggers.h\"\n";
+	sourceFile << "#include \"engine\\draw_utils.h\"\n";
+	sourceFile << "#include \"engine\\animation_utils.h\"\n";
 	
     sourceFile << "\n";
     sourceFile << "\n";
@@ -369,6 +387,9 @@ void Animation::WriteAnimationSourceFile(const std::string& outputFolder, const 
 
 	// frame array
 	WriteFrameArray(outputName, sourceFile);
+
+	// animation setup
+	WriteAnimationSetup(outputName, sourceFile);
 
 	// animation
 	WriteAnimationStruct(outputName, sourceFile);

@@ -21,6 +21,7 @@ private:
 	void WriteFrameSpriteArrayData(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFrames(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFrameArray(const std::string& outputName, std::ofstream& sourceFile);
+	void WriteAnimationSetup(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteAnimationStruct(const std::string& outputName, std::ofstream& sourceFile);
 
 	void WriteAnimationHeaderFile(const std::string& outputFolder, const std::string& outputName);
