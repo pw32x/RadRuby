@@ -28,30 +28,23 @@
 
 		<Tool name="tmx2c" path="tools\tmx2c\Release\tmx2c.exe" info="Export backgrounds"/>
 		<Tool name="TemplateMaster" path="tools\TemplateMaster\bin\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
-		
-		<!--		
-		
-		<Tool name="SceneMaster_export" path="tools\bin\SceneMaster\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
+		<Tool name="SceneMaster_export" path="tools\SceneMaster\bin\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
 
-
-		-->
 	</Tools>
 	
 	<!-- Tool Jobs are run in the order they're listed. -->
 	<ToolJobs>
 		<!--
-		
 		<ToolJob tool="gal2tmx" source="gamedata\animations\animatedtilesets\*.gal" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets"/>
-		<ToolJob tool="SceneMaster_export" source="gamedata\scenes" destination="source\client\exported\scenes" />
 		-->
-
+		
 		<ToolJob tool="TemplateMaster" source="gamedata\gameobjecttemplates" destination="source\client\generated\gameobjecttemplates"/>
 		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\generated\mapthemes" tilesetdest="source\client\generated\tilesets"/>
 		<ToolJob tool="gg2c_animations" source="gamedata\animations" destination="source\client\exported\animations"/>
 		<ToolJob tool="gg2c_palettes" source="gamedata\palettes" destination="source\client\exported\palettes"/>
 
 		<ToolJob tool="tmx2c" source="gamedata\generated\mapthemes" destination="source\client\exported\maps\"/>
-
+		<ToolJob tool="SceneMaster_export" source="gamedata\scenes" destination="source\client\exported\scenes" />
 		<!--
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps"/>
 		-->

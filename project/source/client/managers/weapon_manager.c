@@ -59,7 +59,6 @@ void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
 		y,
 		0,
 		0,
-		0
 	};
 
 	GameObject* bullet = ObjectManager_CreatePlayerProjectile(&createInfo);
@@ -80,7 +79,6 @@ void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped)
 		y,
 		0,
 		0,
-		0
 	};
 
 	GameObject* bullet = ObjectManager_CreatePlayerProjectile(&createInfo);
@@ -100,7 +98,6 @@ void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 		y,
 		0,
 		0,
-		0
 	};
 
 	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
@@ -130,7 +127,6 @@ void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
 		y,
 		0,
 		0,
-		0
 	};
 
 	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);

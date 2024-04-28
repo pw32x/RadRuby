@@ -1,33 +1,32 @@
 #ifndef CREATEINFO_TYPES_INCLUDE_H
 #define CREATEINFO_TYPES_INCLUDE_H
 
-#include "genesis.h"
+#include "engine/base_types.h"
 #include "engine/gameobject_template_types.h"
 #include "engine/command_types.h"
 
-#define STANDARD_CREATE_INFO \
-const GameObjectTemplate* gameObjectTemplate;\
-s16 startX;\
-s16 startY;\
-s8 speedX;\
-s8 speedY;
+#define DECLARE_CREATE_INFO(structname) typedef struct structname \
+{\
+	 const GameObjectTemplate* gameObjectTemplate;\
+	s16 startX;\
+	s16 startY;
 
-typedef struct create_info
-{
-	STANDARD_CREATE_INFO
-	u16 extra;
-} CreateInfo;
+#define DEC_FIELD(type, name, default_value) type name;
+#define END_CREATE_INFO(name) } name;
 
-typedef struct commandrunner_create_info
-{
-	STANDARD_CREATE_INFO
-	const Command* commands;
-} CommandRunnerCreateInfo;
+DECLARE_CREATE_INFO(create_info)
+	DEC_FIELD(s8, speedX, 0)
+	DEC_FIELD(s8, speedY, 0)
+END_CREATE_INFO(CreateInfo)
 
-typedef struct 
-{
-	STANDARD_CREATE_INFO
-	u8 startFrameNumber;
-} EffectCreateInfo;
+DECLARE_CREATE_INFO(effect_create_info)
+	DEC_FIELD(s8, speedX, 0)
+	DEC_FIELD(s8, speedY, 0)
+	DEC_FIELD(u8, startFrameNumber, 0)
+END_CREATE_INFO(EffectCreateInfo)
+
+DECLARE_CREATE_INFO(commandrunner_create_info)
+	DEC_FIELD(const Command*, commands, NULL)
+END_CREATE_INFO(CommandRunnerCreateInfo)
 
 #endif

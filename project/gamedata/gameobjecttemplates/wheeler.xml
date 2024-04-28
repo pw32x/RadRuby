@@ -3,7 +3,7 @@
 	<EditorProperties>
 		<EditorObjectType value="GameObject"/>
 		<Visual>
-			<GraphicsGale filename="..\animations\enemies\wheeler.gal" framenumber="2"/>
+			<GraphicsGale filename="..\animations\wheeler.gal" framenumber="2"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>

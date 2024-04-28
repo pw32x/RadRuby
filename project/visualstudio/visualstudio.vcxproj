@@ -82,6 +82,7 @@
     <ClInclude Include="..\source\client\exported\animations\wheeler.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />
     <ClInclude Include="..\source\client\exported\palettes\global_palette.h" />
+    <ClInclude Include="..\source\client\exported\scenes\scene003.h" />
     <ClInclude Include="..\source\client\gameobjects\basic_effect.h" />
     <ClInclude Include="..\source\client\gameobjects\bullet.h" />
     <ClInclude Include="..\source\client\gameobjects\commandrunner_rightscroll.h" />
@@ -133,6 +134,8 @@
     <ClInclude Include="..\source\engine\palette_types.h" />
     <ClInclude Include="..\source\engine\resource_manager.h" />
     <ClInclude Include="..\source\engine\resource_types.h" />
+    <ClInclude Include="..\source\engine\scene_manager.h" />
+    <ClInclude Include="..\source\engine\scene_types.h" />
     <ClInclude Include="..\source\engine\scroll_manager.h" />
     <ClInclude Include="..\source\engine\scroll_utils.h" />
     <ClInclude Include="..\source\engine\terrain_manager.h" />
@@ -190,6 +193,7 @@
     <ClCompile Include="..\source\client\exported\animations\wheeler.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
     <ClCompile Include="..\source\client\exported\palettes\global_palette.c" />
+    <ClCompile Include="..\source\client\exported\scenes\scene003.c" />
     <ClCompile Include="..\source\client\gameobjects\basic_effect.c" />
     <ClCompile Include="..\source\client\gameobjects\bullet.c" />
     <ClCompile Include="..\source\client\gameobjects\commandrunner_rightscroll.c" />
@@ -244,6 +248,7 @@
     <ClCompile Include="..\source\engine\object_manager_vdp.c" />
     <ClCompile Include="..\source\engine\object_utils.c" />
     <ClCompile Include="..\source\engine\resource_manager.c" />
+    <ClCompile Include="..\source\engine\scene_manager.c" />
     <ClCompile Include="..\source\engine\scroll_manager.c" />
     <ClCompile Include="..\source\engine\scroll_utils.c" />
     <ClCompile Include="..\source\engine\terrain_manager.c" />

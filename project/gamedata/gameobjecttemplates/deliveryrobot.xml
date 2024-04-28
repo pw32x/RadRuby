@@ -3,7 +3,7 @@
 	<EditorProperties>
 		<EditorObjectType value="GameObject"/>
 		<Visual>
-			<GraphicsGale filename="..\animations\weapons\deliveryrobot.gal" framenumber="0"/>
+			<GraphicsGale filename="..\animations\deliveryrobot.gal" framenumber="0"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>

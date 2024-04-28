@@ -1,5 +1,5 @@
 <GameObjectTemplate>
-	<Name value="Gun Girl"/>
+	<Name value="Rad Ruby"/>
 	<EditorProperties>
 		<Visual>
 			<GraphicsGale filename="..\animations\ruby.gal" framenumber="6"/>

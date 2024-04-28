@@ -125,7 +125,6 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 			V2P(gameObject->y),
 			0,
 			0,
-			0
 		};
 
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);

@@ -1,5 +1,5 @@
 <GameObjectTemplate >
-	<Name value="Bullet"/>
+	<Name value="Shotgun"/>
 	<GameProperties>
 		<Damage value="2"/>
 		<RectLeft value="-6"/>
