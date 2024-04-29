@@ -290,7 +290,7 @@ namespace gal2tmx
 
 
 
-            stringBuilder.AppendLine("    " + tilesetName + "_tiles,");
+            stringBuilder.AppendLine("    (const u32*)" + tilesetName + "_tiles,");
             stringBuilder.AppendLine("    " + tilesetSplitBitmap.UniqueBitmapTiles.Count + ", // unique tile count");
             stringBuilder.AppendLine("    &" + tilesetName + "VdpLocation,");
 
