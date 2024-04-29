@@ -282,21 +282,15 @@ void Animation::WriteFrames(const std::string& outputName, std::ofstream& source
 
 		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
 
-		if (frameLoop + 1 > m_frames.size() - 1)
-		{
-			if (m_options.mNoLoop)
-			{
-				sourceFile << "    NULL, // stop animation. no looping\n";
-			}
-			else
-			{
-				sourceFile << "    &" << BuildFrameName(outputName, 0) << ", // loop to next frame. \n";
-			}
-		}
-		else
-		{
-			sourceFile << "    &" << BuildFrameName(outputName, frameLoop + 1) << ", // next frame\n";
-		}
+        std::string nextFrameName;
+        
+
+        if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
+            //nextFrameName = "NULL";
+            nextFrameName = "&" + BuildFrameName(outputName, frame.getFrameNumber());
+        else
+            nextFrameName = "&" + BuildFrameName(outputName, frame.getNextFrameIndex());
+		sourceFile << "    " << nextFrameName << ", // next frame\n";
 
 		sourceFile << "};\n";
 		sourceFile << "\n";
