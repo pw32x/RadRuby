@@ -2096,7 +2096,7 @@ RESOURCE() const Ruby_Tileset field_tileset =
     field_tileset_metatiles,
     120, // 16x16 metatiles count
     FALSE, // not breakable
-    field_tileset_tiles,
+    (const u32*)field_tileset_tiles,
     191, // unique tile count
     &field_tilesetVdpLocation,
 };

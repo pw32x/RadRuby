@@ -38,7 +38,7 @@
 typedef struct
 {
     COMMON_TILESET_PROPERTIES;
-    const u8* const tiles;
+    const u32* const tiles;
     const u16 numTiles;
     u16* vdpLocation;
 } Ruby_Tileset;
