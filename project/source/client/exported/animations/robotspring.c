@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "robotspring.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -277,7 +277,7 @@ const Ruby_Frame* const robotspringFrames[3] =
 
 const Ruby_AnimationSetup const robotspringSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &robotspringFrame0,
     0,

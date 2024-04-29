@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "deliveryrobot.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -535,7 +535,7 @@ const Ruby_Frame* const deliveryrobotFrames[6] =
 
 const Ruby_AnimationSetup const deliveryrobotSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &deliveryrobotFrame0,
     0,

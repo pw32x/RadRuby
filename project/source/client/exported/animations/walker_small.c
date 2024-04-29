@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "walker_small.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -89,7 +89,7 @@ const Ruby_Frame* const walker_smallFrames[2] =
 
 const Ruby_AnimationSetup const walker_smallSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &walker_smallFrame0,
     0,

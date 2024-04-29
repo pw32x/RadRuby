@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "enemy_bullet.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -89,7 +89,7 @@ const Ruby_Frame* const enemy_bulletFrames[2] =
 
 const Ruby_AnimationSetup const enemy_bulletSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &enemy_bulletFrame0,
     0,

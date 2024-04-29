@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "bullet.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -54,7 +54,7 @@ const Ruby_Frame* const bulletFrames[1] =
 
 const Ruby_AnimationSetup const bulletSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &bulletFrame0,
     0,

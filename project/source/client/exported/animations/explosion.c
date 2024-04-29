@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "explosion.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -451,7 +451,7 @@ const Ruby_Frame* const explosionFrames[9] =
 
 const Ruby_AnimationSetup const explosionSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &explosionFrame0,
     0,

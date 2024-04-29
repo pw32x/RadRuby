@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "shotgun.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -151,7 +151,7 @@ const Ruby_Frame* const shotgunFrames[3] =
 
 const Ruby_AnimationSetup const shotgunSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &shotgunFrame0,
     0,

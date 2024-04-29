@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "threeshotflyer.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -233,7 +233,7 @@ const Ruby_Frame* const threeshotflyerFrames[2] =
 
 const Ruby_AnimationSetup const threeshotflyerSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &threeshotflyerFrame0,
     0,

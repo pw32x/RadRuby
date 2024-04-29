@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "impact.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -205,7 +205,7 @@ const Ruby_Frame* const impactFrames[3] =
 
 const Ruby_AnimationSetup const impactSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &impactFrame0,
     0,

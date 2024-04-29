@@ -321,7 +321,7 @@ void Animation::WriteAnimationSetup(const std::string& outputName, std::ofstream
 {
     sourceFile << "const Ruby_AnimationSetup const " << outputName << "Setup = \n";
     sourceFile << "{\n";
-    sourceFile << "    DrawUtils_drawMetasprite,\n"; //void (*Draw)(struct game_object* gameObject);
+    sourceFile << "    Animation_DrawObject,\n"; //void (*Draw)(struct game_object* gameObject);
     sourceFile << "    AnimationUtils_updateStandardAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
     sourceFile << "    &" << outputName << "Frame0,\n"; //const void* startingAnimationFrame;
     sourceFile << "    0,\n"; //u8 startAnimationFrameIndex;
@@ -367,7 +367,7 @@ void Animation::WriteAnimationSourceFile(const std::string& outputFolder, const 
     sourceFile << "#include <genesis.h>\n";
     sourceFile << "#include \"" << outputName << ".h\"\n";
 	sourceFile << "#include \"engine\\FrameTriggers.h\"\n";
-	sourceFile << "#include \"engine\\draw_utils.h\"\n";
+	sourceFile << "#include \"engine\\animation_draw.h\"\n";
 	sourceFile << "#include \"engine\\animation_utils.h\"\n";
 	
     sourceFile << "\n";

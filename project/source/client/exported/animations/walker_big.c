@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "walker_big.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -775,7 +775,7 @@ const Ruby_Frame* const walker_bigFrames[8] =
 
 const Ruby_AnimationSetup const walker_bigSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &walker_bigFrame0,
     0,

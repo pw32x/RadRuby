@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "robotrunner.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -555,7 +555,7 @@ const Ruby_Frame* const robotrunnerFrames[4] =
 
 const Ruby_AnimationSetup const robotrunnerSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &robotrunnerFrame0,
     0,

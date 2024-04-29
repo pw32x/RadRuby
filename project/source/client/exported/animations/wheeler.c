@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "wheeler.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -1079,7 +1079,7 @@ const Ruby_Frame* const wheelerFrames[11] =
 
 const Ruby_AnimationSetup const wheelerSetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &wheelerFrame0,
     0,

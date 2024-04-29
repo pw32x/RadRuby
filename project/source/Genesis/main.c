@@ -160,6 +160,8 @@ int main(bool hardReset)
 	{ 
 		kprintf("*** start frame\n");
 		JoystickManager_Update();
+		MyVDP_resetSprites();
+		//GGAnimation_Draw(128, 84, &ruby, 0, vdpAnimationTileIndex);
 		ObjectManager_Update();
 		MyVDP_setLastSprite();
 		kprintf("*** wait for vsync\n");

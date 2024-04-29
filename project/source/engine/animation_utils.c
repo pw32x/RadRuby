@@ -148,6 +148,8 @@ u16 Setup_StandardAnimationResource(GameObject* gameObject, const Resource* reso
 	gameObject->animation = animation;
 	memcpy(&gameObject->Draw, animation->animationSetup, sizeof(Ruby_AnimationSetup));
 
+	gameObject->tileAttribute = *animation->vdpLocation;
+
 	return 0;
 }
 

@@ -1,7 +1,7 @@
 #include <genesis.h>
 #include "ruby.h"
 #include "engine\FrameTriggers.h"
-#include "engine\draw_utils.h"
+#include "engine\animation_draw.h"
 #include "engine\animation_utils.h"
 
 
@@ -895,7 +895,7 @@ const Ruby_Frame* const rubyFrames[6] =
 
 const Ruby_AnimationSetup const rubySetup = 
 {
-    DrawUtils_drawMetasprite,
+    Animation_DrawObject,
     AnimationUtils_updateStandardAnimation,
     &rubyFrame0,
     0,
