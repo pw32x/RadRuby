@@ -53,7 +53,7 @@ const Ruby_Frame shotgun_itemFrame0 =
     1, // number of sprites
     0, // frame trigger data offset
     3, // frame time
-    &shotgun_itemFrame0, // loop to next frame. 
+    &shotgun_itemFrame0, // next frame
 };
 
 const Ruby_Frame* const shotgun_itemFrames[1] = 

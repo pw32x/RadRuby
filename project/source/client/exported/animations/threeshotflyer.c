@@ -222,7 +222,7 @@ const Ruby_Frame threeshotflyerFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &threeshotflyerFrame0, // loop to next frame. 
+    &threeshotflyerFrame0, // next frame
 };
 
 const Ruby_Frame* const threeshotflyerFrames[2] = 

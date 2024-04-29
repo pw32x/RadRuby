@@ -193,7 +193,7 @@ const Ruby_Frame impactFrame2 =
     1, // number of sprites
     0, // frame trigger data offset
     3, // frame time
-    &impactFrame0, // loop to next frame. 
+    &impactFrame0, // next frame
 };
 
 const Ruby_Frame* const impactFrames[3] = 

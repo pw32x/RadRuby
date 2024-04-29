@@ -880,7 +880,7 @@ const Ruby_Frame rubyFrame5 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &rubyFrame0, // loop to next frame. 
+    &rubyFrame0, // next frame
 };
 
 const Ruby_Frame* const rubyFrames[6] = 

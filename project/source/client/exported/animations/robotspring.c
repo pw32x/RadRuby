@@ -265,7 +265,7 @@ const Ruby_Frame robotspringFrame2 =
     1, // number of sprites
     0, // frame trigger data offset
     24, // frame time
-    &robotspringFrame0, // loop to next frame. 
+    &robotspringFrame0, // next frame
 };
 
 const Ruby_Frame* const robotspringFrames[3] = 

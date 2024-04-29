@@ -969,7 +969,7 @@ const Ruby_Frame wheelerFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame2, // next frame
+    &wheelerFrame0, // next frame
 };
 
 
@@ -989,7 +989,7 @@ const Ruby_Frame wheelerFrame3 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame4, // next frame
+    &wheelerFrame2, // next frame
 };
 
 
@@ -999,7 +999,7 @@ const Ruby_Frame wheelerFrame4 =
     1, // number of sprites
     0, // frame trigger data offset
     29, // frame time
-    &wheelerFrame5, // next frame
+    &wheelerFrame4, // next frame
 };
 
 
@@ -1019,7 +1019,7 @@ const Ruby_Frame wheelerFrame6 =
     1, // number of sprites
     0, // frame trigger data offset
     59, // frame time
-    &wheelerFrame7, // next frame
+    &wheelerFrame5, // next frame
 };
 
 
@@ -1029,7 +1029,7 @@ const Ruby_Frame wheelerFrame7 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame8, // next frame
+    &wheelerFrame7, // next frame
 };
 
 
@@ -1039,7 +1039,7 @@ const Ruby_Frame wheelerFrame8 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame9, // next frame
+    &wheelerFrame8, // next frame
 };
 
 
@@ -1049,7 +1049,7 @@ const Ruby_Frame wheelerFrame9 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame10, // next frame
+    &wheelerFrame9, // next frame
 };
 
 
@@ -1059,7 +1059,7 @@ const Ruby_Frame wheelerFrame10 =
     1, // number of sprites
     0, // frame trigger data offset
     6, // frame time
-    &wheelerFrame0, // loop to next frame. 
+    &wheelerFrame10, // next frame
 };
 
 const Ruby_Frame* const wheelerFrames[11] = 

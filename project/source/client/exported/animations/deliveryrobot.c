@@ -480,7 +480,7 @@ const Ruby_Frame deliveryrobotFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &deliveryrobotFrame2, // next frame
+    &deliveryrobotFrame0, // next frame
 };
 
 
@@ -500,7 +500,7 @@ const Ruby_Frame deliveryrobotFrame3 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &deliveryrobotFrame4, // next frame
+    &deliveryrobotFrame2, // next frame
 };
 
 
@@ -510,7 +510,7 @@ const Ruby_Frame deliveryrobotFrame4 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &deliveryrobotFrame5, // next frame
+    &deliveryrobotFrame4, // next frame
 };
 
 
@@ -520,7 +520,7 @@ const Ruby_Frame deliveryrobotFrame5 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &deliveryrobotFrame0, // loop to next frame. 
+    &deliveryrobotFrame5, // next frame
 };
 
 const Ruby_Frame* const deliveryrobotFrames[6] = 

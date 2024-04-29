@@ -44,7 +44,7 @@ const Ruby_Frame bulletFrame0 =
     1, // number of sprites
     0, // frame trigger data offset
     5, // frame time
-    &bulletFrame0, // loop to next frame. 
+    &bulletFrame0, // next frame
 };
 
 const Ruby_Frame* const bulletFrames[1] = 

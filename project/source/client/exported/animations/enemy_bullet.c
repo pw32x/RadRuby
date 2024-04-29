@@ -78,7 +78,7 @@ const Ruby_Frame enemy_bulletFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     4, // frame time
-    &enemy_bulletFrame0, // loop to next frame. 
+    &enemy_bulletFrame0, // next frame
 };
 
 const Ruby_Frame* const enemy_bulletFrames[2] = 

@@ -433,7 +433,7 @@ const Ruby_Frame explosionFrame8 =
     1, // number of sprites
     0, // frame trigger data offset
     2, // frame time
-    &explosionFrame0, // loop to next frame. 
+    &explosionFrame0, // next frame
 };
 
 const Ruby_Frame* const explosionFrames[9] = 

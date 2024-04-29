@@ -718,7 +718,7 @@ const Ruby_Frame walker_bigFrame3 =
     1, // number of sprites
     0, // frame trigger data offset
     14, // frame time
-    &walker_bigFrame4, // next frame
+    &walker_bigFrame0, // next frame
 };
 
 
@@ -758,7 +758,7 @@ const Ruby_Frame walker_bigFrame7 =
     1, // number of sprites
     0, // frame trigger data offset
     14, // frame time
-    &walker_bigFrame0, // loop to next frame. 
+    &walker_bigFrame4, // next frame
 };
 
 const Ruby_Frame* const walker_bigFrames[8] = 

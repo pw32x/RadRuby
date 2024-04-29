@@ -522,7 +522,7 @@ const Ruby_Frame robotrunnerFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     5, // frame time
-    &robotrunnerFrame2, // next frame
+    &robotrunnerFrame0, // next frame
 };
 
 
@@ -542,7 +542,7 @@ const Ruby_Frame robotrunnerFrame3 =
     1, // number of sprites
     0, // frame trigger data offset
     5, // frame time
-    &robotrunnerFrame0, // loop to next frame. 
+    &robotrunnerFrame2, // next frame
 };
 
 const Ruby_Frame* const robotrunnerFrames[4] = 

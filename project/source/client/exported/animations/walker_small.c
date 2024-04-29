@@ -78,7 +78,7 @@ const Ruby_Frame walker_smallFrame1 =
     1, // number of sprites
     0, // frame trigger data offset
     8, // frame time
-    &walker_smallFrame0, // loop to next frame. 
+    &walker_smallFrame0, // next frame
 };
 
 const Ruby_Frame* const walker_smallFrames[2] = 
