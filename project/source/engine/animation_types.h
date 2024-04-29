@@ -2,7 +2,7 @@
 #define ANIMATION_TYPES_INCLUDE_H
 
 #include <genesis.h>
-#include "engine\vdptypes.h"
+#include "engine\vdp_types.h"
 #include "engine\resource_types.h"
 
 struct game_object;

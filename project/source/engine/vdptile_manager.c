@@ -1,82 +1,31 @@
 #include "vdptile_manager.h"
+#include "engine\debug.h"
 
-u16 VDPTileManager_spriteTileLocation;
-u16 VDPTileManager_backgroundTileLocation;
-
-#define MAX_TOTAL_TILES 512
-#define SPRITE_TILES_START_INDEX 0
-#define BACKGROUND_TILES_START_INDEX 448 // 256
+u16 vdpRegionTileIndex[NUM_VDP_REGIONS];
+u16 vdpRegionMaximum[NUM_VDP_REGIONS];
 
 void VDPTileManager_Init(void)
 {
-	VDPTileManager_spriteTileLocation = SPRITE_TILES_START_INDEX;
-	VDPTileManager_backgroundTileLocation = BACKGROUND_TILES_START_INDEX;
+	vdpRegionTileIndex[VDP_REGION_MAIN] = 1;
+	vdpRegionTileIndex[VDP_REGION_EXT1] = 0x0680;
+	vdpRegionTileIndex[VDP_REGION_EXT2] = 0x783;
+
+	vdpRegionMaximum[VDP_REGION_MAIN] = 0x05ff; // 1536 tiles
+	vdpRegionMaximum[VDP_REGION_EXT1] = 0x06ff; // 128 tiles
+	vdpRegionMaximum[VDP_REGION_EXT2] = 0x07bf;	// 61 tiles
 }
 
-u8 VDPTileManager_LoadSpriteTiles(const u32* tileData, 
-								  u16 tileCount,
-								  u16* vdpLocation)
+void VDPTileManager_LoadTilesToVDP(u8 region, const u32* tiles, u16 numTiles, u16* vdpLocation)
 {
-	u16 currentSpriteTileLocaton = VDPTileManager_spriteTileLocation;
+    *vdpLocation = vdpRegionTileIndex[region];
+    vdpRegionTileIndex[region] += numTiles;
+	Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "VDPTileManager_LoadTilesToVDP too many tiles loaded in vdp region");
 
-	if (currentSpriteTileLocaton + tileCount > MAX_TOTAL_TILES)
-	{
-		while (1) {};
-	}
-
-	//SMS_loadTiles(tileData, 
-	//			  VDPTileManager_spriteTileLocation, 
-	//			  tileCount * 32);
-
-	VDPTileManager_spriteTileLocation += tileCount;
-
-	*vdpLocation = currentSpriteTileLocaton;
-	
-	return *vdpLocation;
+	VDP_loadTileData(tiles, *vdpLocation, numTiles, DMA);
+	VDP_waitDMACompletion();
 }
 
-u8 VDPTileManager_ReserveSpriteTilesArea(u16 tileCount, 
-										 u16* vdpLocation)
+void VDPTileManager_LoadTilesToVDPMain(const u32* tiles, u16 numTiles, u16* vdpLocation)
 {
-	u16 currentSpriteTileLocaton = VDPTileManager_spriteTileLocation;
-
-	if (currentSpriteTileLocaton + tileCount > MAX_TOTAL_TILES)
-	{
-		while (1) {};
-	}
-
-	VDPTileManager_spriteTileLocation += tileCount;
-
-	*vdpLocation = currentSpriteTileLocaton;
-
-	return *vdpLocation;
-
+	VDPTileManager_LoadTilesToVDP(VDP_REGION_MAIN, tiles, numTiles, vdpLocation);
 }
-
-u16 VDPTileManager_LoadBackgroundTileset(const u32* tileData, 
-										 u16 tileCount,
-										 u16* vdpLocation)
-{
-	//if (tileCount > SPRITE_TILES_START_INDEX)
-	//{
-	//	// if no sprite tiles have been loaded yet, just move the start index
-	//	if (VDPTileManager_spriteTileLocation == SPRITE_TILES_START_INDEX)
-	//	{
-	//		VDPTileManager_spriteTileLocation = tileCount;
-	//	}
-	//	else
-	//	{
-	//		// we've already loaded sprites, so we're busted.
-	//		while (1) {};
-	//	}
-	//}
-
-	VDPTileManager_backgroundTileLocation -= tileCount;
-
-	//SMS_loadTiles(tileData, VDPTileManager_backgroundTileLocation, tileCount * 32);
-
-	*vdpLocation = VDPTileManager_backgroundTileLocation;
-
-	return *vdpLocation;
-}
-

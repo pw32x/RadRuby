@@ -40,12 +40,11 @@ u16 Load_MapResource(const Resource* resource)
 
 u16 Load_StripMapResource(const Resource* resource)
 {
-
-	//const StripMap* stripMap = (const StripMap*)resource->resource;
+	const Ruby_StripMap* stripMap = (const Ruby_StripMap*)resource;
 	//
-	////SMS_debugPrintf("type: %d\n", stripMap->resourceType);
-	////SMS_debugPrintf("width: %d\n", stripMap->mapWidth);
-	////SMS_debugPrintf("height: %d\n", stripMap->mapHeight);
+	////kprintf("type: %d\n", stripMap->resourceType);
+	////kprintf("width: %d\n", stripMap->mapWidth);
+	////kprintf("height: %d\n", stripMap->mapHeight);
 	//
 	//MapManager_mapWidth = stripMap->mapWidth;
 	//MapManager_mapHeight = stripMap->mapHeight;
@@ -57,25 +56,25 @@ u16 Load_StripMapResource(const Resource* resource)
 	//MapManager_terrainMapWidth = stripMap->terrainMapWidth;
 	//MapManager_terrainMapHeight = stripMap->terrainMapHeight;
 	//
-	////SMS_debugPrintf("strip map data\n");
-	////SMS_debugPrintf("resource type: %d\n", MapManager_mapResource->resource->resourceType);
-	////SMS_debugPrintf("bank: %d\n", MapManager_mapResource->bankNumber);
-	////SMS_debugPrintf("resource: %u\n", (u16)MapManager_mapResource->resource);
+	////kprintf("strip map data\n");
+	////kprintf("resource type: %d\n", MapManager_mapResource->resource->resourceType);
+	////kprintf("bank: %d\n", MapManager_mapResource->bankNumber);
+	////kprintf("resource: %u\n", (u16)MapManager_mapResource->resource);
 
 	/*
 	const u16* MapManager_mapDataRunner = MapManager_mapData;
 
-	SMS_debugPrintf("Load_StripMapResource map\n");
+	kprintf("Load_StripMapResource map\n");
 
 	for (int loop = 0; loop < MapManager_mapWidth; loop++)
 	{
 		for (int loop2 = 0; loop2 < MapManager_mapHeight; loop2++)
 		{
-			SMS_debugPrintf("%u, ", *MapManager_mapDataRunner);
+			kprintf("%u, ", *MapManager_mapDataRunner);
 			MapManager_mapDataRunner++;
 		}
 
-		SMS_debugPrintf("\n");
+		kprintf("\n");
 	}
 
 	const u8* terrainRunner = MapManager_terrainMapStrips;
@@ -84,15 +83,15 @@ u16 Load_StripMapResource(const Resource* resource)
 	{
 		for (int loop2 = 0; loop2 < MapManager_terrainMapHeight; loop2++)
 		{
-			SMS_debugPrintf("%u, ", *terrainRunner);
+			kprintf("%u, ", *terrainRunner);
 			terrainRunner++;
 		}
 
-		SMS_debugPrintf("\n");
+		kprintf("\n");
 	}
 	*/
 
-	//Load_TilesetResourceSimple(stripMap->tilesetResource);
+	Load_TilesetResourceSimple(stripMap->tilesetResource);
 
 	return NULL;
 }
@@ -124,18 +123,15 @@ u16 Load_TilesetResource(const Resource* resource)
 
 u16 Load_TilesetResourceSimple(const Resource* resource)
 {
-	/*
-	SMS_mapROMBank(resource->bankNumber);
+	const Ruby_Tileset* tileset = (const Ruby_Tileset*)resource;
 
-	const Tileset* tileset = (const Tileset*)resource->resource;
+	VDPTileManager_LoadTilesToVDPMain(tileset->tiles, 
+									  tileset->numTiles,
+									  tileset->vdpLocation);
 
-	VDPTileManager_LoadBackgroundTileset(tileset->tiles, 
-										 tileset->numTiles,
-										 tileset->vdpLocation);
-										 */
-	//SMS_debugPrintf("num tiles: %d\n", tileset->numTiles);
-	//SMS_debugPrintf("tileset resource type: %d\n", tileset->resourceType);
-	//SMS_debugPrintf("vdp location: %d\n", *tileset->vdpLocation);
+	//kprintf("num tiles: %d\n", tileset->numTiles);
+	//kprintf("tileset resource type: %d\n", tileset->resourceType);
+	//kprintf("vdp location: %d\n", *tileset->vdpLocation);
 
 	return 0;
 }

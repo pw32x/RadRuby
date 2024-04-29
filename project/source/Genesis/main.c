@@ -1,7 +1,7 @@
 #include "genesis.h"
 #include "vdp.h"
 
-#include "engine/vdptypes.h"
+#include "engine/vdp_types.h"
 
 #include "engine/base_types.h"
 #include "engine/base_defines.h"
@@ -48,27 +48,7 @@ void SetupSystem()
 }
 
 /*
-void VDPTileManager_LoadGGAnimationToVDP(u16 region, const GGAnimation* animation, VDPTileIndex* vdpTileIndex)
-{
-	// *vdpTileIndex = vdpRegionTileIndex[region];
-	//vdpRegionTileIndex[region] += animation->totalTiles;
-	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadGGAnim too many tiles loaded in vdp region");
 
-	VDP_loadTileData(animation->allSpriteData, *vdpTileIndex, animation->totalTiles, DMA);
-
-	VDP_waitDMACompletion();
-}
-
-
-void VDPTileManager_LoadTilesetDataToVDP(u16 region, const Ruby_Tileset* tileset, VDPTileIndex* vdpTileIndex)
-{
-	// *vdpTileIndex = vdpRegionTileIndex[region];
-	//vdpRegionTileIndex[region] += tileset->numTile;
-	//Assert(vdpRegionTileIndex[region] < vdpRegionMaximum[region], "LoadSpriteData too many tiles loaded in vdp region");
-
-	VDP_loadTileData( (const u32 *)tileset->tiles, *vdpTileIndex, tileset->numTiles, DMA);
-	VDP_waitDMACompletion();
-}
 
 
 void VDP_setAllHorizontalScrollTiles(VDPPlane plan, s16 value)

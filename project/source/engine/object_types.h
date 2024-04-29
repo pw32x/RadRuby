@@ -27,6 +27,8 @@
 	u8 animationTime;\
 	const Ruby_Animation* animation;\
 	\
+	u16 tileAttribute;\
+	\
 	s16 x;\
 	s16 y;\
 	s8 speedx;\

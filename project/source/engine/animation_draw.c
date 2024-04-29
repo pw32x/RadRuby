@@ -1,17 +1,18 @@
-#include "AnimationDraw.h"
+#include "animation_draw.h"
 
-#include "vdptypes.h"
 #include "vdp_spr.h"
+#include "engine\vdp_types.h"
+
 //#include "engine\math\mathutils.h"
 //#include "engine\Debug.h"
 //#include "Config.h"
 //#include "engine\defines.h"
 
-void Ruby_Animation_Draw(s16 x, 
-                      s16 y, 
-                      const Ruby_Animation* animation, 
-                      u16 frameNumber, 
-                      u16 tileAttribute)
+void Animation_Draw(s16 x, 
+                         s16 y, 
+                         const Ruby_Animation* animation, 
+                         u16 frameNumber, 
+                         u16 tileAttribute)
 {
     const Ruby_Frame* frame = *(animation->frames + frameNumber);
 	const Ruby_Sprite* const* spritePtr = frame->sprites;
@@ -48,7 +49,7 @@ void Ruby_Animation_Draw(s16 x,
     }
 }
 
-void Ruby_Animation_DrawNoFlip(s16 x, 
+void Animation_DrawNoFlip(s16 x, 
                             s16 y, 
                             const Ruby_Animation* animation, 
                             u16 frameNumber, 
@@ -81,20 +82,20 @@ void Ruby_Animation_DrawNoFlip(s16 x,
         spritePtr++;
     }
 }
-/*
-void Ruby_Animation_DrawObject(ObjectStruct* object)
+
+void Animation_DrawObject(GameObject* object)
 {
-    if (object->currentAnimationFrame == NULL) 
+    if (object->currentFrame == NULL) 
 	{
 		return;
 	}
 
-	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+	const Ruby_Sprite* const* spritePtr = object->currentFrame->sprites;
 	const Ruby_Sprite* sprite;
 
-    u16 loop = object->currentAnimationFrame->numSprites;
+    u16 loop = object->currentFrame->numSprites;
 
-    if (spriteDrawIndex + object->currentAnimationFrame->numSprites > SAT_MAX_SIZE)
+    if (spriteDrawIndex + object->currentFrame->numSprites > SAT_MAX_SIZE)
     {
         loop = SAT_MAX_SIZE - spriteDrawIndex;
     }
@@ -123,14 +124,14 @@ void Ruby_Animation_DrawObject(ObjectStruct* object)
     }
 }
 
-void Ruby_Animation_DrawObjectNoFlip(ObjectStruct* object)
+void Animation_DrawObjectNoFlip(GameObject* object)
 {
-	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+	const Ruby_Sprite* const* spritePtr = object->currentFrame->sprites;
     const Ruby_Sprite* sprite;
 
-    u16 loop = object->currentAnimationFrame->numSprites;
+    u16 loop = object->currentFrame->numSprites;
 
-    if (spriteDrawIndex + object->currentAnimationFrame->numSprites > SAT_MAX_SIZE)
+    if (spriteDrawIndex + object->currentFrame->numSprites > SAT_MAX_SIZE)
     {
         loop = SAT_MAX_SIZE - spriteDrawIndex;
     }
@@ -151,16 +152,17 @@ void Ruby_Animation_DrawObjectNoFlip(ObjectStruct* object)
     }
 }
 
-void Ruby_Animation_DrawObjectOnPlane(ObjectStruct* object)
+void Animation_DrawObjectOnPlane(GameObject* object)
 {
+    /*
 	s16 screenx = V2P(object->x) - object->background->screenx;
     s16 screeny = V2P(object->y) - object->background->screeny;
 
-	const Ruby_Sprite* const* spritePtr = object->currentAnimationFrame->sprites;
+	const Ruby_Sprite* const* spritePtr = object->currentFrame->sprites;
     const Ruby_Sprite* sprite;
-    u16 loop = object->currentAnimationFrame->numSprites;
+    u16 loop = object->currentFrame->numSprites;
 
-    if (spriteDrawIndex + object->currentAnimationFrame->numSprites > SAT_MAX_SIZE)
+    if (spriteDrawIndex + object->currentFrame->numSprites > SAT_MAX_SIZE)
     {
         loop = SAT_MAX_SIZE - spriteDrawIndex;
     }
@@ -187,10 +189,11 @@ void Ruby_Animation_DrawObjectOnPlane(ObjectStruct* object)
         currentSpriteDef++;
         spritePtr++;
     }
+    */
 }
 
 
-void Ruby_Animation_DrawObjectStub(UNUSED ObjectStruct* object)
+void Animation_DrawObjectStub(GameObject* object)
 {
-
-}*/
+    UNUSED(object);
+}

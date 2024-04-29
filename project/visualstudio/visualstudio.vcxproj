@@ -107,7 +107,7 @@
     <ClInclude Include="..\source\client\managers\physics_manager.h" />
     <ClInclude Include="..\source\client\managers\weapon_manager.h" />
     <ClInclude Include="..\source\client\motion_sequence.h" />
-    <ClInclude Include="..\source\engine\AnimationDraw.h" />
+    <ClInclude Include="..\source\engine\animation_draw.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\animation_utils.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />
@@ -118,6 +118,7 @@
     <ClInclude Include="..\source\engine\command_manager.h" />
     <ClInclude Include="..\source\engine\command_types.h" />
     <ClInclude Include="..\source\engine\createinfo_types.h" />
+    <ClInclude Include="..\source\engine\debug.h" />
     <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\FrameTriggers.h" />
     <ClInclude Include="..\source\engine\gameobject_template_types.h" />
@@ -140,7 +141,7 @@
     <ClInclude Include="..\source\engine\scroll_utils.h" />
     <ClInclude Include="..\source\engine\terrain_manager.h" />
     <ClInclude Include="..\source\engine\vdptile_manager.h" />
-    <ClInclude Include="..\source\engine\vdptypes.h" />
+    <ClInclude Include="..\source\engine\vdp_types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\sgdk200\src\bmp.c" />
@@ -231,13 +232,14 @@
     <ClCompile Include="..\source\client\managers\physics_manager.c" />
     <ClCompile Include="..\source\client\managers\weapon_manager.c" />
     <ClCompile Include="..\source\client\motion_sequence.c" />
-    <ClCompile Include="..\source\engine\AnimationDraw.c" />
+    <ClCompile Include="..\source\engine\animation_draw.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\commandrunner_runall.c" />
     <ClCompile Include="..\source\engine\commands\background_commands.c" />
     <ClCompile Include="..\source\engine\commands\set_palette_commands.c" />
     <ClCompile Include="..\source\engine\command_manager.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
+    <ClCompile Include="..\source\engine\debug.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\joystick_manager.c" />
     <ClCompile Include="..\source\engine\map_load.c" />
@@ -253,7 +255,7 @@
     <ClCompile Include="..\source\engine\scroll_utils.c" />
     <ClCompile Include="..\source\engine\terrain_manager.c" />
     <ClCompile Include="..\source\engine\vdptile_manager.c" />
-    <ClCompile Include="..\source\engine\vdptypes.c" />
+    <ClCompile Include="..\source\engine\vdp_types.c" />
     <ClCompile Include="..\source\Genesis\main.c" />
   </ItemGroup>
   <ItemGroup>

@@ -5,20 +5,14 @@
 #include "engine/animation_types.h"
 #include "engine/map_types.h"
 
+#define VDP_REGION_MAIN	0
+#define VDP_REGION_EXT1 1
+#define VDP_REGION_EXT2 2
+#define NUM_VDP_REGIONS 3
+
 void VDPTileManager_Init(void);
 
-u8 VDPTileManager_LoadSpriteTiles(const u32* tileData, 
-								  u16 tileCount,
-								  u16* vdpLocation); 
-
-u8 VDPTileManager_ReserveSpriteTilesArea(u16 tileCount, 
-										 u16* vdpLocation);
-
-u16 VDPTileManager_LoadBackgroundTileset(const u32* tileData, 
-										 u16 tileCount,
-										 u16* vdpLocation);
-
-
-
+void VDPTileManager_LoadTilesToVDP(u8 region, const u32* tiles, u16 numTiles, u16* vdpLocation);
+void VDPTileManager_LoadTilesToVDPMain(const u32* tiles, u16 numTiles, u16* vdpLocation);
 
 #endif

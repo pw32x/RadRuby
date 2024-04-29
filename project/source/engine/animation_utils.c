@@ -90,9 +90,11 @@ u16 Load_StandardAnimationResource(const Resource* resource)
 {
 	const Ruby_Animation* animation = (const Ruby_Animation*)resource;
 
-	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
-										  animation->numTotalTiles,
-										  animation->vdpLocation);
+	VDPTileManager_LoadTilesToVDPMain(animation->tileData, 
+									  animation->numTotalTiles,
+									  animation->vdpLocation);
+
+
 
 	return 0;
 }
