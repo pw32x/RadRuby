@@ -2,7 +2,6 @@
   "profiles": {
     "SceneMaster": {
       "commandName": "Project",
-      "commandLineArgs": "gamedata\\scenes source\\client\\exported\\scenes\r\n",
       "workingDirectory": "C:\\Dropbox\\GenesisDev\\projects\\RadRuby\\project"
     }
   }

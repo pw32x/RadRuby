@@ -37,7 +37,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         internal override ExportedCommandData BuildExportCommandData(string sceneName, 
                                                                      int exportCounter)
         {
-            string createInfoName = sceneName + "_" + "createInfo" + exportCounter;
+            string createInfoName = sceneName + "_createInfo_" + GameObjectTemplate.Name.Replace(" ", "") + exportCounter;
 
             var exportedCommandData = new ExportedCommandData();
             exportedCommandData.CreateInfoTypeName = createInfoName;
