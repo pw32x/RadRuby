@@ -4,6 +4,7 @@
 #include "engine/base_types.h"
 #include "engine/gameobject_template_types.h"
 #include "engine/command_types.h"
+#include "engine/map_types.h"
 
 #define DECLARE_CREATE_INFO(structname) typedef struct structname \
 {\
@@ -28,5 +29,9 @@ END_CREATE_INFO(EffectCreateInfo)
 DECLARE_CREATE_INFO(commandrunner_create_info)
 	DEC_FIELD(const Command*, commands, NULL)
 END_CREATE_INFO(CommandRunnerCreateInfo)
+
+DECLARE_CREATE_INFO(scroller_create_info)
+	DEC_FIELD(const Ruby_StripMap*, map, NULL)
+END_CREATE_INFO(ScrollerCreateInfo)
 
 #endif

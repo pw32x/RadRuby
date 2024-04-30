@@ -14,7 +14,7 @@
 #include "engine\createinfo_types.h"
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
-const CreateInfo scene003_createInfo_RightScroller5 = { &right_scroller_template, 0, 44, 0, 0 };
+const ScrollerCreateInfo scene003_createInfo_RightScroller5 = { &right_scroller_template, 0, 44, NULL };
 const CreateInfo scene003_createInfo_RadRuby6 = { &player_template, 33, 69, 0, 0 };
 const CreateInfo scene003_createInfo_ThreeShotFlyer7 = { &threeshotflyer_template, 80, 53, 0, 0 };
 const CreateInfo scene003_createInfo_Wheeler8 = { &wheeler_template, 123, 98, 0, 0 };

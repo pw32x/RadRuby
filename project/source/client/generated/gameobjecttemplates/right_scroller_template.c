@@ -4,7 +4,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resources.h"
 
-GameObject* Right_Scroller_Init(RightScrollerObjectType* object, const CreateInfo* createInfo);
+GameObject* Right_Scroller_Init(RightScrollerObjectType* object, const ScrollerCreateInfo* createInfo);
 
 const GameObjectTemplate right_scroller_template = 
 {

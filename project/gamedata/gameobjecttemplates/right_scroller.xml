@@ -8,7 +8,7 @@
 	</EditorProperties>
 	<GameProperties>
 		<GameObjectType value="Scroller" />
-		<InitFunction value="Right_Scroller_Init"/>	
+		<InitFunction value="Right_Scroller_Init" createInfo="ScrollerCreateInfo"/>	
 		<CustomData>
 			<Data value="const Ruby_StripMap* map" include="engine\map_types.h"/>
 		</CustomData>			
