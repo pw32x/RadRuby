@@ -1,0 +1,16 @@
+<GameObjectTemplate >
+	<Name value="Right Scroller"/>
+	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
+		<Visual>
+			<GraphicsGale filename="right_scroller.png" framenumber="0"/>
+		</Visual>		
+	</EditorProperties>
+	<GameProperties>
+		<GameObjectType value="Scroller" />
+		<InitFunction value="Right_Scroller_Init"/>	
+		<CustomData>
+			<Data value="const Ruby_StripMap* map" include="engine\map_types.h"/>
+		</CustomData>			
+	</GameProperties>
+</GameObjectTemplate>

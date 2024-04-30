@@ -10,6 +10,7 @@ extern const GameObjectTemplate enemy_bullet_template;
 extern const GameObjectTemplate explosion_template;
 extern const GameObjectTemplate impact_template;
 extern const GameObjectTemplate player_template;
+extern const GameObjectTemplate right_scroller_template;
 extern const GameObjectTemplate robotrunner_template;
 extern const GameObjectTemplate robotspring_template;
 extern const GameObjectTemplate shotgun_template;

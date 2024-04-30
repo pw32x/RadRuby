@@ -484,6 +484,9 @@ const char* objectTypeToString(u8 objectType)
 	case OBJECTTYPE_COMMANDRUNNER:
 		return "command runner";
 		break;
+	case OBJECTTYPE_SCROLLER:
+		return "background";
+		break;
 	case OBJECTTYPE_ITEM:
 		return "item";
 		break;
