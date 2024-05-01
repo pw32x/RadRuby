@@ -1,8 +1,10 @@
-﻿using SceneMaster.Commands.Models;
+﻿using PropertyTools.DataAnnotations;
+using SceneMaster.Commands.Models;
 using SceneMaster.CreateInfo.Models;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -18,6 +20,8 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
         }
 
+        public List<CreateInfoField> CreateInfoFields { get; set; } = new();
+
         public GameObject(XmlElement gameObjectNode, 
                           GameObjectTemplateLibrary gameObjectTemplateLibrary) : base(gameObjectNode)
         {
@@ -29,6 +33,15 @@ namespace SceneMaster.GameObjectTemplates.Models
             }
 
             EditorObjectInfo = gameObjectTemplate;
+
+            foreach (var field in gameObjectTemplate.CreateInfoInfo.Fields) 
+            {
+                var createInfoField = new CreateInfoField();
+                createInfoField.DefaultValue = field.DefaultValue;
+                createInfoField.Name = field.Name;
+                createInfoField.Type = field.Type;
+                CreateInfoFields.Add(createInfoField);
+            }
         }
 
         public string GameObjectTemplateName => GameObjectTemplate.Name;
