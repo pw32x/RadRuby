@@ -1,11 +1,8 @@
 ﻿using PropertyTools.DataAnnotations;
-using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
-using System;
 using System.Collections.Generic;
 using System.Xml;
 
@@ -68,7 +65,7 @@ namespace SceneMaster.EditorObjectLibrary.Models
             }
         }
 
-        protected virtual void LoadContents(XmlElement root, CreateInfoLibrary createInfoLibary)
+        protected virtual void LoadContents(XmlElement root)
         {
             if (root["References"] is var referencesNode && referencesNode != null)
             {

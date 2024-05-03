@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Main;
@@ -27,7 +26,6 @@ namespace SceneMaster.EditorObjectLibrary.ViewModels
     {
         public GameObjectTemplateLibrary GameObjectTemplateLibrary { get; set; } = new();
         public CommandLibrary CommandLibrary { get; set; } = new();
-        public CreateInfoLibrary CreateInfoLibrary { get; set; } = new();
 
         public List<EditorObjectInfo> EditorObjectInfos = new();
 
@@ -36,8 +34,7 @@ namespace SceneMaster.EditorObjectLibrary.ViewModels
 
         public void LoadLibraries(Settings settings)
         {
-            CreateInfoLibrary.Load(settings.SourceDirectory);
-            GameObjectTemplateLibrary.Load(settings.GameObjectTemplatesDirectory, CreateInfoLibrary);
+            GameObjectTemplateLibrary.Load(settings.GameObjectTemplatesDirectory);
             CommandLibrary.Load(settings.SourceDirectory);
 
             EditorObjectInfos.AddRange(GameObjectTemplateLibrary.GameObjectTemplates.Values);

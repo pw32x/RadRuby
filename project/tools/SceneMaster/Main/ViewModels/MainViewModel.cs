@@ -355,8 +355,7 @@ namespace SceneMaster.Main.ViewModels
             SceneExporter.ExportScene(CurrentDocument.SceneViewModel.Scene, 
                                       sceneName,
                                       dialog.SelectedPath,
-                                      EditorObjectLibraryViewModel.CommandLibrary,
-                                      EditorObjectLibraryViewModel.CreateInfoLibrary);
+                                      EditorObjectLibraryViewModel.CommandLibrary);
         }
 
         private void RunScene()

@@ -1,9 +1,6 @@
-﻿using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
-using SceneMaster.EditorObjectLibrary.Interfaces;
+﻿using SceneMaster.EditorObjectLibrary.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 
@@ -18,7 +15,7 @@ namespace SceneMaster.GameObjectTemplates.Models
     {
         public GameObjectTemplateLibrary() { }
 
-        public void Load(string gameObjectTemplatesDirectory, CreateInfoLibrary createInfoLibrary)
+        public void Load(string gameObjectTemplatesDirectory)
         {
             m_gameObjectTemplatesDirectory = gameObjectTemplatesDirectory;
 
@@ -41,7 +38,7 @@ namespace SceneMaster.GameObjectTemplates.Models
 
                 try
                 {
-                    gameObjectTemplate.Load(fileInfo.FullName, createInfoLibrary);
+                    gameObjectTemplate.Load(fileInfo.FullName);
 
                     gameObjectTemplateByShortName.Add(fileInfo.Name, gameObjectTemplate);
 

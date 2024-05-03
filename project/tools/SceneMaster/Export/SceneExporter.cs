@@ -1,10 +1,7 @@
 ﻿using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
-using SceneMaster.EditorObjects.CommandLibrary.ViewModels;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,11 +14,10 @@ namespace SceneMaster.Export
         public static void ExportScene(Scene scene, 
                                        string sceneName, 
                                        string destinationFolder,
-                                       CommandLibrary commandLibrary,
-                                       CreateInfoLibrary createInfoLibrary)
+                                       CommandLibrary commandLibrary)
         {
             ExportHeader(scene, sceneName, destinationFolder);
-            ExportSource(scene, sceneName, destinationFolder, commandLibrary, createInfoLibrary);
+            ExportSource(scene, sceneName, destinationFolder, commandLibrary);
         }
 
         private static void ExportHeader(Scene scene, string sceneName, string destinationFolder)
@@ -163,20 +159,12 @@ namespace SceneMaster.Export
             sb.AppendLine();
         }
 
-        private static void ExportCreateInfoHeaders(StringBuilder sb, CreateInfoLibrary createInfoLibrary)
+        private static void ExportCreateInfoHeaders(StringBuilder sb)
         {
             var headers = new HashSet<string>();
 
-            foreach (var createInfoInfo in createInfoLibrary.CreateInfoInfos.Values)
-            {
-                headers.Add(createInfoInfo.Filename);
-            }
-
             sb.AppendLine("// create info headers");
-            foreach (var header in headers)
-            {
-                sb.AppendLine("#include \"" + header + "\"");
-            }
+            sb.AppendLine("#include \"engine\\createinfo_types.h\"");
 
             sb.AppendLine();
         }
@@ -184,8 +172,7 @@ namespace SceneMaster.Export
         private static void ExportSource(Scene scene, 
                                          string sceneName, 
                                          string destinationFolder,
-                                         CommandLibrary commandLibrary,
-                                         CreateInfoLibrary createInfoLibrary)
+                                         CommandLibrary commandLibrary)
         {
             string destinationFilename = StringUtils.EnsureTrailingSlash(destinationFolder) + sceneName + ".c";
 
@@ -205,7 +192,7 @@ namespace SceneMaster.Export
 
             ExportCommandHeaders(sb, commandLibrary);
 
-            ExportCreateInfoHeaders(sb, createInfoLibrary);
+            ExportCreateInfoHeaders(sb);
 
             // export exportedCommandDatas
             var exportedCommandDatas = BuildExportCommandDatas(editorObjects, sceneName);

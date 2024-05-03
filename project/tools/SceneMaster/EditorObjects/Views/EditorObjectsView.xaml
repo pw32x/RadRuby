@@ -34,6 +34,10 @@
         <ScrollViewer Grid.Row="2">
             <StackPanel >
                 <pt:PropertyGrid 
+                             SelectedObject="{Binding SelectedEditorObjectViewModel.GameObject.CreateInfo}"
+                             TabVisibility="Collapsed"
+                             />                
+                <pt:PropertyGrid 
                              SelectedObject="{Binding SelectedEditorObjectViewModel}"
                              TabVisibility="Collapsed"
                              />

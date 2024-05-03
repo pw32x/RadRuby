@@ -1,10 +1,6 @@
-﻿using PropertyTools.DataAnnotations;
-using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
-using SceneMaster.EditorObjectLibrary.Models;
+﻿using SceneMaster.CreateInfoTypes;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -20,7 +16,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
         }
 
-        public List<CreateInfoField> CreateInfoFields { get; set; } = new();
+        public BaseCreateInfo CreateInfo { get; set; }
 
         public GameObject(XmlElement gameObjectNode, 
                           GameObjectTemplateLibrary gameObjectTemplateLibrary) : base(gameObjectNode)
@@ -32,16 +28,29 @@ namespace SceneMaster.GameObjectTemplates.Models
                 gameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
             }
 
-            EditorObjectInfo = gameObjectTemplate;
-
-            foreach (var field in gameObjectTemplate.CreateInfoInfo.Fields) 
+            // use the TypeName to create the object dynamically through reflection
+            switch (gameObjectTemplate.CreateInfoTypeName)
             {
-                var createInfoField = new CreateInfoField();
-                createInfoField.DefaultValue = field.DefaultValue;
-                createInfoField.Name = field.Name;
-                createInfoField.Type = field.Type;
-                CreateInfoFields.Add(createInfoField);
+            case nameof(EffectCreateInfo):
+                CreateInfo = new EffectCreateInfo();
+                break;
+            case nameof(CommandRunnerCreateInfo):
+                CreateInfo = new CommandRunnerCreateInfo();
+                break;
+            case nameof(ScrollerCreateInfo):
+                CreateInfo = new ScrollerCreateInfo();
+                break;
+            default:
+                CreateInfo = new CreateInfo();
+                break;
             }
+
+            if (gameObjectNode[CreateInfo.GetType().Name] is var createInfoNode && createInfoNode != null) 
+            {
+                CreateInfo.ReadFromXml(createInfoNode);
+            }
+
+            EditorObjectInfo = gameObjectTemplate;
         }
 
         public string GameObjectTemplateName => GameObjectTemplate.Name;
@@ -56,7 +65,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             exportedCommandData.CreateInfoTypeName = createInfoName;
 
             StringBuilder sb = new();
-            sb.Append("const " + GameObjectTemplate.CreateInfoInfo.Name + " " + createInfoName + " = { ");
+            sb.Append("const " + CreateInfo.GetType().Name + " " + createInfoName + " = { ");
             string templateName = Path.GetFileNameWithoutExtension(GameObjectTemplate.FilePath) + "_template";
 
             int x;
@@ -79,10 +88,7 @@ namespace SceneMaster.GameObjectTemplates.Models
 
             sb.Append("&" + templateName + ", " + x + ", " + y);
 
-            foreach (var field in GameObjectTemplate.CreateInfoInfo.Fields)
-            {
-                sb.Append(", " + field.DefaultValue);
-            }
+            CreateInfo.Export(sb);
 
             sb.AppendLine(" };");
             exportedCommandData.ExportedCreateInfo = sb.ToString();
@@ -131,6 +137,9 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
             var newNode = base.ExportToXml(doc);
             newNode.SetAttribute(nameof(GameObjectTemplateName), GameObjectTemplateName);
+
+            CreateInfo.ExportToXml(newNode, doc);
+
             return newNode;
         }
     }

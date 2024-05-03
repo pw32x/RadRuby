@@ -1,12 +1,9 @@
 ﻿using PropertyTools.DataAnnotations;
-using SceneMaster.Commands.Models;
-using SceneMaster.CreateInfo.Models;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -60,7 +57,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         public string InitFunction { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
-        public CreateInfoInfo CreateInfoInfo { get; set; }
+        public string CreateInfoTypeName { get; set; }
 
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
@@ -70,7 +67,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             }
         }
 
-        public void LoadGameProperties(XmlElement gamePropertiesNode, CreateInfoLibrary createInfoLibrary)
+        public void LoadGameProperties(XmlElement gamePropertiesNode)
         {
             Health = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(Health));
             GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
@@ -80,16 +77,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
             Resource = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(Resource));
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
-            string createInfoName = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction), "createInfo", "CreateInfo");
-
-            if (createInfoLibrary.CreateInfoInfos.TryGetValue(createInfoName, out var createInfoInfo))
-            {
-                CreateInfoInfo = createInfoInfo;
-            }
-            else
-            {
-                throw new Exception("The CreateInfo type " + createInfoName + " not found.");
-            }
+            CreateInfoTypeName = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction), "createInfo", "CreateInfo");
 
             GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
 
@@ -99,7 +87,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                 throw new Exception("No init function in object template.");
         }
 
-        public void Load(string filePath, CreateInfoLibrary createInfoLibrary)
+        public void Load(string filePath)
         {
             FilePath = filePath;
 
@@ -112,7 +100,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             try
             {
 
-                LoadContents(root, createInfoLibrary);
+                LoadContents(root);
             }
             finally 
             {
@@ -120,9 +108,9 @@ namespace SceneMaster.GameObjectTemplates.Models
             }
         }
 
-        protected override void LoadContents(XmlElement root, CreateInfoLibrary createInfoLibrary)
+        protected override void LoadContents(XmlElement root)
         {
-            base.LoadContents(root, createInfoLibrary);
+            base.LoadContents(root);
 
             Name = "UnnamedGameObjectTemplate";
             if (root[nameof(Name)] is var nameNode && nameNode != null)
@@ -138,7 +126,7 @@ namespace SceneMaster.GameObjectTemplates.Models
 
             if (root["GameProperties"] is var gamePropertiesNode && gamePropertiesNode != null) 
             {
-                LoadGameProperties(gamePropertiesNode, createInfoLibrary);
+                LoadGameProperties(gamePropertiesNode);
             }
         }
 

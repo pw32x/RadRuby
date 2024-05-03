@@ -1,5 +1,4 @@
-﻿using SceneMaster.CreateInfo.Models;
-using SceneMaster.EditorObjects.ViewModels;
+﻿using SceneMaster.EditorObjects.ViewModels;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Scenes.ViewModels;
 using System.Collections.Generic;
@@ -14,7 +13,5 @@ namespace SceneMaster.GameObjectTemplates.ViewModels
         }
 
         public GameObject GameObject => EditorObject as GameObject;
-
-        public List<CreateInfoField> CreateInfoFields => GameObject.CreateInfoFields;
     }
 }

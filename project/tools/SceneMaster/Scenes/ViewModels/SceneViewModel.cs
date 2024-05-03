@@ -121,8 +121,7 @@ namespace SceneMaster.Scenes.ViewModels
             SceneExporter.ExportScene(Scene, 
                                       tempLevelName, 
                                       m_settings.SourceExportDirectory, 
-                                      EditorObjectInfoLibraryViewModel.CommandLibrary,
-                                      EditorObjectInfoLibraryViewModel.CreateInfoLibrary);
+                                      EditorObjectInfoLibraryViewModel.CommandLibrary);
 
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             string buildMasterPath = Path.GetFullPath(baseDirectory + m_settings.BuildMasterPath);

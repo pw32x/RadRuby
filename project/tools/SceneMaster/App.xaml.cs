@@ -115,8 +115,7 @@ namespace SceneMaster
                 SceneExporter.ExportScene(scene, 
                                           sceneName, 
                                           destinationFolder, 
-                                          editorObjectLibraryViewModel.CommandLibrary,
-                                          editorObjectLibraryViewModel.CreateInfoLibrary);
+                                          editorObjectLibraryViewModel.CommandLibrary);
 
                 //processedAtLeastOne = true;
             }
