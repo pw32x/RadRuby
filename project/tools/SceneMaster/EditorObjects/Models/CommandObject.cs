@@ -7,8 +7,8 @@ namespace SceneMaster.Commands.Models
 {
     public class CommandObject : EditorObject
     {
-        public CommandObject(double x, 
-                             double y, 
+        public CommandObject(int x, 
+                             int y, 
                              string name, 
                              CommandInfo commandInfo) : base(x, y, name, commandInfo)
         {
@@ -46,7 +46,7 @@ namespace SceneMaster.Commands.Models
         internal override string BuildSceneCommand(ExportedCommandData exportedCommandData)
         {
             // clamp to 0
-            int x = (int)(X < 0 ? 0 : X);
+            int x = (X < 0 ? 0 : X);
 
             string commandValue = CommandValue.StartsWith("&") ? CommandValue : "(const void*)" + CommandValue;
 
@@ -54,9 +54,9 @@ namespace SceneMaster.Commands.Models
         }
 
 
-        internal override XmlElement ExportToXml(XmlDocument doc)
+        internal override XmlElement SaveToXml(XmlDocument doc)
         {
-            var newNode = base.ExportToXml(doc);
+            var newNode = base.SaveToXml(doc);
             newNode.SetAttribute(nameof(CommandInfo.Name), CommandInfo.Name);
             newNode.SetAttribute(nameof(CommandValue), CommandValue);
             newNode.SetAttribute(nameof(PreCommandData), PreCommandData);

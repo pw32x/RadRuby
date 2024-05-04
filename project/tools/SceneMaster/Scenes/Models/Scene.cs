@@ -337,7 +337,7 @@ namespace SceneMaster.Scenes.Models
 
             foreach (var editorObject in EditorObjects)
             {
-                var editorObjectNode = editorObject.ExportToXml(doc);
+                var editorObjectNode = editorObject.SaveToXml(doc);
                 editorObjectsNode.AppendChild(editorObjectNode);
             }
 

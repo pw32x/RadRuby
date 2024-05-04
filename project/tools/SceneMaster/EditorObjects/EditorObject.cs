@@ -1,4 +1,6 @@
-﻿using SceneMaster.Commands.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using PropertyTools.DataAnnotations;
+using SceneMaster.Commands.Models;
 using SceneMaster.EditorObjectLibrary.Interfaces;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.GameObjectTemplates.Models;
@@ -17,8 +19,8 @@ namespace SceneMaster.EditorObjects.Models
 
     abstract public class EditorObject
     {
-        public EditorObject(double x, 
-                            double y, 
+        public EditorObject(int x, 
+                            int y, 
                             string name, 
                             EditorObjectInfo editorObjectInfo)
         {
@@ -30,19 +32,19 @@ namespace SceneMaster.EditorObjects.Models
 
         public EditorObject(XmlElement commandObjectNode)
         {
-            X = XmlUtils.GetValue<double>(commandObjectNode, nameof(X));
-            Y = XmlUtils.GetValue<double>(commandObjectNode, nameof(Y));
-            SpawnX = XmlUtils.GetValue<double>(commandObjectNode, nameof(SpawnX), X);
-            SpawnY = XmlUtils.GetValue<double>(commandObjectNode, nameof(SpawnY), Y);
+            X = XmlUtils.GetValue<int>(commandObjectNode, nameof(X));
+            Y = XmlUtils.GetValue<int>(commandObjectNode, nameof(Y));
+            SpawnX = XmlUtils.GetValue<int>(commandObjectNode, nameof(SpawnX), X);
+            SpawnY = XmlUtils.GetValue<int>(commandObjectNode, nameof(SpawnY), Y);
             SpawnPointIsIndependant = XmlUtils.GetValue<bool>(commandObjectNode, nameof(SpawnPointIsIndependant), false);
             Name = XmlUtils.GetValue<string>(commandObjectNode, nameof(Name));
         }
 
-        public double X { get; set; }
-        public double Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
 
-        public double SpawnX { get; set; }
-        public double SpawnY { get; set; }
+        public int SpawnX { get; set; }
+        public int SpawnY { get; set; }
 
         public string Name { get; private set; }
         public EditorObjectType EditorObjectType => EditorObjectInfo.EditorObjectType;
@@ -53,7 +55,7 @@ namespace SceneMaster.EditorObjects.Models
                                                                      int exportCounter);
         internal abstract string BuildSceneCommand(ExportedCommandData exportedCommandData);
 
-        internal virtual XmlElement ExportToXml(XmlDocument doc)
+        internal virtual XmlElement SaveToXml(XmlDocument doc)
         {
             var newNode = doc.CreateElement(EditorObjectType.ToString());
 

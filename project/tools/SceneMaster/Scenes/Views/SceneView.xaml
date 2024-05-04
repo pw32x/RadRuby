@@ -60,15 +60,15 @@
 
                             <ItemsControl.ItemContainerStyle>
                                 <Style TargetType="ContentPresenter">
-                                    <Setter Property="Canvas.Left" Value="{Binding SnappedX}" />
-                                    <Setter Property="Canvas.Top" Value="{Binding SnappedY}" />
+                                    <Setter Property="Canvas.Left" Value="{Binding X}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding Y}" />
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <controls:EditorObjectControl Canvas.Left="{Binding SnappedX}" 
-                                                                  Canvas.Top="{Binding SnappedY}"/>
+                                    <controls:EditorObjectControl Canvas.Left="{Binding X}" 
+                                                                  Canvas.Top="{Binding Y}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

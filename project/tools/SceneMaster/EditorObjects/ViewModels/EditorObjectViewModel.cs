@@ -38,37 +38,31 @@ namespace SceneMaster.EditorObjects.ViewModels
             SceneViewModel.Deselect(this);
         }
 
-        public double X
+        public int X
         {
             get => EditorObject.X;
             set
             {
                 EditorObject.X = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(SnappedX));
                 OnPropertyChanged(nameof(SpawnAreaX));
             }
         }
 
-        public double SpawnAreaX => X - 256;
+        public int SpawnAreaX => X - 256;
 
 
-        public double Y
+        public int Y
         {
             get => EditorObject.Y;
             set
             {
                 EditorObject.Y = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(SnappedY));
             }
         }
 
-        public double SnappedX { get => (int)EditorObject.X; }
-        public double SnappedY { get => (int)EditorObject.Y; }
-
-
-        public double SpawnX
+        public int SpawnX
         {
             get => EditorObject.SpawnX;
             set
@@ -78,7 +72,7 @@ namespace SceneMaster.EditorObjects.ViewModels
             }
         }
 
-        public double SpawnY
+        public int SpawnY
         {
             get => EditorObject.SpawnY;
             set

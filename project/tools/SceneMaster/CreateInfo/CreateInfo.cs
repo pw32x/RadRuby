@@ -1,38 +1,59 @@
-﻿using SceneMaster.EditorObjectLibrary.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.Utils;
 using System.Text;
 using System.Xml;
 
 namespace SceneMaster.CreateInfoTypes
 {
-    public abstract class BaseCreateInfo
+    public abstract class BaseCreateInfo : ObservableObject
     {
         public abstract void Export(StringBuilder sb);
 
-        public void ExportToXml(XmlElement parentNode, XmlDocument doc)
+        public void SaveToXml(XmlElement parentNode, XmlDocument doc)
         {
             var newNode = doc.CreateElement(GetType().Name);
 
-            ExportToXmlNode(newNode);
+            ExportContentsToXmlNode(newNode);
 
             parentNode.AppendChild(newNode);
         }
 
-        public abstract void ExportToXmlNode(XmlElement node);
+        public abstract void ExportContentsToXmlNode(XmlElement node);
+
         internal abstract void ReadFromXml(XmlElement createInfoNode);
     }
 
     public class CreateInfo : BaseCreateInfo
     {
-        public sbyte SpeedX { get; set; }
-        public sbyte SpeedY { get; set; }
+        private sbyte m_speedX;
+        public sbyte SpeedX 
+        { 
+            get => m_speedX;
+            set
+            {
+                m_speedX = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private sbyte m_speedY;
+        public sbyte SpeedY 
+        { 
+            get => m_speedY;
+            set
+            {
+                m_speedY = value;
+                OnPropertyChanged();
+            }
+        }
 
         public override void Export(StringBuilder sb)
         {
             sb.Append(", " + SpeedX + ", " + SpeedY);
         }
 
-        public override void ExportToXmlNode(XmlElement node)
+        public override void ExportContentsToXmlNode(XmlElement node)
         {
             node.SetAttribute(nameof(SpeedX), SpeedX.ToString());
             node.SetAttribute(nameof(SpeedY), SpeedY.ToString());
@@ -47,7 +68,16 @@ namespace SceneMaster.CreateInfoTypes
 
     public class EffectCreateInfo : CreateInfo
     {
-        public byte StartFrameNumber { get; set; }
+        private byte m_startFrameNumber;
+        public byte StartFrameNumber 
+        { 
+            get => m_startFrameNumber;
+            set
+            {
+                m_startFrameNumber = value;
+                OnPropertyChanged();
+            }
+        }
 
         public override void Export(StringBuilder sb)
         {
@@ -55,9 +85,9 @@ namespace SceneMaster.CreateInfoTypes
             sb.Append(", " + StartFrameNumber);
         }
 
-        public override void ExportToXmlNode(XmlElement node)
+        public override void ExportContentsToXmlNode(XmlElement node)
         {
-            base.ExportToXmlNode(node);
+            base.ExportContentsToXmlNode(node);
             node.SetAttribute(nameof(StartFrameNumber), StartFrameNumber.ToString());
         }
 
@@ -70,14 +100,23 @@ namespace SceneMaster.CreateInfoTypes
 
     public class CommandRunnerCreateInfo : BaseCreateInfo
     {
-        public string Commands { get; set; } = "NULL";
+        private string m_commands = "NULL";
+        public string Commands 
+        { 
+            get => m_commands;
+            set
+            {
+                m_commands = value;
+                OnPropertyChanged();
+            }
+        }
 
         public override void Export(StringBuilder sb)
         {
             sb.Append(", " + (string.IsNullOrEmpty(Commands) ? "NULL" : "&" + Commands));
         }
 
-        public override void ExportToXmlNode(XmlElement node)
+        public override void ExportContentsToXmlNode(XmlElement node)
         {
             node.SetAttribute(nameof(Commands), Commands);
         }
@@ -90,14 +129,23 @@ namespace SceneMaster.CreateInfoTypes
 
     public class ScrollerCreateInfo : BaseCreateInfo
     {
-        public string MapResource { get; set; } = "NULL";
+        private string m_mapResource = "NULL";
+        public string MapResource 
+        { 
+            get => m_mapResource;
+            set
+            {
+                m_mapResource = value;
+                OnPropertyChanged();
+            }
+        }
 
         public override void Export(StringBuilder sb)
         {
             sb.Append(", " + (string.IsNullOrEmpty(MapResource) ? "NULL" : "&" + MapResource));
         }
 
-        public override void ExportToXmlNode(XmlElement node)
+        public override void ExportContentsToXmlNode(XmlElement node)
         {
             node.SetAttribute(nameof(MapResource), MapResource);
         }

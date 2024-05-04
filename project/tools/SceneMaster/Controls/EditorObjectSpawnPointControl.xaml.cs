@@ -12,6 +12,8 @@ namespace SceneMaster.Controls
     public partial class EditorObjectSpawnPointControl : UserControl
     {
         private Point m_startPoint;
+        private double m_draggingX = 0;
+        private double m_draggingY = 0;
         private bool m_isDragging = false;
         private EditorObjectViewModel m_editorObjectViewModel;
 
@@ -32,6 +34,10 @@ namespace SceneMaster.Controls
                 m_editorObjectViewModel.Select();
 
                 m_startPoint = e.GetPosition(Parent as UIElement);
+
+                m_draggingX = m_editorObjectViewModel.SpawnX;
+                m_draggingY = m_editorObjectViewModel.SpawnY;
+
                 m_isDragging = true;
 
                 // Bring the control to the front when clicked
@@ -56,8 +62,11 @@ namespace SceneMaster.Controls
                 if (offsetX == 0 && offsetY == 0)
                     return;
 
-                m_editorObjectViewModel.SpawnX += offsetX;
-                m_editorObjectViewModel.SpawnY += offsetY;
+                m_draggingX += offsetX;
+                m_draggingY += offsetY;
+
+                m_editorObjectViewModel.SpawnX = (int)m_draggingX;
+                m_editorObjectViewModel.SpawnY = (int)m_draggingY;
 
                 m_startPoint = currentPoint;
             }

@@ -1,19 +1,22 @@
 ﻿using SceneMaster.CreateInfoTypes;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
+using System;
 using System.IO;
 using System.Text;
+using System.Windows;
 using System.Xml;
 
 namespace SceneMaster.GameObjectTemplates.Models
 {
     public class GameObject : EditorObject
     {
-        public GameObject(double x, 
-                          double y, 
+        public GameObject(int x, 
+                          int y, 
                           string name, 
                           GameObjectTemplate gameObjectTemplate) : base(x, y, name, gameObjectTemplate)
         {
+            CreateCreateInfo(gameObjectTemplate.CreateInfoTypeName);
         }
 
         public BaseCreateInfo CreateInfo { get; set; }
@@ -28,8 +31,20 @@ namespace SceneMaster.GameObjectTemplates.Models
                 gameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
             }
 
+            CreateCreateInfo(gameObjectTemplate.CreateInfoTypeName);
+
+            if (gameObjectNode[CreateInfo.GetType().Name] is var createInfoNode && createInfoNode != null) 
+            {
+                CreateInfo.ReadFromXml(createInfoNode);
+            }
+
+            EditorObjectInfo = gameObjectTemplate;
+        }
+
+        private void CreateCreateInfo(string createInfoTypeName)
+        {
             // use the TypeName to create the object dynamically through reflection
-            switch (gameObjectTemplate.CreateInfoTypeName)
+            switch (createInfoTypeName)
             {
             case nameof(EffectCreateInfo):
                 CreateInfo = new EffectCreateInfo();
@@ -44,13 +59,6 @@ namespace SceneMaster.GameObjectTemplates.Models
                 CreateInfo = new CreateInfo();
                 break;
             }
-
-            if (gameObjectNode[CreateInfo.GetType().Name] is var createInfoNode && createInfoNode != null) 
-            {
-                CreateInfo.ReadFromXml(createInfoNode);
-            }
-
-            EditorObjectInfo = gameObjectTemplate;
         }
 
         public string GameObjectTemplateName => GameObjectTemplate.Name;
@@ -133,12 +141,12 @@ namespace SceneMaster.GameObjectTemplates.Models
             return "{ " + x + ", (CommandFunction)" + exportedCommandData.CommandToUse + ", " + finalExportedCommandData + " },";
         }
 
-        internal override XmlElement ExportToXml(XmlDocument doc)
+        internal override XmlElement SaveToXml(XmlDocument doc)
         {
-            var newNode = base.ExportToXml(doc);
+            var newNode = base.SaveToXml(doc);
             newNode.SetAttribute(nameof(GameObjectTemplateName), GameObjectTemplateName);
 
-            CreateInfo.ExportToXml(newNode, doc);
+            CreateInfo.SaveToXml(newNode, doc);
 
             return newNode;
         }

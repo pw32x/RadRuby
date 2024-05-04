@@ -14,11 +14,11 @@
 #include "engine\createinfo_types.h"
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
-const ScrollerCreateInfo scene003_createInfo_RightScroller5 = { &right_scroller_template, 0, 44, &field_map };
-const CreateInfo scene003_createInfo_RadRuby6 = { &player_template, 33, 69, 0, 0 };
-const CreateInfo scene003_createInfo_ThreeShotFlyer7 = { &threeshotflyer_template, 80, 53, 50, 60 };
-const CreateInfo scene003_createInfo_Wheeler8 = { &wheeler_template, 123, 98, 10, 20 };
-const CreateInfo scene003_createInfo_Wheeler9 = { &wheeler_template, 162, 105, 30, 40 };
+const CreateInfo scene003_createInfo_RadRuby5 = { &player_template, 20, 32, 0, 0 };
+const CreateInfo scene003_createInfo_Wheeler6 = { &wheeler_template, 120, 99, 10, 20 };
+const CreateInfo scene003_createInfo_Wheeler7 = { &wheeler_template, 159, 80, 30, 40 };
+const CreateInfo scene003_createInfo_ThreeShotFlyer8 = { &threeshotflyer_template, 220, 44, 50, 60 };
+const ScrollerCreateInfo scene003_createInfo_RightScroller9 = { &right_scroller_template, 361, 238, &field_map };
 
 const Command scene003_commands[] = 
 {
@@ -28,20 +28,20 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &impact },
     { 0, (CommandFunction)ResourceManager_LoadResource, &bullet },
     { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &wheeler },
     { 0, (CommandFunction)ResourceManager_LoadResource, &threeshotflyer },
     { 0, (CommandFunction)ResourceManager_LoadResource, &enemy_bullet },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &wheeler },
     { 0, (CommandFunction)ResourceManager_LoadResource, &field_map},
     { 0, (CommandFunction)SetPalette0, &global_palette },
     { 0, (CommandFunction)SetPalette1, &global_palette },
     { 0, (CommandFunction)SetPalette2, &global_palette },
-    { 0, (CommandFunction)SetPalette3, &global_palette },
     { 0, (CommandFunction)SetBackgroundVerticalScroll, (const void*)4 },
-    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RightScroller5 },
-    { 36, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RadRuby6 },
-    { 92, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_ThreeShotFlyer7 },
-    { 127, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler8 },
-    { 166, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler9 },
+    { 0, (CommandFunction)SetPalette3, &global_palette },
+    { 23, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RadRuby5 },
+    { 124, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler6 },
+    { 163, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler7 },
+    { 232, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_ThreeShotFlyer8 },
+    { 361, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RightScroller9 },
     { 0, (CommandFunction)NULL, NULL}
 };
 
