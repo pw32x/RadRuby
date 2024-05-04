@@ -14,6 +14,7 @@
 		<RectBottom value="8"/>
 		<GameObjectType value="Item" />
 		<Resource value="shotgun_item" />		
+		<CreateInfoType value="CreateInfo"/>
 		<InitFunction value="ShotgunItem_Init"/>
 		<CustomData>
 			<Data value="void (*UpdatePhysics)(struct shotgunitem_object* gameObject)"/>

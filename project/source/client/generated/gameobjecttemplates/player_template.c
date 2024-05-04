@@ -16,5 +16,5 @@ const GameObjectTemplate player_template =
     OBJECTTYPE_PLAYER, // object type
     (const Resource*)&ruby, // resource
     NULL, // extra resources
-    Player_Init, // init function
+    (InitObjectFunctionType)Player_Init, // init function
 };

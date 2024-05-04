@@ -567,7 +567,7 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 	return gameObject;
 }
 
-GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
+GameObject* ObjectManager_CreatePlayerProjectile(const WeaponCreateInfo* createInfo)
 {
 	// one bullet 3923/3923/3923.0 
 	// max 402/3985/2946.0
@@ -616,7 +616,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resource);
 
-	gameObjectTemplate->initFunction(gameObject, createInfo);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfo);
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
@@ -624,7 +624,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 }
 
 
-GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfo* createInfo)
+GameObject* ObjectManager_CreateEnemyProjectile(const WeaponCreateInfo* createInfo)
 {
 	// one bullet 3923/3923/3923.0 
 	// max 402/3985/2946.0
@@ -673,7 +673,7 @@ GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfo* createInfo)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resource);
 
-	gameObjectTemplate->initFunction(gameObject, createInfo);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfo);
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 

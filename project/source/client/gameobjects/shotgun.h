@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Shotgun_Init(GameObject* object, const WeaponCreateInfo* createInfo);
 
 #endif

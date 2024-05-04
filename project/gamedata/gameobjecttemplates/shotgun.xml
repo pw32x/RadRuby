@@ -8,6 +8,7 @@
 		<RectBottom value="6"/>
 		<GameObjectType value="Projectile" />
 		<Resource value="shotgun" />		
+		<CreateInfoType value="WeaponCreateInfo"/>
 		<InitFunction value="Shotgun_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

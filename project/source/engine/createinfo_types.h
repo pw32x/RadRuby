@@ -16,9 +16,12 @@
 #define END_CREATE_INFO(name) } name;
 
 DECLARE_CREATE_INFO(create_info)
+END_CREATE_INFO(CreateInfo)
+
+DECLARE_CREATE_INFO(weapon_create_info)
 	DEC_FIELD(s8, speedX, 0)
 	DEC_FIELD(s8, speedY, 0)
-END_CREATE_INFO(CreateInfo)
+END_CREATE_INFO(WeaponCreateInfo)
 
 DECLARE_CREATE_INFO(effect_create_info)
 	DEC_FIELD(s8, speedX, 0)

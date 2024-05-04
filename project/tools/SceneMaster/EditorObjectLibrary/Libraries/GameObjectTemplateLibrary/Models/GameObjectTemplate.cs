@@ -57,7 +57,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         public string InitFunction { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
-        public string CreateInfoTypeName { get; set; }
+        public string CreateInfoType { get; set; }
 
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
@@ -77,7 +77,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
             Resource = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(Resource));
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
-            CreateInfoTypeName = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction), "createInfo", "CreateInfo");
+            CreateInfoType = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(CreateInfoType));
 
             GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
 

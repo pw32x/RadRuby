@@ -123,8 +123,6 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 			&shotgun_item_template,
 			V2P(gameObject->x), 
 			V2P(gameObject->y),
-			0,
-			0,
 		};
 
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);

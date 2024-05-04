@@ -52,7 +52,7 @@ void WeaponManager_SwitchWeapon(u8 weaponType)
 void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Default");
-	CreateInfo createInfo = 
+	WeaponCreateInfo createInfo = 
 	{ 
 		&bullet_template, 
 		x,
@@ -72,7 +72,7 @@ void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
 void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Default");
-	CreateInfo createInfo = 
+	WeaponCreateInfo createInfo = 
 	{ 
 		&bullet_template, 
 		x,
@@ -91,7 +91,7 @@ void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped)
 void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Shotgun");
-	CreateInfo createInfo = 
+	WeaponCreateInfo createInfo = 
 	{ 
 		&shotgun_template, 
 		x,
@@ -120,7 +120,7 @@ void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Shotgun");
-	CreateInfo createInfo = 
+	WeaponCreateInfo createInfo = 
 	{ 
 		&shotgun_template, 
 		x,

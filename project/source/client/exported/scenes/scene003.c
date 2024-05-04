@@ -14,10 +14,10 @@
 #include "engine\createinfo_types.h"
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
-const CreateInfo scene003_createInfo_RadRuby5 = { &player_template, 20, 32, 0, 0 };
-const CreateInfo scene003_createInfo_Wheeler6 = { &wheeler_template, 120, 99, 10, 20 };
-const CreateInfo scene003_createInfo_Wheeler7 = { &wheeler_template, 159, 80, 30, 40 };
-const CreateInfo scene003_createInfo_ThreeShotFlyer8 = { &threeshotflyer_template, 220, 44, 50, 60 };
+const CreateInfo scene003_createInfo_RadRuby5 = { &player_template, 20, 32 };
+const CreateInfo scene003_createInfo_Wheeler6 = { &wheeler_template, 120, 99 };
+const CreateInfo scene003_createInfo_Wheeler7 = { &wheeler_template, 159, 80 };
+const CreateInfo scene003_createInfo_ThreeShotFlyer8 = { &threeshotflyer_template, 220, 44 };
 const ScrollerCreateInfo scene003_createInfo_RightScroller9 = { &right_scroller_template, 361, 238, &field_map };
 
 const Command scene003_commands[] = 

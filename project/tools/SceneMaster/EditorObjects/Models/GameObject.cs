@@ -16,7 +16,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                           string name, 
                           GameObjectTemplate gameObjectTemplate) : base(x, y, name, gameObjectTemplate)
         {
-            CreateCreateInfo(gameObjectTemplate.CreateInfoTypeName);
+            CreateCreateInfo(gameObjectTemplate.CreateInfoType);
         }
 
         public BaseCreateInfo CreateInfo { get; set; }
@@ -31,7 +31,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                 gameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
             }
 
-            CreateCreateInfo(gameObjectTemplate.CreateInfoTypeName);
+            CreateCreateInfo(gameObjectTemplate.CreateInfoType);
 
             if (gameObjectNode[CreateInfo.GetType().Name] is var createInfoNode && createInfoNode != null) 
             {
@@ -46,9 +46,11 @@ namespace SceneMaster.GameObjectTemplates.Models
             // use the TypeName to create the object dynamically through reflection
             switch (createInfoTypeName)
             {
+            /*
             case nameof(EffectCreateInfo):
                 CreateInfo = new EffectCreateInfo();
                 break;
+                */
             case nameof(CommandRunnerCreateInfo):
                 CreateInfo = new CommandRunnerCreateInfo();
                 break;

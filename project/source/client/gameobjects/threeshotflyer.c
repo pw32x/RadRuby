@@ -140,7 +140,7 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
 {
 	//SMS_debugPrintf("Default");
-	CreateInfo createInfo = 
+	WeaponCreateInfo weaponCreateInfo = 
 	{ 
 		&enemy_bullet_template, 
 		V2P(object->x),
@@ -152,18 +152,18 @@ void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
 	switch (whichShot)
 	{
 	case 0:
-		createInfo.speedX = -2;
-		createInfo.speedY = 2;
+		weaponCreateInfo.speedX = -2;
+		weaponCreateInfo.speedY = 2;
 		break;
 	case 1:
-		createInfo.speedX = 0;
-		createInfo.speedY = 2;
+		weaponCreateInfo.speedX = 0;
+		weaponCreateInfo.speedY = 2;
 		break;
 	case 2:
-		createInfo.speedX = 2;
-		createInfo.speedY = 2;
+		weaponCreateInfo.speedX = 2;
+		weaponCreateInfo.speedY = 2;
 		break;
 	}
 
-	ObjectManager_CreateEnemyProjectile(&createInfo);
+	ObjectManager_CreateEnemyProjectile(&weaponCreateInfo);
 }

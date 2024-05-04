@@ -5,8 +5,10 @@
 			<Image filename="commandrunner_rightscroll.png"/>
 		</Visual>
 	</EditorProperties>
+
 	<GameProperties>
+		<CreateInfoType value="CommandRunnerCreateInfo"/>
 		<GameObjectType value="CommandRunner" />
-		<InitFunction value="CommandRunner_RightScroll_Init" createInfo="CommandRunnerCreateInfo"/>		
+		<InitFunction value="CommandRunner_RightScroll_Init"/>
 	</GameProperties>
-</GameObjectTemplate>
+</GameObjectTemplate> 

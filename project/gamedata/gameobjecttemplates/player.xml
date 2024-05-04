@@ -15,6 +15,7 @@
 		<GameObjectType value="Player" />
 		<Health value="2"/>
 		<Resource value="ruby" />		
+		<CreateInfoType value="CreateInfo"/>
 		<InitFunction value="Player_Init"/>
 	</GameProperties>
 	<References>

@@ -23,7 +23,7 @@
 void Shotgun_Update(GameObject* object);
 void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* Shotgun_Init(GameObject* object, const WeaponCreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Shotgun_Update;

@@ -8,6 +8,7 @@
 		<RectBottom value="4"/>
 		<GameObjectType value="Projectile" />
 		<Resource value="bullet" />		
+		<CreateInfoType value="WeaponCreateInfo"/>
 		<InitFunction value="Bullet_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

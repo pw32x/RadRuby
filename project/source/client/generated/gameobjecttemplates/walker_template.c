@@ -16,5 +16,5 @@ const GameObjectTemplate walker_template =
     OBJECTTYPE_ENEMY, // object type
     (const Resource*)&walker, // resource
     NULL, // extra resources
-    Enemy_Init, // init function
+    (InitObjectFunctionType)Enemy_Init, // init function
 };

@@ -27,7 +27,7 @@ void Bullet_UpdateUp(GameObject* object);
 void Bullet_UpdateDown(GameObject* object);
 void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* Bullet_Init(GameObject* object, const WeaponCreateInfo* createInfo)
 {
 	// 708/708/708.0
 	// 80/80/80.0  without sound

@@ -26,46 +26,20 @@ namespace SceneMaster.CreateInfoTypes
 
     public class CreateInfo : BaseCreateInfo
     {
-        private sbyte m_speedX;
-        public sbyte SpeedX 
-        { 
-            get => m_speedX;
-            set
-            {
-                m_speedX = value;
-                OnPropertyChanged();
-            }
-        }
-
-        private sbyte m_speedY;
-        public sbyte SpeedY 
-        { 
-            get => m_speedY;
-            set
-            {
-                m_speedY = value;
-                OnPropertyChanged();
-            }
-        }
-
         public override void Export(StringBuilder sb)
         {
-            sb.Append(", " + SpeedX + ", " + SpeedY);
         }
 
         public override void ExportContentsToXmlNode(XmlElement node)
         {
-            node.SetAttribute(nameof(SpeedX), SpeedX.ToString());
-            node.SetAttribute(nameof(SpeedY), SpeedY.ToString());
         }
 
         internal override void ReadFromXml(XmlElement createInfoNode)
         {
-            SpeedX = XmlUtils.GetValue<sbyte>(createInfoNode, nameof(SpeedX));
-            SpeedY = XmlUtils.GetValue<sbyte>(createInfoNode, nameof(SpeedY));
         }
     }
 
+    /*
     public class EffectCreateInfo : CreateInfo
     {
         private byte m_startFrameNumber;
@@ -97,6 +71,7 @@ namespace SceneMaster.CreateInfoTypes
             StartFrameNumber = XmlUtils.GetValue<byte>(createInfoNode, nameof(StartFrameNumber));
         }
     }
+    */
 
     public class CommandRunnerCreateInfo : BaseCreateInfo
     {

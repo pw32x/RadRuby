@@ -32,7 +32,7 @@ namespace TemplateMaster
 
             string gameObjectType = gameObjectTemplate.CustomDataFields.Count == 0 ? "GameObject" : gameObjectTemplate.Name.Replace(" ", "") + "ObjectType";
 
-            string createInfoTypeName = string.IsNullOrEmpty(gameObjectTemplate.CreateInfo) ? "CreateInfo" : gameObjectTemplate.CreateInfo;
+            string createInfoTypeName = string.IsNullOrEmpty(gameObjectTemplate.CreateInfoType) ? "CreateInfo" : gameObjectTemplate.CreateInfoType;
 
             // forward declare the init function
             sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(" + gameObjectType + "* object, const " + createInfoTypeName + "* createInfo);");
@@ -114,7 +114,7 @@ namespace TemplateMaster
 
             string initFunction = gameObjectTemplate.InitFunction;
 
-            if (gameObjectTemplate.CustomDataFields.Count > 0 || !string.IsNullOrEmpty(gameObjectTemplate.CreateInfo)) 
+            if (gameObjectTemplate.CustomDataFields.Count > 0 || !string.IsNullOrEmpty(gameObjectTemplate.CreateInfoType)) 
                 initFunction = "(InitObjectFunctionType)" + initFunction;
 
             AppendField(initFunction, sb, "Error", "init function");
