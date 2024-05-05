@@ -300,7 +300,7 @@ namespace SceneMaster.Main.ViewModels
 
         private void ImportTiledMap()
         {
-            if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
+            if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapWrapper.TiledMapFilePath))
             {
                 string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
                 if (System.Windows.MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)

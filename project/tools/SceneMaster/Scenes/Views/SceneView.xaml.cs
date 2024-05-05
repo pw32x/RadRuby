@@ -51,15 +51,15 @@ namespace SceneMaster.Scenes.Views
         {
             if (m_sceneViewModel == null ||
                 m_sceneViewModel.Scene == null ||
-                m_sceneViewModel.Scene.TiledMap == null)
+                m_sceneViewModel.Scene.TiledMapWrapper.TiledMap == null)
                 return;
 
 
-            int tileWidth = m_sceneViewModel.Scene.TiledMap.TileWidth;
-            int tileHeight = m_sceneViewModel.Scene.TiledMap.TileHeight;
+            int tileWidth = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.TileWidth;
+            int tileHeight = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.TileHeight;
 
-            int mapWidth = m_sceneViewModel.Scene.TiledMap.Width * tileWidth;
-            int mapHeight = m_sceneViewModel.Scene.TiledMap.Height * tileHeight;
+            int mapWidth = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.Width * tileWidth;
+            int mapHeight = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.Height * tileHeight;
 
             GridCanvas.Children.Clear();
 
@@ -127,7 +127,7 @@ namespace SceneMaster.Scenes.Views
 
         private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Scene.TiledMapBitmapSource))
+            if (e.PropertyName == nameof(Scene.TiledMapWrapper.TiledMapBitmapSource))
                 DrawGridLines();
         }
     }

@@ -86,9 +86,9 @@ namespace SceneMaster.Export
 
             var resources = editorObjects.SelectMany(e => e.Resources()).Where(e => !string.IsNullOrEmpty(e)).ToList();
 
-            if (!string.IsNullOrEmpty(scene.TiledMapFilename))
+            if (!string.IsNullOrEmpty(scene.TiledMapWrapper.TiledMapFilename))
             {
-                string backgroundResourceName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_map";
+                string backgroundResourceName = Path.GetFileNameWithoutExtension(scene.TiledMapWrapper.TiledMapFilename) + "_map";
 
                 resources.Add(backgroundResourceName);
             }
