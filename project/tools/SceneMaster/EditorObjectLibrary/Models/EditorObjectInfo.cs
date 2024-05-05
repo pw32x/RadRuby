@@ -44,7 +44,7 @@ namespace SceneMaster.EditorObjectLibrary.Models
         [System.ComponentModel.Browsable(false)]
         public List<GameObjectTemplate> TemplateReferences { get; } = new();
 
-        public IEnumerable<string> Resources()
+        virtual public IEnumerable<string> Resources()
         {
             yield return Resource;
 

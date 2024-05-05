@@ -2,6 +2,7 @@
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -151,6 +152,15 @@ namespace SceneMaster.GameObjectTemplates.Models
             CreateInfo.SaveToXml(newNode, doc);
 
             return newNode;
+        }
+
+        public override IEnumerable<string> Resources()
+        {
+            foreach (var resource in base.Resources())
+                yield return resource;
+
+            foreach (var resource in CreateInfo.Resources())
+                yield return resource;
         }
     }
 }

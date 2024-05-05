@@ -84,20 +84,26 @@ namespace SceneMaster.Export
         {
             string commandFunction = "ResourceManager_LoadResource";
 
-            var resources = editorObjects.SelectMany(e => e.EditorObjectInfo.Resources()).Where(e => !string.IsNullOrEmpty(e)).Distinct();
+            var resources = editorObjects.SelectMany(e => e.Resources()).Where(e => !string.IsNullOrEmpty(e)).ToList();
 
-            foreach (var resource in resources)
+            if (!string.IsNullOrEmpty(scene.TiledMapFilename))
+            {
+                string backgroundResourceName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_map";
+
+                resources.Add(backgroundResourceName);
+            }
+
+            var exportedResources = resources.Distinct();
+            
+
+            foreach (var resource in exportedResources)
             {
                 // { 0, (CommandFunction)RightScroller_Create, &background3_mapResource },
                 sb.AppendLine("    { 0, (CommandFunction)" + commandFunction + ", &" + resource + " },");
             }
 
             // add the background
-            if (!string.IsNullOrEmpty(scene.TiledMapFilename))
-            {
-                string backgroundResourceName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_map";
-                sb.AppendLine("    { 0, (CommandFunction)ResourceManager_LoadResource, &" + backgroundResourceName + "},");
-            }
+
         }
 
         private static void ExportSceneCommands(StringBuilder sb, 

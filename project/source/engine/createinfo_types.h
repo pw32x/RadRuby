@@ -35,6 +35,7 @@ END_CREATE_INFO(CommandRunnerCreateInfo)
 
 DECLARE_CREATE_INFO(scroller_create_info)
 	DEC_FIELD(const Ruby_StripMap*, map, NULL)
+	DEC_FIELD(u8, plane, BG_A)
 END_CREATE_INFO(ScrollerCreateInfo)
 
 #endif

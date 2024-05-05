@@ -6,6 +6,7 @@ using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
 using System.Xml;
 
 namespace SceneMaster.EditorObjects.Models
@@ -66,6 +67,13 @@ namespace SceneMaster.EditorObjects.Models
             newNode.SetAttribute(nameof(SpawnY), SpawnY.ToString());
             newNode.SetAttribute(nameof(SpawnPointIsIndependant), SpawnPointIsIndependant.ToString());
             return newNode;
+        }
+
+        
+        virtual public IEnumerable<string> Resources()
+        {
+            foreach (var resource in EditorObjectInfo.Resources())
+                yield return resource;
         }
     }
 }

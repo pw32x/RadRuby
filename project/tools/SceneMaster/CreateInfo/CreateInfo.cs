@@ -1,6 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using PropertyTools.DataAnnotations;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.Utils;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Printing;
 using System.Text;
 using System.Xml;
 
@@ -22,6 +27,11 @@ namespace SceneMaster.CreateInfoTypes
         public abstract void ExportContentsToXmlNode(XmlElement node);
 
         internal abstract void ReadFromXml(XmlElement createInfoNode);
+
+        internal virtual IEnumerable<string> Resources()
+        {
+            yield break;
+        }
     }
 
     public class CreateInfo : BaseCreateInfo
@@ -105,6 +115,8 @@ namespace SceneMaster.CreateInfoTypes
     public class ScrollerCreateInfo : BaseCreateInfo
     {
         private string m_mapResource = "NULL";
+
+        [InputFilePath(".tmx", "Tmx files|*.tmx;")]
         public string MapResource 
         { 
             get => m_mapResource;
@@ -115,19 +127,58 @@ namespace SceneMaster.CreateInfoTypes
             }
         }
 
+        public enum Plane
+        {
+            A,
+            B
+        };
+
+        private Plane m_backgroundPlane = Plane.A;
+        public Plane BackgroundPlane
+        {
+            get => m_backgroundPlane;
+            set
+            {
+                m_backgroundPlane = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string MapName => Path.GetFileNameWithoutExtension(MapResource) + "_map";
+
         public override void Export(StringBuilder sb)
         {
-            sb.Append(", " + (string.IsNullOrEmpty(MapResource) ? "NULL" : "&" + MapResource));
+            string planeToUse = "BG_A";
+            if (m_backgroundPlane == Plane.B)
+                planeToUse = "BG_B";
+
+            sb.Append(", " + 
+                     (string.IsNullOrEmpty(MapResource) ? "NULL" : "&" + MapName) +
+                     ", " + planeToUse);
         }
 
         public override void ExportContentsToXmlNode(XmlElement node)
         {
             node.SetAttribute(nameof(MapResource), MapResource);
+            node.SetAttribute(nameof(BackgroundPlane), BackgroundPlane.ToString());
         }
 
         internal override void ReadFromXml(XmlElement createInfoNode)
         {
             MapResource = XmlUtils.GetValue<string>(createInfoNode, nameof(MapResource));
+
+            string backgroundPlaneString = XmlUtils.GetValue<string>(createInfoNode, nameof(BackgroundPlane));
+
+            if (Enum.TryParse(typeof(Plane), backgroundPlaneString, true, out var backgroundPlane))
+                BackgroundPlane = (Plane)backgroundPlane;
+        }
+
+        internal override IEnumerable<string> Resources()
+        {
+            yield return MapName;
+            
+            foreach (var resource in base.Resources())
+                yield return resource;
         }
     }
 }
