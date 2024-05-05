@@ -30,19 +30,19 @@ namespace SceneMaster.Scenes.Views
         {
             if (m_sceneViewModel != null) 
             { 
-                // convert the position clicked on the TileMapBitmapImage 
+                // convert the position clicked on the ForegroundTileMapBitmapImage 
                 // to a position on the tilemap.
-                var mapPos = e.GetPosition(TileMapBitmapImage);
+                var mapPos = e.GetPosition(ForegroundTileMapBitmapImage);
 
-                int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
-                int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
+                int mapX = (int)((mapPos.X / ForegroundTileMapBitmapImage.ActualWidth) * ForegroundTileMapBitmapImage.Source.Width);
+                int mapY = (int)((mapPos.Y / ForegroundTileMapBitmapImage.ActualHeight) * ForegroundTileMapBitmapImage.Source.Height);
 
 
                 m_sceneViewModel.MouseLeftButtonDown(mapX, mapY);
             }
         }
 
-        private void TileMapBitmapImage_LayoutUpdated(object sender, EventArgs e)
+        private void ForegroundTileMapBitmapImage_LayoutUpdated(object sender, EventArgs e)
         {
             SceneViewModel.ZoomFactor = ZoomBorder.ZoomX;
         }
@@ -51,15 +51,15 @@ namespace SceneMaster.Scenes.Views
         {
             if (m_sceneViewModel == null ||
                 m_sceneViewModel.Scene == null ||
-                m_sceneViewModel.Scene.TiledMapWrapper.TiledMap == null)
+                m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap == null)
                 return;
 
 
-            int tileWidth = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.TileWidth;
-            int tileHeight = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.TileHeight;
+            int tileWidth = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.TileWidth;
+            int tileHeight = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.TileHeight;
 
-            int mapWidth = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.Width * tileWidth;
-            int mapHeight = m_sceneViewModel.Scene.TiledMapWrapper.TiledMap.Height * tileHeight;
+            int mapWidth = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.Width * tileWidth;
+            int mapHeight = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.Height * tileHeight;
 
             GridCanvas.Children.Clear();
 
@@ -127,7 +127,7 @@ namespace SceneMaster.Scenes.Views
 
         private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Scene.TiledMapWrapper.TiledMapBitmapSource))
+            if (e.PropertyName == nameof(Scene.ForegroundTiledMap.TiledMapBitmapSource))
                 DrawGridLines();
         }
     }

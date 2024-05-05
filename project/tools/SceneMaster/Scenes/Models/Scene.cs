@@ -19,9 +19,11 @@ namespace SceneMaster.Scenes.Models
         private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
-        public TiledMapWrapper TiledMapWrapper { get; } = new();
+        public TiledMapWrapper ForegroundTiledMap { get; } = new();
+        public TiledMapWrapper BackgroundTiledMap { get; } = new();
 
-        private const string TiledMapFilePathNodeName = "TiledMapFilePath";
+        private const string ForegroundTiledMapFilePathNodeName = "ForegroundTiledMapFilePath";
+        private const string BackgroundTiledMapFilePathNodeName = "BackgroundTiledMapFilePath";
         private const string EditorObjectsNodeName = "EditorObjects";
         //private const string TerrainNodeName = "Terrain";
 
@@ -37,19 +39,25 @@ namespace SceneMaster.Scenes.Models
             if (!File.Exists(tiledMapFilePath))
                 throw new Exception($"File {tiledMapFilePath} doesn't exist.");
 
-            TiledMapWrapper.LoadTiledMap(tiledMapFilePath);
+            ForegroundTiledMap.LoadTiledMap(tiledMapFilePath);
             //BuildTerrain();
         }
 
 
         public void LoadFromXml(XmlElement root, string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
-            var ggFilePathNode = root[TiledMapFilePathNodeName];
-            if (ggFilePathNode != null && !string.IsNullOrEmpty(ggFilePathNode.InnerText))
+            var foregroundFilePathNode = root[ForegroundTiledMapFilePathNodeName];
+            if (foregroundFilePathNode != null && !string.IsNullOrEmpty(foregroundFilePathNode.InnerText))
             {
-                string tiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), ggFilePathNode.InnerText);
-                TiledMapWrapper.LoadTiledMap(tiledMapFilePath);
-                //BuildTerrain();
+                string tiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), foregroundFilePathNode.InnerText);
+                ForegroundTiledMap.LoadTiledMap(tiledMapFilePath);
+            }
+
+            var backgroundFilePathNode = root[BackgroundTiledMapFilePathNodeName];
+            if (backgroundFilePathNode != null && !string.IsNullOrEmpty(backgroundFilePathNode.InnerText))
+            {
+                string tiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), backgroundFilePathNode.InnerText);
+                BackgroundTiledMap.LoadTiledMap(tiledMapFilePath);
             }
 
             var editorObjectsNode = root[EditorObjectsNodeName];
@@ -85,10 +93,15 @@ namespace SceneMaster.Scenes.Models
 
         internal void SaveToXmlElement(XmlDocument doc, XmlElement root, string filePath)
         {
-            // tiled map file path
-            var ggFilePathNode = doc.CreateElement(TiledMapFilePathNodeName);
-            ggFilePathNode.InnerText = string.IsNullOrEmpty(TiledMapWrapper.TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), TiledMapWrapper.TiledMapFilePath);
-            root.AppendChild(ggFilePathNode);
+            // foregroundtiled map file path
+            var foregroundFilePathNode = doc.CreateElement(ForegroundTiledMapFilePathNodeName);
+            foregroundFilePathNode.InnerText = string.IsNullOrEmpty(ForegroundTiledMap.TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), ForegroundTiledMap.TiledMapFilePath);
+            root.AppendChild(foregroundFilePathNode);
+
+            // background tiled map file path
+            var backgroundFilePathNode = doc.CreateElement(BackgroundTiledMapFilePathNodeName);
+            backgroundFilePathNode.InnerText = string.IsNullOrEmpty(BackgroundTiledMap.TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), BackgroundTiledMap.TiledMapFilePath);
+            root.AppendChild(backgroundFilePathNode);
 
             // gameobjects
             var editorObjectsNode = doc.CreateElement(EditorObjectsNodeName);
@@ -116,7 +129,8 @@ namespace SceneMaster.Scenes.Models
 
         public void Dispose()
         {
-            TiledMapWrapper.StopWatchingTiledMap();
+            ForegroundTiledMap.Dispose();
+            BackgroundTiledMap.Dispose();
         }
     }
 }

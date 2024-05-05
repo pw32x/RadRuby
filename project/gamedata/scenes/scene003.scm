@@ -1,5 +1,6 @@
 <Scene>
-  <TiledMapFilePath>..\generated\mapthemes\field.tmx</TiledMapFilePath>
+  <ForegroundTiledMapFilePath>..\generated\mapthemes\field.tmx</ForegroundTiledMapFilePath>
+  <BackgroundTiledMapFilePath>..\generated\mapthemes\field_background.tmx</BackgroundTiledMapFilePath>
   <EditorObjects>
     <Command Name="Set Palette 0" X="-155" Y="-24" SpawnX="-155" SpawnY="-24" SpawnPointIsIndependant="False" CommandValue="&amp;global_palette" PreCommandData="" />
     <Command Name="Set Palette 1" X="-153" Y="-115" SpawnX="-153" SpawnY="-115" SpawnPointIsIndependant="False" CommandValue="&amp;global_palette" PreCommandData="" />
@@ -19,7 +20,7 @@
       <CreateInfo />
     </GameObject>
     <GameObject Name="Right Scroller" X="-115" Y="97" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="Right Scroller">
-      <ScrollerCreateInfo MapResource="C:\Dropbox\GenesisDev\projects\RadRuby\project\gamedata\generated\mapthemes\field.tmx" BackgroundPlane="B" />
+      <ScrollerCreateInfo MapResource="field_map" BackgroundPlane="A" />
     </GameObject>
   </EditorObjects>
 </Scene>

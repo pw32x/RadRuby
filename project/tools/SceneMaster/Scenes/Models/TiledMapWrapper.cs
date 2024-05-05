@@ -108,7 +108,7 @@ namespace SceneMaster.Scenes.Models
         }
 
 
-        public void StartWatchingTiledMap(string filePath)
+        private void StartWatchingTiledMap(string filePath)
         {
             m_tiledMapFileWatcher = new FileSystemWatcher(Path.GetDirectoryName(Path.GetFullPath(filePath)));
             m_tiledMapFileWatcher.Filter = Path.GetFileName(filePath);
@@ -132,7 +132,7 @@ namespace SceneMaster.Scenes.Models
             Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath); });
         }
 
-        public void StopWatchingTiledMap()
+        private void StopWatchingTiledMap()
         {
             if (m_tiledMapFileWatcher == null)
                 return;
