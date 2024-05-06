@@ -28,7 +28,7 @@
 
                 <controls:ZoomBorderCustom x:Name="ZoomBorder" 
                                 ZoomSpeed="1.2"
-                                Background="SlateBlue" 
+                                Background="LightGray" 
                                 ClipToBounds="True" 
                                 Focusable="True"
                                 PanButton="Middle" 
@@ -36,13 +36,15 @@
                                 VerticalAlignment="Stretch" 
                                 HorizontalAlignment="Stretch">
                     <Grid x:Name="MainGrid" 
-                          Background="Beige" 
+                          Background="Violet" 
+
                           HorizontalAlignment="Center" 
                           VerticalAlignment="Center">
+                    <Canvas>
                     <Image x:Name="BackgroundTileMapBitmapImage"  
                            Source="{Binding Scene.BackgroundTiledMap.TiledMapBitmapSource}"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
-                           Stretch="None" />
+                           Stretch="None"/>
 
                     <Image x:Name="ForegroundTileMapBitmapImage"  
                            Source="{Binding Scene.ForegroundTiledMap.TiledMapBitmapSource}"
@@ -57,6 +59,7 @@
                                IsHitTestVisible="False"/>
                         -->
                         <Canvas x:Name="GridCanvas" IsHitTestVisible="False"/>
+                    </Canvas>                                       
                         <ItemsControl ItemsSource="{Binding EditorObjectViewModels}" >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>

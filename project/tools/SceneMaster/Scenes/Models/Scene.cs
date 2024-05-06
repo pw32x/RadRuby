@@ -19,8 +19,8 @@ namespace SceneMaster.Scenes.Models
         private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
-        public TiledMapWrapper ForegroundTiledMap { get; } = new();
-        public TiledMapWrapper BackgroundTiledMap { get; } = new();
+        public TiledMapWrapper ForegroundTiledMap { get; } = new(isForeground:true);
+        public TiledMapWrapper BackgroundTiledMap { get; } = new(isForeground:false);
 
         private const string ForegroundTiledMapFilePathNodeName = "ForegroundTiledMapFilePath";
         private const string BackgroundTiledMapFilePathNodeName = "BackgroundTiledMapFilePath";

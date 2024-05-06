@@ -4,6 +4,7 @@ using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -32,6 +33,8 @@ namespace SceneMaster.Scenes.Models
         private WriteableBitmap m_tiledMapBitmapSource;
         public WriteableBitmap TiledMapBitmapSource { get => m_tiledMapBitmapSource; private set => SetProperty(ref m_tiledMapBitmapSource, value); }
 
+        public bool IsForeground { get; }= false;
+
         private string m_tiledMapFilePath = "";
         public string TiledMapFilePath
         {
@@ -44,10 +47,17 @@ namespace SceneMaster.Scenes.Models
         }
 
         private string m_tiledMapFilename = "";
+        private System.Windows.Media.Color m_transparentColor;
+
         public string TiledMapFilename
         {
             get => m_tiledMapFilename;
             private set => SetProperty(ref m_tiledMapFilename, value);
+        }
+
+        public TiledMapWrapper(bool isForeground)
+        {
+            IsForeground = isForeground;
         }
 
         private void ShutdownTiledMap()
@@ -60,6 +70,7 @@ namespace SceneMaster.Scenes.Models
             TiledMapBitmapSource = null;
             //m_terrain.Clear();
         }
+
 
 
         public void LoadTiledMap(string tiledMapFilePath)
@@ -90,13 +101,18 @@ namespace SceneMaster.Scenes.Models
                     bitmapImage.UriSource = new Uri(tilesetFolder + source, UriKind.RelativeOrAbsolute);
                     bitmapImage.EndInit();
 
-                    FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, PixelFormats.Bgr32, null, 0);
+                    m_transparentColor = bitmapImage.Palette.Colors[0];
 
+                    FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, 
+                                                                                      PixelFormats.Bgra32, 
+                                                                                      null, 
+                                                                                      0);
                     m_tilesetBitmaps.Add(source, convertedBitmap);
-
                 }
 
                 TiledMapBitmapSource = BuildTiledMapBitmapSource();
+
+                ImageBrush = new ImageBrush(TiledMapBitmapSource);
 
                 StartWatchingTiledMap(tiledMapFilePath);
             }
@@ -107,6 +123,7 @@ namespace SceneMaster.Scenes.Models
             }
         }
 
+        public ImageBrush ImageBrush { get; private set; }
 
         private void StartWatchingTiledMap(string filePath)
         {
@@ -155,7 +172,7 @@ namespace SceneMaster.Scenes.Models
                                                                  m_tiledMap.Height * m_tiledMap.TileHeight,
                                                                  96,
                                                                  96,
-                                                                 PixelFormats.Bgr32,
+                                                                 PixelFormats.Bgra32,
                                                                  null);
 
             try
@@ -185,6 +202,7 @@ namespace SceneMaster.Scenes.Models
             return writeableBitmap;
         }
 
+        /*
         private void DrawTileToBitmap(WriteableBitmap writeableBitmap, int tileX, int tileY, int gid)
         {
             try
@@ -199,6 +217,7 @@ namespace SceneMaster.Scenes.Models
                 writeableBitmap.Unlock();
             }
         }
+        */
 
         private void DrawTileToBitmapHelper(WriteableBitmap writeableBitmap, int tileX, int tileY, int gid)
         {
@@ -229,10 +248,25 @@ namespace SceneMaster.Scenes.Models
             byte[] pixelData = new byte[stride * sourceRect.Height];
             bitmapImage.CopyPixels(sourceRect, pixelData, stride, 0);
 
+            if (IsForeground)
+            {
+                for (int loop = 0; loop < pixelData.Length; loop += 4)
+                {
+                    if (pixelData[loop] == m_transparentColor.B &&
+                        pixelData[loop + 1] == m_transparentColor.G &&
+                        pixelData[loop + 2] == m_transparentColor.R)
+                    {
+                        pixelData[loop + 3] = 0;
+                    }
+                }
+            }
+
             Int32Rect destRect = new Int32Rect(tileX * m_tiledMap.TileWidth,
                                                tileY * m_tiledMap.TileHeight,
                                                m_tiledMap.TileWidth,
                                                m_tiledMap.TileHeight);
+
+
 
             writeableBitmap.WritePixels(destRect,
                                         pixelData,

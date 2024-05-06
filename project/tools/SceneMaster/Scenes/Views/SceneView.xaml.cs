@@ -67,7 +67,7 @@ namespace SceneMaster.Scenes.Views
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
-                Color lineColor = Colors.Gray;
+                Color lineColor = Colors.Black;
                 byte alphaValue = 255; // Adjust the alpha value as needed (0 to 255 for transparency)
 
                 Pen pen = new Pen(new SolidColorBrush(Color.FromArgb(alphaValue, lineColor.R, lineColor.G, lineColor.B)), .25);
