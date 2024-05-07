@@ -1,8 +1,10 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
+using PropertyTools.DataAnnotations;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -21,6 +23,7 @@ namespace SceneMaster.Scenes.Models
         private TiledMap m_tiledMap;
         private string m_tiledMapDirectory;
 
+        [PropertyTools.DataAnnotations.Browsable(false)]
         public TiledMap TiledMap { get => m_tiledMap; private set => SetProperty(ref m_tiledMap, value); }
 
         private Dictionary<int, TiledTileset> m_tiledMapTilesets;
@@ -28,20 +31,21 @@ namespace SceneMaster.Scenes.Models
         private Dictionary<string, BitmapSource> m_tilesetBitmaps;
 
         // visual of the actual Tiled map
-        private Bitmap m_tiledMapBitmap;
-        public Bitmap TiledMapBitmap { get => m_tiledMapBitmap; private set => SetProperty(ref m_tiledMapBitmap, value); }
         private WriteableBitmap m_tiledMapBitmapSource;
         public WriteableBitmap TiledMapBitmapSource { get => m_tiledMapBitmapSource; private set => SetProperty(ref m_tiledMapBitmapSource, value); }
 
+        [PropertyTools.DataAnnotations.Browsable(false)]
         public bool IsForeground { get; }= false;
 
         private string m_tiledMapFilePath = "";
+
+        [InputFilePath(".tmx", "Tmx files|*.tmx;")]
         public string TiledMapFilePath
         {
             get => m_tiledMapFilePath;
-            private set
+            set
             {
-                SetProperty(ref m_tiledMapFilePath, value);
+                LoadTiledMap(value);
                 TiledMapFilename = Path.GetFileName(m_tiledMapFilePath);
             }
         }
@@ -49,6 +53,7 @@ namespace SceneMaster.Scenes.Models
         private string m_tiledMapFilename = "";
         private System.Windows.Media.Color m_transparentColor;
 
+        [PropertyTools.DataAnnotations.Browsable(false)]
         public string TiledMapFilename
         {
             get => m_tiledMapFilename;
@@ -81,7 +86,7 @@ namespace SceneMaster.Scenes.Models
             {
                 ShutdownTiledMap();
 
-                TiledMapFilePath = tiledMapFilePath;
+                m_tiledMapFilePath = tiledMapFilePath;
 
                 m_tiledMap = new TiledMap(tiledMapFilePath);
 
@@ -112,18 +117,17 @@ namespace SceneMaster.Scenes.Models
 
                 TiledMapBitmapSource = BuildTiledMapBitmapSource();
 
-                ImageBrush = new ImageBrush(TiledMapBitmapSource);
-
                 StartWatchingTiledMap(tiledMapFilePath);
             }
             catch (Exception e) 
             {
                 ShutdownTiledMap();
+                m_tiledMapFilePath = "";
                 MessageBox.Show("Failed loading " + tiledMapFilePath + ". Error: " + e.Message);
             }
-        }
 
-        public ImageBrush ImageBrush { get; private set; }
+            OnPropertyChanged(nameof(TiledMapFilePath));
+        }
 
         private void StartWatchingTiledMap(string filePath)
         {

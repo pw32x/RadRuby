@@ -2,6 +2,7 @@
 using SceneMaster.Utils;
 using System;
 using System.IO;
+using System.Windows;
 using System.Xml.Serialization;
 
 namespace SceneMaster.Main
@@ -49,6 +50,12 @@ namespace SceneMaster.Main
 
         private string m_pathToGameRom = "out\\" + GameRomName + ".sms";
         public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
+
+        private Size m_mainWindowSize;
+        public Size MainWindowSize { get => m_mainWindowSize; set => SetProperty(ref m_mainWindowSize, value); }
+        public double MainWindowTop { get; set; }
+        public double MainWindowLeft { get; set; }
+        public WindowState MainWindowState { get; set; }
 
         public void Load()
         {

@@ -7,6 +7,7 @@ using SceneMaster.EditorObjects.Models;
 using SceneMaster.GameObjectTemplates.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -17,6 +18,8 @@ namespace SceneMaster.Scenes.Models
     public class Scene : ObservableObject, IDisposable
     {
         private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
+
+        [Browsable(false)]
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
         public TiledMapWrapper ForegroundTiledMap { get; } = new(isForeground:true);
@@ -30,9 +33,20 @@ namespace SceneMaster.Scenes.Models
         public Scene(/*List<BitmapImage> tileTypeImages*/)
         {
             //m_tileTypeImages = tileTypeImages;
+
+            ForegroundTiledMap.PropertyChanged += ForegroundTiledMap_PropertyChanged;
+            BackgroundTiledMap.PropertyChanged += BackgroundTiledMap_PropertyChanged;
         }
 
+        private void ForegroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(ForegroundTiledMap));
+        }
 
+        private void BackgroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(BackgroundTiledMap));
+        }
 
         public void ImportTiledMap(string tiledMapFilePath)
         {

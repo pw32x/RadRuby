@@ -13,6 +13,12 @@ namespace SceneMaster
             InitializeComponent();
 
             DataContext = MainViewModel;
+
+            Width = MainViewModel.Settings.MainWindowSize.Width;
+            Height = MainViewModel.Settings.MainWindowSize.Height;
+            Left = MainViewModel.Settings.MainWindowLeft;
+            Top = MainViewModel.Settings.MainWindowTop;
+            WindowState = MainViewModel.Settings.MainWindowState;
         }
 
         public MainViewModel MainViewModel { get; } = new MainViewModel();
@@ -21,6 +27,22 @@ namespace SceneMaster
         {
             if (!MainViewModel.CheckForSave())
                 e.Cancel = true;
+        }
+
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            MainViewModel.Settings.MainWindowSize = e.NewSize;
+        }
+
+        private void Window_LocationChanged(object sender, System.EventArgs e)
+        {
+            MainViewModel.Settings.MainWindowLeft = Left;
+            MainViewModel.Settings.MainWindowTop = Top;
+        }
+
+        private void Window_StateChanged(object sender, System.EventArgs e)
+        {
+            MainViewModel.Settings.MainWindowState = WindowState;
         }
     }
 }
