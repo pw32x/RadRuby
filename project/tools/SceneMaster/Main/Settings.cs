@@ -40,10 +40,11 @@ namespace SceneMaster.Main
         private string m_lastSceneSaveLocation = "";
         public string LastSceneLocation { get => m_lastSceneSaveLocation; set => SetProperty(ref m_lastSceneSaveLocation, value); }
 
-
+/*
+        // how to use this for when the user chooses a new map?
         private string m_lastImportLocation = "";
         public string LastImportLocation { get => m_lastImportLocation; set => SetProperty(ref m_lastImportLocation, value); }
-
+*/
         private string m_lastExportLocation = "";
         public string LastExportLocation { get => m_lastExportLocation; set => SetProperty(ref m_lastExportLocation, value); }
 

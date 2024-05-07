@@ -68,7 +68,6 @@ namespace SceneMaster.Main.ViewModels
             SaveCommand = new RelayCommand(SaveNoReturn);
             SaveAsCommand = new RelayCommand(SaveAs);
             ExitCommand = new RelayCommand(Exit);
-            ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
             RunSceneCommand = new RelayCommand(RunScene);
         }
@@ -106,7 +105,6 @@ namespace SceneMaster.Main.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
-        public ICommand ImportTiledMapCommand { get; }
         public ICommand ExportCFilesCommand { get; }
         public ICommand RunSceneCommand { get; }
 
@@ -295,29 +293,6 @@ namespace SceneMaster.Main.ViewModels
             }
 
             return true;
-        }
-
-
-        private void ImportTiledMap()
-        {
-            if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.ForegroundTiledMap.TiledMapFilePath))
-            {
-                string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
-                if (System.Windows.MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
-                    return;
-            }
-
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.LastImportLocation;
-
-            SetTiledMapFileExtensions(openFileDialog);
-
-            if (openFileDialog.ShowDialog() == false)
-                return;
-
-            Settings.LastImportLocation = Path.GetDirectoryName(openFileDialog.FileName);
-
-            CurrentDocument.ImportTiledMap(openFileDialog.FileName);
         }
 
         private void ExportCFiles()

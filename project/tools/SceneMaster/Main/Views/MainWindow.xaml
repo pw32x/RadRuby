@@ -22,7 +22,6 @@
         <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"/>
         <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"/>
         <KeyBinding Command="{Binding SaveAsCommand}" Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="{Binding ImportTiledMapCommand}" Gesture="Ctrl+I"/>
         <KeyBinding Command="{Binding ExportCFilesCommand}" Gesture="Ctrl+E"/>
         <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4"/>
         <KeyBinding Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand }" Gesture="Delete"/>
@@ -56,12 +55,6 @@
                 <MenuItem Header="_Export scene to C files" InputGestureText="Ctrl+E" Command="{Binding ExportCFilesCommand}">
                     <MenuItem.Icon>
                         <Image Source="/SceneMaster;component/Icons/Export.png"/>
-                    </MenuItem.Icon>
-                </MenuItem>
-                <Separator />
-                <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}">
-                    <MenuItem.Icon>
-                        <Image Source="/SceneMaster;component/Icons/Import.png"/>
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
@@ -108,16 +101,9 @@
                         <Image Source="/SceneMaster;component/Icons/SaveAs.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding ImportTiledMapCommand}"
-                        ToolTip="Import .tmx File"
-                        Margin="30,1,0,1">
-                    <Button.Content>
-                        <Image Source="/SceneMaster;component/Icons/Import.png" Width="24" Height="24" />
-                    </Button.Content>
-                </Button>
                 <Button Command="{Binding ExportCFilesCommand}"
                         ToolTip="Export scene to C files"
-                        Margin="1,1">
+                        Margin="30,1,0,1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/Export.png" Width="24" Height="24" />
                     </Button.Content>

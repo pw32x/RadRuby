@@ -97,17 +97,5 @@ namespace SceneMaster.Documents.ViewModels
 
             return true;
         }
-
-        internal void ImportTiledMap(string tiledMapFilePath)
-        {
-            try 
-            {
-                SceneViewModel.Scene.ImportTiledMap(tiledMapFilePath);
-            }
-            catch (Exception e) 
-            {
-                MessageBox.Show("Failed loading " + tiledMapFilePath + ". Error: " + e.Message);
-            }
-        }
     }
 }
