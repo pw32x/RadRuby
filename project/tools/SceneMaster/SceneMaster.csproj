@@ -59,7 +59,6 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
-    <PackageReference Include="PropertyTools.Wpf" Version="3.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
     <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
   </ItemGroup>
@@ -77,6 +76,10 @@
   <ItemGroup>
     <Folder Include="EditorObjectLibrary\Libraries\CommandLibrary\ViewModels\" />
     <Folder Include="EditorObjectLibrary\Libraries\GameObjectTemplateLibrary\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ThirdParty\PropertyTools-develop\Source\PropertyTools.Wpf\PropertyTools.Wpf.csproj" />
   </ItemGroup>
 
   <ItemGroup>
