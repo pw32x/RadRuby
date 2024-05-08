@@ -8,10 +8,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
-        <pt:PropertyGrid SelectedObject="{Binding Scene.ForegroundTiledMap}"
-                         TabVisibility="Collapsed" />
-        <pt:PropertyGrid SelectedObject="{Binding Scene.BackgroundTiledMap}"
-                         TabVisibility="Collapsed" />            
+            <GroupBox Header="Foreground">
+                <pt:PropertyGrid SelectedObject="{Binding Scene.ForegroundTiledMap}"
+                                    CategoryControlType="None"
+                                    TabVisibility="Collapsed" />
+            </GroupBox>
+            <GroupBox Header="Background">
+                <pt:PropertyGrid SelectedObject="{Binding Scene.BackgroundTiledMap}"
+                                CategoryControlType="None"
+                                TabVisibility="Collapsed" />
+            </GroupBox>
         </StackPanel>
     </Grid>
 </UserControl>
