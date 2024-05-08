@@ -2,6 +2,7 @@
 #ifndef RESOURCES_INCLUDE_H
 #define RESOURCES_INCLUDE_H
 
+#include "client\generated\tilesets\field_background_tileset.h"
 #include "client\generated\tilesets\field_tileset.h"
 #include "client\exported\animations\bullet.h"
 #include "client\exported\animations\deliveryrobot.h"
@@ -20,5 +21,6 @@
 #include "client\exported\animations\wheeler.h"
 #include "client\exported\palettes\global_palette.h"
 #include "client\exported\maps\field.h"
+#include "client\exported\maps\field_background.h"
 
 #endif

@@ -14,7 +14,7 @@
 #include "engine\createinfo_types.h"
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
-const ScrollerCreateInfo scene003_createInfo_RightScroller2 = { &right_scroller_template, 0, 97, &field_map, BG_B };
+const ScrollerCreateInfo scene003_createInfo_RightScroller2 = { &right_scroller_template, 0, 97, &field_map_map, BG_A };
 const CreateInfo scene003_createInfo_RadRuby6 = { &player_template, 58, 51 };
 const CreateInfo scene003_createInfo_Wheeler7 = { &wheeler_template, 120, 99 };
 const CreateInfo scene003_createInfo_Wheeler8 = { &wheeler_template, 159, 80 };
@@ -23,7 +23,7 @@ const CreateInfo scene003_createInfo_ThreeShotFlyer9 = { &threeshotflyer_templat
 const Command scene003_commands[] = 
 {
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfoBootstrapper },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &field_map },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &field_map_map },
     { 0, (CommandFunction)ResourceManager_LoadResource, &ruby },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosion },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impact },
