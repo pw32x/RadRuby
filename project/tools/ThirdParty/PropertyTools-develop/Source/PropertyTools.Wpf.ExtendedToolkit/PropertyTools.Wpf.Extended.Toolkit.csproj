@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.Net.Sdk">
+  <PropertyGroup>
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+    <TargetFrameworks>net462;net6.0-windows</TargetFrameworks>
+    <UseWPF>true</UseWPF>
+    <PackageIconUrl>https://raw.githubusercontent.com/PropertyTools/PropertyTools/master/Images/icon.png</PackageIconUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>PropertyTools</Authors>
+    <Company>PropertyTools</Company>
+    <Product>PropertyTools for WPF ExtendedToolkit</Product>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/PropertyTools/PropertyTools/</PackageProjectUrl>
+    <Version>0.0.1</Version>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="..\..\Images\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PropertyTools.Wpf\PropertyTools.Wpf.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DotNetProjects.Extended.Wpf.Toolkit" Version="5.0.103" />
+  </ItemGroup>
+</Project>

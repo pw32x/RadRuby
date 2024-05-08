@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\PropertyTools.Wpf\PropertyTools.Wpf.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="3d.png" />
+    <Resource Include="pt.png" />
+    <Resource Include="pt32.png" />
+  </ItemGroup>
+</Project>

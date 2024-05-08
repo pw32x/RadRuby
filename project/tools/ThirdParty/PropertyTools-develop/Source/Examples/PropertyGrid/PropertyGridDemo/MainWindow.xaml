@@ -1,0 +1,203 @@
+﻿<Window x:Class="PropertyGridDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:PropertyGridDemo"
+        xmlns:pt="http://propertytools.org/wpf"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        Title="PropertyGrid Demo" Height="720" Width="960">
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate x:Key="HeaderTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <pt:Bitmap Source="Images\home.png"/>
+                <TextBlock Text="{Binding}" Margin="4 0 0 0"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PageHeaderTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding}" FontSize="24" FontWeight="Bold" Margin="0 0 8 0"/>
+                <pt:Bitmap Source="Images\home.png" VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <Style x:Key="TabHeaderErrorsStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding HasWarnings}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="Orange"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding HasErrors}" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="HeaderTemplate2" DataType="pt:Tab">
+            <StackPanel Orientation="Horizontal">
+                <pt:Bitmap Source="Images\chart.png" Margin="0 0 4 0"/>
+                <TextBlock Text="{Binding Header}" Margin="4 0 0 0" Style="{StaticResource TabHeaderErrorsStyle}"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="RotatedHeaderTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </StackPanel.LayoutTransform>
+                <pt:Bitmap Source="Images\chart.png"/>
+                <TextBlock Text="{Binding}" Margin="4 0 0 0"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TabHeaderTemplate1">
+            <StackPanel Orientation="Horizontal">
+                <pt:Bitmap Source="{Binding Icon}"/>
+                <TextBlock Text="{Binding Header}" FontWeight="Bold" Margin="4 0 0 0"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CategoryHeaderTemplate1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <pt:Bitmap Source="{Binding Icon}"/>
+                <TextBlock Grid.Column="1" Text="{Binding Header}" Margin="4 0 0 0" FontWeight="Bold"/>
+            </Grid>
+        </DataTemplate>
+
+        <!-- Header + separator above the properties -->
+        <ControlTemplate x:Key="CategoryControlTemplate1"  TargetType="{x:Type HeaderedContentControl}">
+            <Grid Margin="0 8 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                <Separator Grid.Column="1" Margin="4 3 0 0"/>
+                <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"/>
+            </Grid>
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="CategoryControlTemplate2" TargetType="{x:Type HeaderedContentControl}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="80"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Separator Grid.ColumnSpan="2"/>
+                <!--<TextBlock Text="{Binding}" FontWeight="Bold" Grid.Row="1"/>-->
+                <ContentPresenter ContentSource="Header" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Grid.Row="1" Margin="0 4 0 0"/>
+                <ContentPresenter Grid.Column="1" Grid.Row="1" Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+            </Grid>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ValidationTemplate1">
+            <Grid>
+                <AdornedElementPlaceholder/>
+                <Ellipse Fill="Red" Width="12" Height="12" HorizontalAlignment="Right" Margin="4"/>
+            </Grid>
+        </ControlTemplate>
+
+        <pt:ValidationErrorsToStringConverter x:Key="ValiationErrorsToStringConverter" />
+        
+        <DataTemplate x:Key="ValidationErrorTemplate">
+            <TextBlock TextWrapping="Wrap" Text="{Binding ErrorMessage}" >
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Foreground" Value="Red"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Severity}" Value="{x:Static local:Severity.Warning}">
+                                <Setter Property="Foreground" Value="Orange"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Severity}" Value="{x:Null}">
+                                <Setter Property="Foreground" Value="Red"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="ValidationErrorTemplate1">
+            <Grid Margin="0 4 0 4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image Source="Images\error.png" RenderOptions.BitmapScalingMode="HighQuality" Stretch="Uniform" Height="24"/>
+                <TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding}" Margin="4 0 0 0" Foreground="Red" VerticalAlignment="Center"/>
+            </Grid>
+        </DataTemplate>
+        <local:CustomControlFactory x:Key="CustomControlFactory"/>
+        <local:CustomOperator x:Key="CustomOperator"/>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Options">
+                <MenuItem Header="Show description icons" IsChecked="{Binding ShowDescriptionIcons, ElementName=PropertyGrid1}" IsCheckable="true"/>
+                <MenuItem Header="Show declared only" IsChecked="{Binding ShowDeclaredOnly, ElementName=PropertyGrid1}" IsCheckable="true"/>
+                <MenuItem Header="Show read-only properties" IsChecked="{Binding ShowReadOnlyProperties, ElementName=PropertyGrid1}" IsCheckable="true"/>
+                <MenuItem Header="Enable label width resizing" IsChecked="{Binding EnableLabelWidthResizing, ElementName=PropertyGrid1}" IsCheckable="true"/>
+                <pt:EnumMenuItem Header="TabVisibility" SelectedValue="{Binding TabVisibility, ElementName=PropertyGrid1}"/>
+                <pt:EnumMenuItem Header="CheckBoxLayout" SelectedValue="{Binding CheckBoxLayout, ElementName=PropertyGrid1}"/>
+                <pt:EnumMenuItem Header="LabelWidthSharing" SelectedValue="{Binding LabelWidthSharing, ElementName=PropertyGrid1}"/>
+                <pt:EnumMenuItem Header="CategoryControlType" SelectedValue="{Binding CategoryControlType, ElementName=PropertyGrid1}"/>
+                <pt:EnumMenuItem Header="TabStripPlacement" SelectedValue="{Binding TabStripPlacement, ElementName=PropertyGrid1}"/>
+                <pt:EnumMenuItem Header="DescriptionIconAlignment" SelectedValue="{Binding DescriptionIconAlignment, ElementName=PropertyGrid1}"/>
+                <Label>Vertical Spacing</Label>
+                <pt:SpinControl x:Name="VerticalPropertySpacing"   Minimum="0" Maximum="100"  Height="30" Width="50"  Margin="20,0">
+                    <pt:SpinControl.Value>
+                        <system:Int32>2</system:Int32>
+                    </pt:SpinControl.Value>
+                    <TextBox Text="{Binding ElementName=VerticalPropertySpacing, Path=Value}"></TextBox>
+                </pt:SpinControl>
+                <Label>Font Size</Label>
+                <pt:SpinControl x:Name="FontSizeControl"  Minimum="1.0" Maximum="40.0"  Height="30" Width="50"  Margin="20,0">
+                    <pt:SpinControl.Value>
+                        <system:Double>10.0</system:Double>
+                    </pt:SpinControl.Value>
+                    <TextBox Text="{Binding ElementName=FontSizeControl, Path=Value}"></TextBox>
+                </pt:SpinControl>
+            </MenuItem>
+        </Menu>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ListBox x:Name="ModelsList" ItemsSource="{Binding Models}" SelectedItem="{Binding SelectedItem}" IsSynchronizedWithCurrentItem="True"
+                     BorderThickness="0 0 1 0"/>
+
+            <pt:PropertyGrid 
+                Grid.Column="1" 
+                x:Name="PropertyGrid1"
+                ControlFactory="{StaticResource CustomControlFactory}"
+                Operator="{StaticResource CustomOperator}"
+                CategoryControlTemplate="{StaticResource CategoryControlTemplate1}"
+                CategoryHeaderTemplate="{StaticResource HeaderTemplate1}"
+                TabHeaderTemplate="{StaticResource HeaderTemplate2}"
+                TabPageHeaderTemplate="{StaticResource PageHeaderTemplate1}"
+                SelectedObject="{Binding SelectedItem}" Margin="8" DescriptionIcon="Images\lightbulb.png"
+                FontSize="{Binding ElementName=FontSizeControl, Path=Value}"
+                VerticalPropertySpacing="{Binding ElementName=VerticalPropertySpacing, Path=Value}">
+       
+            </pt:PropertyGrid>
+            <TextBox AcceptsReturn="True" IsReadOnly="True" Grid.Column="2" Padding="8" Text="{Binding Output, Mode=OneWay}" BorderThickness="1 0 0 0"/>
+            <GridSplitter Grid.Column="0" ResizeDirection="Columns" VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="8" Margin="-4,0,0,0" Background="Transparent"/>
+            <GridSplitter Grid.Column="2" ResizeDirection="Columns" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="8" Margin="-4,0,0,0" Background="Transparent"/>
+        </Grid>
+    </DockPanel>
+</Window>
