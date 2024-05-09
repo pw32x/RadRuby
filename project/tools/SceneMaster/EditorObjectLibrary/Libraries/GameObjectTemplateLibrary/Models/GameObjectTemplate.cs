@@ -18,7 +18,8 @@ namespace SceneMaster.GameObjectTemplates.Models
         Effect,
         Player,
         CommandRunner,
-        Scroller
+        Scroller,
+        Item
     }
 
     public class GameObjectTemplate : EditorObjectInfo

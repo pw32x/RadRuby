@@ -38,6 +38,16 @@ namespace SceneMaster.EditorObjects.ViewModels
             SceneViewModel.Deselect(this);
         }
 
+        public string Name
+        {
+            get => EditorObject.Name;
+            set
+            {
+                EditorObject.Name = value;
+                OnPropertyChanged();
+            }
+        }
+
         public int X
         {
             get => EditorObject.X;

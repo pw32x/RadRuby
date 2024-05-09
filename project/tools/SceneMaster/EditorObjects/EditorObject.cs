@@ -47,7 +47,7 @@ namespace SceneMaster.EditorObjects.Models
         public int SpawnX { get; set; }
         public int SpawnY { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
         public EditorObjectType EditorObjectType => EditorObjectInfo.EditorObjectType;
         public EditorObjectInfo EditorObjectInfo { get; protected set; }
         public bool SpawnPointIsIndependant { get; internal set; }

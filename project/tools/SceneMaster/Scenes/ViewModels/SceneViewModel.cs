@@ -12,7 +12,6 @@ using SceneMaster.Main;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -20,7 +19,6 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace SceneMaster.Scenes.ViewModels
@@ -238,7 +236,7 @@ namespace SceneMaster.Scenes.ViewModels
                 return;
 
             EditorObjectViewModels.Remove(editorObjectViewModel);
-            editorObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
+            editorObjectViewModel.PropertyChanged -= EditorObjectViewModel_PropertyChanged;
 
             Deselect(editorObjectViewModel);
         }
@@ -250,7 +248,7 @@ namespace SceneMaster.Scenes.ViewModels
             {
                 foreach (var editorObjectViewModel in EditorObjectViewModels)
                 {
-                    editorObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
+                    editorObjectViewModel.PropertyChanged -= EditorObjectViewModel_PropertyChanged;
                 }
                 EditorObjectViewModels.Clear();
 
@@ -258,6 +256,21 @@ namespace SceneMaster.Scenes.ViewModels
                 Scene.EditorObjects.CollectionChanged -= EditorObjects_CollectionChanged;
                 Scene.Dispose();
                 Scene = null;
+            }
+        }
+
+        private void EditorObjectViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            IsModified = true;
+            if (e.PropertyName == nameof(EditorObject.Name))
+            {
+                EditorObjectViewModel editorObjectViewModel = sender as EditorObjectViewModel;
+                int index = EditorObjectViewModels.IndexOf(editorObjectViewModel);
+                EditorObjectViewModels.Remove(editorObjectViewModel);
+                EditorObjectViewModels.Insert(index, editorObjectViewModel);
+                Select(editorObjectViewModel);
+
+                //OnPropertyChanged(nameof(EditorObjectViewModels));
             }
         }
 
@@ -303,7 +316,7 @@ namespace SceneMaster.Scenes.ViewModels
                 newEditorObjectViewModel = new GameObjectViewModel(gameObject, this);
             }
 
-            newEditorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+            newEditorObjectViewModel.PropertyChanged += EditorObjectViewModel_PropertyChanged;
             return newEditorObjectViewModel;
         }
 

@@ -19,7 +19,7 @@
     <GameObject Name="Three Shot Flyer" X="208" Y="32" SpawnX="208" SpawnY="32" SpawnPointIsIndependant="False" GameObjectTemplateName="Three Shot Flyer">
       <CreateInfo />
     </GameObject>
-    <GameObject Name="Right Scroller" X="-115" Y="97" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="Right Scroller">
+    <GameObject Name="vvavavvv" X="-115" Y="97" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="Right Scroller">
       <ScrollerCreateInfo MapResource="field" BackgroundPlane="A" />
     </GameObject>
     <GameObject Name="CommandRunner RightScroll" X="-3" Y="-73" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="CommandRunner RightScroll">

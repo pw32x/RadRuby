@@ -1,6 +1,7 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
 using PropertyTools.DataAnnotations;
+using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
@@ -60,10 +61,25 @@ namespace SceneMaster.Scenes.Models
             private set => SetProperty(ref m_tiledMapFilename, value);
         }
 
-        public TiledMapWrapper(bool isForeground)
+        private Scene m_scene;
+
+        public TiledMapWrapper(Scene scene, bool isForeground)
         {
+            m_scene = scene;
+            m_scene.EditorObjects.CollectionChanged += EditorObjects_CollectionChanged;
             IsForeground = isForeground;
         }
+
+        private void EditorObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged("Scrollers");
+        }
+
+        public IEnumerable<GameObject> Scrollers => m_scene.EditorObjects.OfType<GameObject>().Where(g => g.GameObjectTemplate.GameObjectType == GameObjectType.Scroller);
+
+        [ItemsSourceProperty("Scrollers")]
+        [DisplayMemberPath("Name")]
+        public GameObject Scroller { get; set; }
 
         private void ShutdownTiledMap()
         {

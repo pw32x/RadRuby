@@ -12,6 +12,7 @@
                 <pt:PropertyGrid SelectedObject="{Binding Scene.ForegroundTiledMap}"
                                     CategoryControlType="None"
                                     TabVisibility="Collapsed" />
+                
             </GroupBox>
             <GroupBox Header="Background">
                 <pt:PropertyGrid SelectedObject="{Binding Scene.BackgroundTiledMap}"

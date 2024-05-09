@@ -22,8 +22,8 @@ namespace SceneMaster.Scenes.Models
         [Browsable(false)]
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
-        public TiledMapWrapper ForegroundTiledMap { get; } = new(isForeground:true);
-        public TiledMapWrapper BackgroundTiledMap { get; } = new(isForeground:false);
+        public TiledMapWrapper ForegroundTiledMap { get; }
+        public TiledMapWrapper BackgroundTiledMap { get; }
 
         private const string ForegroundTiledMapFilePathNodeName = "ForegroundTiledMapFilePath";
         private const string BackgroundTiledMapFilePathNodeName = "BackgroundTiledMapFilePath";
@@ -33,6 +33,10 @@ namespace SceneMaster.Scenes.Models
         public Scene(/*List<BitmapImage> tileTypeImages*/)
         {
             //m_tileTypeImages = tileTypeImages;
+
+            ForegroundTiledMap = new(this, isForeground:true);
+            BackgroundTiledMap = new(this, isForeground:false);
+
 
             ForegroundTiledMap.PropertyChanged += ForegroundTiledMap_PropertyChanged;
             BackgroundTiledMap.PropertyChanged += BackgroundTiledMap_PropertyChanged;
