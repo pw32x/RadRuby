@@ -73,8 +73,9 @@ namespace SceneMaster.Scenes.ViewModels
         private Scene m_scene;
         public Scene Scene { get => m_scene; private set => SetProperty(ref m_scene, value); }
 
-        private const uint EDITING_MODE_OBJECTPLACE = 0;
+        private const uint EDITING_MODE_SCENE = 0;
         private const uint EDITING_MODE_OBJECTEDIT = 1;
+        private const uint EDITING_MODE_OBJECTPLACE = 2;
         //private const uint EDITING_MODE_TERRAIN = 2;
 
 

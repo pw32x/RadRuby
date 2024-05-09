@@ -20,7 +20,10 @@
       <CreateInfo />
     </GameObject>
     <GameObject Name="Right Scroller" X="-115" Y="97" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="Right Scroller">
-      <ScrollerCreateInfo MapResource="field_map" BackgroundPlane="A" />
+      <ScrollerCreateInfo MapResource="field" BackgroundPlane="A" />
+    </GameObject>
+    <GameObject Name="CommandRunner RightScroll" X="-3" Y="-73" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="CommandRunner RightScroll">
+      <CommandRunnerCreateInfo Commands="NULL" />
     </GameObject>
   </EditorObjects>
 </Scene>

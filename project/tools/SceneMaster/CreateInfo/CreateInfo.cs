@@ -85,7 +85,7 @@ namespace SceneMaster.CreateInfoTypes
 
     public class CommandRunnerCreateInfo : BaseCreateInfo
     {
-        private string m_commands = "NULL";
+        private string m_commands = "";
         public string Commands 
         { 
             get => m_commands;
