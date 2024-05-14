@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SceneMaster.GameObjectTemplates.ViewModels
 {
-    internal class GameObjectViewModel : EditorObjectViewModel
+    public class GameObjectViewModel : EditorObjectViewModel
     {
         public GameObjectViewModel(GameObject gameObject, SceneViewModel sceneViewModel) : base(gameObject, sceneViewModel)
         {

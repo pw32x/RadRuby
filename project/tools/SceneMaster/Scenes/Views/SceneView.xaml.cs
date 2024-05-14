@@ -51,15 +51,15 @@ namespace SceneMaster.Scenes.Views
         {
             if (m_sceneViewModel == null ||
                 m_sceneViewModel.Scene == null ||
-                m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap == null)
+                m_sceneViewModel.ForegroundTiledMap.TiledMap == null)
                 return;
 
 
-            int tileWidth = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.TileWidth;
-            int tileHeight = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.TileHeight;
+            int tileWidth = m_sceneViewModel.ForegroundTiledMap.TiledMap.TileWidth;
+            int tileHeight = m_sceneViewModel.ForegroundTiledMap.TiledMap.TileHeight;
 
-            int mapWidth = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.Width * tileWidth;
-            int mapHeight = m_sceneViewModel.Scene.ForegroundTiledMap.TiledMap.Height * tileHeight;
+            int mapWidth = m_sceneViewModel.ForegroundTiledMap.TiledMap.Width * tileWidth;
+            int mapHeight = m_sceneViewModel.ForegroundTiledMap.TiledMap.Height * tileHeight;
 
             GridCanvas.Children.Clear();
 
@@ -103,12 +103,12 @@ namespace SceneMaster.Scenes.Views
 
         private void SceneMasterSceneView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            m_sceneViewModel = null;
+            m_scene = null;
 
-            if (m_scene != null)
+            if (m_sceneViewModel != null)
             {
-                m_scene.PropertyChanged -= Scene_PropertyChanged;
-                m_scene = null;
+                m_sceneViewModel.PropertyChanged -= SceneViewModel_PropertyChanged;
+                m_sceneViewModel = null;
             }
 
             if (DataContext is SceneViewModel sceneViewModel)
@@ -116,18 +116,18 @@ namespace SceneMaster.Scenes.Views
                 m_sceneViewModel = sceneViewModel;
                 m_scene = sceneViewModel.Scene;
 
-                if (m_scene != null) 
+                if (m_sceneViewModel != null) 
                 {
-                    m_scene.PropertyChanged += Scene_PropertyChanged;
+                    m_sceneViewModel.PropertyChanged += SceneViewModel_PropertyChanged;
                 }
             }
 
             DrawGridLines();
         }
 
-        private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void SceneViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Scene.ForegroundTiledMap.TiledMapBitmapSource))
+            if (e.PropertyName == nameof(TiledMapWrapper.TiledMapBitmapSource))
                 DrawGridLines();
         }
     }

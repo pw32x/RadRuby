@@ -9,13 +9,13 @@
     <Grid>
         <StackPanel>
             <GroupBox Header="Foreground">
-                <pt:PropertyGrid SelectedObject="{Binding Scene.ForegroundTiledMap}"
+                <pt:PropertyGrid SelectedObject="{Binding ForegroundTiledMap}"
                                     CategoryControlType="None"
                                     TabVisibility="Collapsed" />
                 
             </GroupBox>
             <GroupBox Header="Background">
-                <pt:PropertyGrid SelectedObject="{Binding Scene.BackgroundTiledMap}"
+                <pt:PropertyGrid SelectedObject="{Binding BackgroundTiledMap}"
                                 CategoryControlType="None"
                                 TabVisibility="Collapsed" />
             </GroupBox>

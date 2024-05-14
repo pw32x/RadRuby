@@ -13,6 +13,7 @@ using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -83,6 +84,8 @@ namespace SceneMaster.Scenes.ViewModels
         private int m_currentTileType = 0;
         public int CurrentTileType { get => m_currentTileType; set => SetProperty(ref m_currentTileType, value); }
 
+        public TiledMapWrapper ForegroundTiledMap { get; }
+        public TiledMapWrapper BackgroundTiledMap { get; }
 
         private Settings m_settings;
 
@@ -110,6 +113,33 @@ namespace SceneMaster.Scenes.ViewModels
                                              CanDeleteSelectedEditorObjectViewModel);
 
             
+            ForegroundTiledMap = new(this, isForeground:true);
+            BackgroundTiledMap = new(this, isForeground:false);
+
+            ForegroundTiledMap.PropertyChanged += ForegroundTiledMap_PropertyChanged;
+            BackgroundTiledMap.PropertyChanged += BackgroundTiledMap_PropertyChanged;
+        }
+
+        private void ForegroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(ForegroundTiledMap));
+
+            if (e.PropertyName == nameof(ForegroundTiledMap.TiledMapFilePath))
+                Scene.ForegroundMapPath = ForegroundTiledMap.TiledMapFilePath;
+
+            if (e.PropertyName == nameof(ForegroundTiledMap.Scroller) && ForegroundTiledMap.Scroller != null)
+                Scene.ForegroundMapScrollerName = ForegroundTiledMap.Scroller.Name;
+        }
+
+        private void BackgroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(BackgroundTiledMap));
+
+            if (e.PropertyName == nameof(BackgroundTiledMap.TiledMapFilePath))
+                Scene.BackgroundMapPath = BackgroundTiledMap.TiledMapFilePath;
+
+            if (e.PropertyName == nameof(BackgroundTiledMap.Scroller) && BackgroundTiledMap.Scroller != null)
+                Scene.BackgroundMapScrollerName = BackgroundTiledMap.Scroller.Name;
         }
 
         public void RunScene()
@@ -254,9 +284,12 @@ namespace SceneMaster.Scenes.ViewModels
 
                 Scene.PropertyChanged -= Scene_PropertyChanged;
                 Scene.EditorObjects.CollectionChanged -= EditorObjects_CollectionChanged;
-                Scene.Dispose();
+
                 Scene = null;
             }
+
+            ForegroundTiledMap.Dispose();
+            BackgroundTiledMap.Dispose();
         }
 
         private void EditorObjectViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -327,6 +360,12 @@ namespace SceneMaster.Scenes.ViewModels
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
 
             Scene.LoadFromXml(root, filePath, EditorObjectInfoLibraryViewModel);
+
+            if (!string.IsNullOrEmpty(Scene.ForegroundMapPath))
+                ForegroundTiledMap.LoadTiledMap(Scene.ForegroundMapPath, Scene.ForegroundMapScrollerName);
+
+            if (!string.IsNullOrEmpty(Scene.BackgroundMapPath))
+                BackgroundTiledMap.LoadTiledMap(Scene.BackgroundMapPath, Scene.BackgroundMapScrollerName);
 
             m_ignoreChanges = false;
 

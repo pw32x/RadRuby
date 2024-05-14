@@ -42,12 +42,12 @@
                           VerticalAlignment="Center">
                     <Canvas>
                     <Image x:Name="BackgroundTileMapBitmapImage"  
-                           Source="{Binding Scene.BackgroundTiledMap.TiledMapBitmapSource}"
+                           Source="{Binding BackgroundTiledMap.TiledMapBitmapSource}"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            Stretch="None"/>
 
                     <Image x:Name="ForegroundTileMapBitmapImage"  
-                           Source="{Binding Scene.ForegroundTiledMap.TiledMapBitmapSource}"
+                           Source="{Binding ForegroundTiledMap.TiledMapBitmapSource}"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            LayoutUpdated="ForegroundTileMapBitmapImage_LayoutUpdated"
                            MouseLeftButtonDown="Image_MouseLeftButtonDown" 

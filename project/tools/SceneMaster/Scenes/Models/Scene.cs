@@ -15,67 +15,57 @@ using System.Xml;
 namespace SceneMaster.Scenes.Models
 {
 
-    public class Scene : ObservableObject, IDisposable
+    public class Scene : ObservableObject
     {
         private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
 
         [Browsable(false)]
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
-        public TiledMapWrapper ForegroundTiledMap { get; }
-        public TiledMapWrapper BackgroundTiledMap { get; }
+        public string ForegroundMapPath { get; set; }
+        public string BackgroundMapPath { get; set; }
+
+        // replace with guids
+        public string ForegroundMapScrollerName { get; set; }
+        public string BackgroundMapScrollerName { get; set; }
 
         private const string ForegroundTiledMapFilePathNodeName = "ForegroundTiledMapFilePath";
         private const string BackgroundTiledMapFilePathNodeName = "BackgroundTiledMapFilePath";
+        private const string ForegroundTiledMapScrollerNodeName = "ForegroundTiledMapScrollerName";
+        private const string BackgroundTiledMapScrollerNodeName = "BackgroundTiledMapScrollerName";
         private const string EditorObjectsNodeName = "EditorObjects";
         //private const string TerrainNodeName = "Terrain";
 
         public Scene(/*List<BitmapImage> tileTypeImages*/)
         {
             //m_tileTypeImages = tileTypeImages;
-
-            ForegroundTiledMap = new(this, isForeground:true);
-            BackgroundTiledMap = new(this, isForeground:false);
-
-
-            ForegroundTiledMap.PropertyChanged += ForegroundTiledMap_PropertyChanged;
-            BackgroundTiledMap.PropertyChanged += BackgroundTiledMap_PropertyChanged;
         }
-
-        private void ForegroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(ForegroundTiledMap));
-        }
-
-        private void BackgroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            OnPropertyChanged(nameof(BackgroundTiledMap));
-        }
-
-        public void ImportTiledMap(string tiledMapFilePath)
-        {
-            if (!File.Exists(tiledMapFilePath))
-                throw new Exception($"File {tiledMapFilePath} doesn't exist.");
-
-            ForegroundTiledMap.LoadTiledMap(tiledMapFilePath);
-            //BuildTerrain();
-        }
-
 
         public void LoadFromXml(XmlElement root, string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
             var foregroundFilePathNode = root[ForegroundTiledMapFilePathNodeName];
             if (foregroundFilePathNode != null && !string.IsNullOrEmpty(foregroundFilePathNode.InnerText))
             {
-                string tiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), foregroundFilePathNode.InnerText);
-                ForegroundTiledMap.LoadTiledMap(tiledMapFilePath);
+                ForegroundMapPath = Path.Combine(Path.GetDirectoryName(filePath), foregroundFilePathNode.InnerText);
+                
             }
 
             var backgroundFilePathNode = root[BackgroundTiledMapFilePathNodeName];
             if (backgroundFilePathNode != null && !string.IsNullOrEmpty(backgroundFilePathNode.InnerText))
             {
-                string tiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), backgroundFilePathNode.InnerText);
-                BackgroundTiledMap.LoadTiledMap(tiledMapFilePath);
+                BackgroundMapPath = Path.Combine(Path.GetDirectoryName(filePath), backgroundFilePathNode.InnerText);
+            }
+
+            var foregroundTiledMapScrollerNodeName = root[ForegroundTiledMapScrollerNodeName];
+            if (foregroundTiledMapScrollerNodeName != null)
+            {
+                ForegroundMapScrollerName  = foregroundTiledMapScrollerNodeName.InnerText;
+            }
+
+            var backgroundTiledMapScrollerNodeName = root[BackgroundTiledMapScrollerNodeName];
+            if (backgroundTiledMapScrollerNodeName != null)
+            {
+                BackgroundMapScrollerName  = backgroundTiledMapScrollerNodeName.InnerText;
             }
 
             var editorObjectsNode = root[EditorObjectsNodeName];
@@ -113,13 +103,23 @@ namespace SceneMaster.Scenes.Models
         {
             // foregroundtiled map file path
             var foregroundFilePathNode = doc.CreateElement(ForegroundTiledMapFilePathNodeName);
-            foregroundFilePathNode.InnerText = string.IsNullOrEmpty(ForegroundTiledMap.TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), ForegroundTiledMap.TiledMapFilePath);
+            foregroundFilePathNode.InnerText = string.IsNullOrEmpty(ForegroundMapPath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), ForegroundMapPath);
             root.AppendChild(foregroundFilePathNode);
 
             // background tiled map file path
             var backgroundFilePathNode = doc.CreateElement(BackgroundTiledMapFilePathNodeName);
-            backgroundFilePathNode.InnerText = string.IsNullOrEmpty(BackgroundTiledMap.TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), BackgroundTiledMap.TiledMapFilePath);
+            backgroundFilePathNode.InnerText = string.IsNullOrEmpty(BackgroundMapPath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), BackgroundMapPath);
             root.AppendChild(backgroundFilePathNode);
+
+            // foreground scroller name
+            var foregroundTiledMapScrollerNode = doc.CreateElement(ForegroundTiledMapScrollerNodeName);
+            foregroundTiledMapScrollerNode.InnerText = string.IsNullOrEmpty(ForegroundMapScrollerName) ? "" : ForegroundMapScrollerName;
+            root.AppendChild(foregroundTiledMapScrollerNode);
+
+            // background scroller name
+            var backgroundTiledMapScrollerNode = doc.CreateElement(BackgroundTiledMapScrollerNodeName);
+            backgroundTiledMapScrollerNode.InnerText = string.IsNullOrEmpty(BackgroundMapScrollerName) ? "" : BackgroundMapScrollerName;
+            root.AppendChild(backgroundTiledMapScrollerNode);
 
             // gameobjects
             var editorObjectsNode = doc.CreateElement(EditorObjectsNodeName);
@@ -145,10 +145,6 @@ namespace SceneMaster.Scenes.Models
             return editorObject;
         }
 
-        public void Dispose()
-        {
-            ForegroundTiledMap.Dispose();
-            BackgroundTiledMap.Dispose();
-        }
+
     }
 }
