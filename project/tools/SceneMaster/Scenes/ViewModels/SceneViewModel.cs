@@ -128,7 +128,7 @@ namespace SceneMaster.Scenes.ViewModels
                 Scene.ForegroundMapPath = ForegroundTiledMap.TiledMapFilePath;
 
             if (e.PropertyName == nameof(ForegroundTiledMap.Scroller) && ForegroundTiledMap.Scroller != null)
-                Scene.ForegroundMapScrollerName = ForegroundTiledMap.Scroller.Name;
+                Scene.ForegroundMapScrollerGuid = ForegroundTiledMap.Scroller.GameObject.Guid;
         }
 
         private void BackgroundTiledMap_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -139,7 +139,7 @@ namespace SceneMaster.Scenes.ViewModels
                 Scene.BackgroundMapPath = BackgroundTiledMap.TiledMapFilePath;
 
             if (e.PropertyName == nameof(BackgroundTiledMap.Scroller) && BackgroundTiledMap.Scroller != null)
-                Scene.BackgroundMapScrollerName = BackgroundTiledMap.Scroller.Name;
+                Scene.BackgroundMapScrollerGuid = BackgroundTiledMap.Scroller.GameObject.Guid;
         }
 
         public void RunScene()
@@ -303,7 +303,7 @@ namespace SceneMaster.Scenes.ViewModels
                 EditorObjectViewModels.Insert(index, editorObjectViewModel);
                 Select(editorObjectViewModel);
 
-                //OnPropertyChanged(nameof(EditorObjectViewModels));
+                OnPropertyChanged(nameof(EditorObjectViewModels));
             }
         }
 
@@ -362,10 +362,10 @@ namespace SceneMaster.Scenes.ViewModels
             Scene.LoadFromXml(root, filePath, EditorObjectInfoLibraryViewModel);
 
             if (!string.IsNullOrEmpty(Scene.ForegroundMapPath))
-                ForegroundTiledMap.LoadTiledMap(Scene.ForegroundMapPath, Scene.ForegroundMapScrollerName);
+                ForegroundTiledMap.LoadTiledMap(Scene.ForegroundMapPath, Scene.ForegroundMapScrollerGuid);
 
             if (!string.IsNullOrEmpty(Scene.BackgroundMapPath))
-                BackgroundTiledMap.LoadTiledMap(Scene.BackgroundMapPath, Scene.BackgroundMapScrollerName);
+                BackgroundTiledMap.LoadTiledMap(Scene.BackgroundMapPath, Scene.BackgroundMapScrollerGuid);
 
             m_ignoreChanges = false;
 

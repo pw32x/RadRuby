@@ -33,6 +33,8 @@ namespace SceneMaster.Scenes.Models
 
         // visual of the actual Tiled map
         private WriteableBitmap m_tiledMapBitmapSource;
+
+        [PropertyTools.DataAnnotations.DisplayName("Preview")]
         public WriteableBitmap TiledMapBitmapSource { get => m_tiledMapBitmapSource; private set => SetProperty(ref m_tiledMapBitmapSource, value); }
 
         [PropertyTools.DataAnnotations.Browsable(false)]
@@ -46,7 +48,7 @@ namespace SceneMaster.Scenes.Models
             get => m_tiledMapFilePath;
             set
             {
-                LoadTiledMap(value, "");
+                LoadTiledMap(value, Guid.Empty);
                 TiledMapFilename = Path.GetFileName(m_tiledMapFilePath);
             }
         }
@@ -73,6 +75,7 @@ namespace SceneMaster.Scenes.Models
         private void EditorObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             OnPropertyChanged("Scrollers");
+            OnPropertyChanged("ScrollerGuid");
         }
 
         [PropertyTools.DataAnnotations.Browsable(false)]
@@ -82,9 +85,11 @@ namespace SceneMaster.Scenes.Models
 
         [ItemsSourceProperty("Scrollers")]
         [DisplayMemberPath("GameObject.Name")]
-        public GameObjectViewModel Scroller 
+        [PropertyTools.DataAnnotations.DisplayName("Scroller")]
+        [SelectedValuePath("GameObject.Guid")]
+        public Guid ScrollerGuid
         { 
-            get => m_scroller; 
+            get => m_scroller?.GameObject?.Guid ?? Guid.Empty; 
             set
             {
                 if (m_scroller != null) 
@@ -92,22 +97,30 @@ namespace SceneMaster.Scenes.Models
                     m_scroller.PropertyChanged -= M_scroller_PropertyChanged;
                 }
 
-                SetProperty(ref m_scroller, value);
+                m_scroller = Scrollers.FirstOrDefault(s => s.GameObject.Guid == value);
+
+                OnPropertyChanged(nameof(ScrollerGuid));
+                OnPropertyChanged(nameof(Scroller));
 
                 if (m_scroller != null)
                 {
                     m_scroller.PropertyChanged += M_scroller_PropertyChanged;
                 }
-
             }
+        }
+
+        [PropertyTools.DataAnnotations.Browsable(false)]
+        public GameObjectViewModel Scroller 
+        { 
+            get => m_scroller; 
         }
 
         private void M_scroller_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(GameObjectViewModel.Name)) 
-            {
-                OnPropertyChanged(nameof(Scroller));
-            }
+            //if (e.PropertyName == nameof(GameObjectViewModel.Name)) 
+            //{
+            //    OnPropertyChanged(nameof(ScrollerGuid));
+            //}
         }
 
         private void ShutdownTiledMap()
@@ -123,7 +136,7 @@ namespace SceneMaster.Scenes.Models
 
 
 
-        public void LoadTiledMap(string tiledMapFilePath, string scrollerName)
+        public void LoadTiledMap(string tiledMapFilePath, Guid scrollerGuid)
         {
             StopWatchingTiledMap();
 
@@ -164,10 +177,7 @@ namespace SceneMaster.Scenes.Models
 
                 TiledMapBitmapSource = BuildTiledMapBitmapSource();
 
-                if (!string.IsNullOrEmpty(scrollerName))
-                {
-                    m_scroller = Scrollers.FirstOrDefault(s => s.Name == scrollerName);
-                }
+                m_scroller = Scrollers.FirstOrDefault(s => s.GameObject.Guid == scrollerGuid);
 
                 StartWatchingTiledMap(tiledMapFilePath);
             }
@@ -197,12 +207,12 @@ namespace SceneMaster.Scenes.Models
 
         private void M_tiledMapFileWatcher_Changed(object sender, FileSystemEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath, Scroller?.Name); });
+            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath, Scroller?.GameObject?.Guid ?? Guid.Empty); });
         }
 
         private void M_tiledMapFileWatcher_Renamed(object sender, RenamedEventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath, Scroller?.Name); });
+            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath, Scroller?.GameObject?.Guid ?? Guid.Empty); });
         }
 
         private void StopWatchingTiledMap()

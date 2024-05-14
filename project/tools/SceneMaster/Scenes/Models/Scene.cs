@@ -26,8 +26,8 @@ namespace SceneMaster.Scenes.Models
         public string BackgroundMapPath { get; set; }
 
         // replace with guids
-        public string ForegroundMapScrollerName { get; set; }
-        public string BackgroundMapScrollerName { get; set; }
+        public Guid ForegroundMapScrollerGuid { get; set; }
+        public Guid BackgroundMapScrollerGuid { get; set; }
 
         private const string ForegroundTiledMapFilePathNodeName = "ForegroundTiledMapFilePath";
         private const string BackgroundTiledMapFilePathNodeName = "BackgroundTiledMapFilePath";
@@ -59,13 +59,15 @@ namespace SceneMaster.Scenes.Models
             var foregroundTiledMapScrollerNodeName = root[ForegroundTiledMapScrollerNodeName];
             if (foregroundTiledMapScrollerNodeName != null)
             {
-                ForegroundMapScrollerName  = foregroundTiledMapScrollerNodeName.InnerText;
+                Guid.TryParse(foregroundTiledMapScrollerNodeName.InnerText, out var guid);
+                ForegroundMapScrollerGuid  = guid;
             }
 
             var backgroundTiledMapScrollerNodeName = root[BackgroundTiledMapScrollerNodeName];
             if (backgroundTiledMapScrollerNodeName != null)
             {
-                BackgroundMapScrollerName  = backgroundTiledMapScrollerNodeName.InnerText;
+                Guid.TryParse(backgroundTiledMapScrollerNodeName.InnerText, out var guid);
+                BackgroundMapScrollerGuid  = guid;
             }
 
             var editorObjectsNode = root[EditorObjectsNodeName];
@@ -113,12 +115,12 @@ namespace SceneMaster.Scenes.Models
 
             // foreground scroller name
             var foregroundTiledMapScrollerNode = doc.CreateElement(ForegroundTiledMapScrollerNodeName);
-            foregroundTiledMapScrollerNode.InnerText = string.IsNullOrEmpty(ForegroundMapScrollerName) ? "" : ForegroundMapScrollerName;
+            foregroundTiledMapScrollerNode.InnerText = ForegroundMapScrollerGuid.ToString();
             root.AppendChild(foregroundTiledMapScrollerNode);
 
             // background scroller name
             var backgroundTiledMapScrollerNode = doc.CreateElement(BackgroundTiledMapScrollerNodeName);
-            backgroundTiledMapScrollerNode.InnerText = string.IsNullOrEmpty(BackgroundMapScrollerName) ? "" : BackgroundMapScrollerName;
+            backgroundTiledMapScrollerNode.InnerText = BackgroundMapScrollerGuid.ToString();
             root.AppendChild(backgroundTiledMapScrollerNode);
 
             // gameobjects
