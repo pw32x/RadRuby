@@ -8,6 +8,7 @@
 
 // command headers
 #include "engine\commands\background_commands.h"
+#include "engine\commands\map_commands.h"
 #include "engine\commands\set_palette_commands.h"
 
 // create info headers
@@ -15,11 +16,13 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const ScrollerCreateInfo scene003_createInfo_RightScroller2 = { &right_scroller_template, 0, 97, &field_map, BG_A };
-const CommandRunnerCreateInfo scene003_createInfo_CommandRunnerRightScroll6 = { &commandrunner_rightscroll_template, 0, 0, NULL };
-const CreateInfo scene003_createInfo_RadRuby7 = { &player_template, 58, 51 };
-const CreateInfo scene003_createInfo_Wheeler8 = { &wheeler_template, 120, 99 };
-const CreateInfo scene003_createInfo_Wheeler9 = { &wheeler_template, 159, 80 };
-const CreateInfo scene003_createInfo_ThreeShotFlyer10 = { &threeshotflyer_template, 220, 44 };
+const CommandRunnerCreateInfo scene003_createInfo_CommandRunnerRightScroll7 = { &commandrunner_rightscroll_template, 0, 0, NULL };
+const CreateInfo scene003_createInfo_RadRuby8 = { &player_template, 58, 51 };
+const CreateInfo scene003_createInfo_Wheeler9 = { &wheeler_template, 120, 99 };
+const CreateInfo scene003_createInfo_Wheeler10 = { &wheeler_template, 159, 80 };
+const CreateInfo scene003_createInfo_ThreeShotFlyer11 = { &threeshotflyer_template, 220, 44 };
+
+const DrawMapInfo drawMapInfo = { &field_map, 0, 0, 0, 0, 32, 24 };
 
 const Command scene003_commands[] = 
 {
@@ -39,11 +42,12 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)SetPalette2, &global_palette },
     { 0, (CommandFunction)SetBackgroundVerticalScroll, (const void*)4 },
     { 0, (CommandFunction)SetPalette3, &global_palette },
-    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_CommandRunnerRightScroll6 },
-    { 61, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RadRuby7 },
-    { 124, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler8 },
-    { 163, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler9 },
-    { 232, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_ThreeShotFlyer10 },
+    { 0, (CommandFunction)DrawMap, &drawMapInfo },
+    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_CommandRunnerRightScroll7 },
+    { 61, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_RadRuby8 },
+    { 124, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler9 },
+    { 163, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_Wheeler10 },
+    { 232, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo_ThreeShotFlyer11 },
     { 0, (CommandFunction)NULL, NULL}
 };
 

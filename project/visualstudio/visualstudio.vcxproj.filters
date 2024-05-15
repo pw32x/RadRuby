@@ -38,6 +38,9 @@
     <Filter Include="Source Files\client\exported\maps">
       <UniqueIdentifier>{9bc1ba36-6f24-402c-ac43-c6b2caa7b20e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\engine\commands">
+      <UniqueIdentifier>{1b9fd081-09ea-42e6-81c7-65acb28eaff4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\sgdk200\inc\bmp.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\animation_draw.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\commands\map_commands.h">
+      <Filter>Source Files\engine\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -591,6 +597,9 @@
     </ClCompile>
     <ClCompile Include="..\source\engine\animation_draw.c">
       <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\commands\map_commands.c">
+      <Filter>Source Files\engine\commands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

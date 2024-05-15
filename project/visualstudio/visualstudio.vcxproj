@@ -114,6 +114,7 @@
     <ClInclude Include="..\source\engine\base_types.h" />
     <ClInclude Include="..\source\engine\commandrunner_runall.h" />
     <ClInclude Include="..\source\engine\commands\background_commands.h" />
+    <ClInclude Include="..\source\engine\commands\map_commands.h" />
     <ClInclude Include="..\source\engine\commands\set_palette_commands.h" />
     <ClInclude Include="..\source\engine\command_manager.h" />
     <ClInclude Include="..\source\engine\command_types.h" />
@@ -236,6 +237,7 @@
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\commandrunner_runall.c" />
     <ClCompile Include="..\source\engine\commands\background_commands.c" />
+    <ClCompile Include="..\source\engine\commands\map_commands.c" />
     <ClCompile Include="..\source\engine\commands\set_palette_commands.c" />
     <ClCompile Include="..\source\engine\command_manager.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
