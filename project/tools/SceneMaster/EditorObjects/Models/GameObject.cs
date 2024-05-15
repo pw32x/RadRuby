@@ -22,6 +22,8 @@ namespace SceneMaster.GameObjectTemplates.Models
 
         public BaseCreateInfo CreateInfo { get; set; }
 
+        public override object ObjectData { get => CreateInfo; }
+
         public GameObject(XmlElement gameObjectNode, 
                           GameObjectTemplateLibrary gameObjectTemplateLibrary) : base(gameObjectNode)
         {

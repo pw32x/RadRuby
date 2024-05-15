@@ -1,4 +1,5 @@
-﻿using SceneMaster.EditorObjects.Models;
+﻿using SceneMaster.CreateInfoTypes;
+using SceneMaster.EditorObjects.Models;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Utils;
 using System.Xml;
@@ -13,6 +14,11 @@ namespace SceneMaster.Commands.Models
                              CommandInfo commandInfo) : base(x, y, name, commandInfo)
         {
         }
+
+
+        public BaseCreateInfo CreateInfo { get; set; }
+
+        public override object ObjectData { get => CreateInfo; }
 
         public string m_commandValue = "";
         public string CommandValue { get => m_commandValue; set => m_commandValue = value; }

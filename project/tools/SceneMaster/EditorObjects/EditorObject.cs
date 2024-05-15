@@ -32,6 +32,8 @@ namespace SceneMaster.EditorObjects.Models
             Guid = Guid.NewGuid();
         }
 
+        public virtual object ObjectData { get; } = null;
+
         public EditorObject(XmlElement node)
         {
             X = XmlUtils.GetValue<int>(node, nameof(X));
