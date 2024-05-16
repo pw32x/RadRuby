@@ -81,6 +81,7 @@
     <ClInclude Include="..\source\client\exported\animations\walker_small.h" />
     <ClInclude Include="..\source\client\exported\animations\wheeler.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />
+    <ClInclude Include="..\source\client\exported\maps\field_background.h" />
     <ClInclude Include="..\source\client\exported\palettes\global_palette.h" />
     <ClInclude Include="..\source\client\exported\scenes\scene003.h" />
     <ClInclude Include="..\source\client\gameobjects\basic_effect.h" />
@@ -88,21 +89,21 @@
     <ClInclude Include="..\source\client\gameobjects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\gameobjects\deliveryrobot.h" />
     <ClInclude Include="..\source\client\gameobjects\enemy.h" />
+    <ClInclude Include="..\source\client\gameobjects\old_right_scroller.h" />
     <ClInclude Include="..\source\client\gameobjects\on_resource_loaded_callback.h" />
     <ClInclude Include="..\source\client\gameobjects\particle_effect.h" />
     <ClInclude Include="..\source\client\gameobjects\player.h" />
-    <ClInclude Include="..\source\client\gameobjects\right_scroller.h" />
     <ClInclude Include="..\source\client\gameobjects\shotgun.h" />
     <ClInclude Include="..\source\client\gameobjects\shotgun_item.h" />
     <ClInclude Include="..\source\client\gameobjects\threeshotflyer.h" />
     <ClInclude Include="..\source\client\gameobjects\wheeler.h" />
-    <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\right_scroller_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h" />
-    <ClInclude Include="..\source\client\generated\resources.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\field_background_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h" />
     <ClInclude Include="..\source\client\managers\physics_manager.h" />
     <ClInclude Include="..\source\client\managers\weapon_manager.h" />
@@ -194,6 +195,7 @@
     <ClCompile Include="..\source\client\exported\animations\walker_small.c" />
     <ClCompile Include="..\source\client\exported\animations\wheeler.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
+    <ClCompile Include="..\source\client\exported\maps\field_background.c" />
     <ClCompile Include="..\source\client\exported\palettes\global_palette.c" />
     <ClCompile Include="..\source\client\exported\scenes\scene003.c" />
     <ClCompile Include="..\source\client\gameobjects\basic_effect.c" />
@@ -201,34 +203,32 @@
     <ClCompile Include="..\source\client\gameobjects\commandrunner_rightscroll.c" />
     <ClCompile Include="..\source\client\gameobjects\deliveryrobot.c" />
     <ClCompile Include="..\source\client\gameobjects\enemy.c" />
+    <ClCompile Include="..\source\client\gameobjects\old_right_scroller.c" />
     <ClCompile Include="..\source\client\gameobjects\on_resource_loaded_callback.c" />
     <ClCompile Include="..\source\client\gameobjects\particle_effect.c" />
     <ClCompile Include="..\source\client\gameobjects\player.c" />
-    <ClCompile Include="..\source\client\gameobjects\right_scroller.c" />
     <ClCompile Include="..\source\client\gameobjects\shotgun.c" />
     <ClCompile Include="..\source\client\gameobjects\shotgun_item.c" />
     <ClCompile Include="..\source\client\gameobjects\threeshotflyer.c" />
     <ClCompile Include="..\source\client\gameobjects\wheeler.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
-    <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
-    <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
-    <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\player_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\right_scroller_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c" />
-    <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_template.c" />
-    <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\wheeler_template.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\field_background_tileset.c" />
     <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c" />
     <ClCompile Include="..\source\client\managers\physics_manager.c" />
     <ClCompile Include="..\source\client\managers\weapon_manager.c" />
@@ -258,6 +258,7 @@
     <ClCompile Include="..\source\engine\terrain_manager.c" />
     <ClCompile Include="..\source\engine\vdptile_manager.c" />
     <ClCompile Include="..\source\engine\vdp_types.c" />
+    <ClCompile Include="..\source\Genesis\boot\rom_head.c" />
     <ClCompile Include="..\source\Genesis\main.c" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +280,7 @@
     <None Include="..\build\deploy.bat" />
     <None Include="..\build\makefile.gen" />
     <None Include="..\build\rebuild.bat" />
+    <None Include="..\source\Genesis\boot\sega.s" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
