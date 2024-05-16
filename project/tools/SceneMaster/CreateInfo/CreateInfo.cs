@@ -112,7 +112,7 @@ namespace SceneMaster.CreateInfoTypes
 
     public class ScrollerCreateInfo : BaseCreateInfo
     {
-        private string m_mapResource = "NULL";
+        private string m_mapResource = "";
 
         [InputFilePath(".tmx", "Tmx files|*.tmx;")]
         public string MapResource 

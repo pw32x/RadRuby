@@ -75,7 +75,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             string createInfoName = sceneName + "_createInfo_" + GameObjectTemplate.Name.Replace(" ", "") + exportCounter;
 
             var exportedCommandData = new ExportedCommandData();
-            exportedCommandData.CreateInfoTypeName = createInfoName;
+            exportedCommandData.CreateInfoDataName = createInfoName;
 
             StringBuilder sb = new();
             sb.Append("const " + CreateInfo.GetType().Name + " " + createInfoName + " = { ");
@@ -133,9 +133,9 @@ namespace SceneMaster.GameObjectTemplates.Models
             x += GameObjectTemplate.RectRight + GameObjectTemplate.Visual.OffsetX;
 
             string finalExportedCommandData = "NULL";
-            if (!string.IsNullOrEmpty(exportedCommandData.CreateInfoTypeName))
+            if (!string.IsNullOrEmpty(exportedCommandData.CreateInfoDataName))
             {
-                finalExportedCommandData = "&" + exportedCommandData.CreateInfoTypeName;
+                finalExportedCommandData = "&" + exportedCommandData.CreateInfoDataName;
 
                 //if (GameObjectTemplate.GameObjectType == GameObjectType.CommandRunner)
                 //{

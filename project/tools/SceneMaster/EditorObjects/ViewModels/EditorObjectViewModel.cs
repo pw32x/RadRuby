@@ -13,6 +13,9 @@ namespace SceneMaster.EditorObjects.ViewModels
         [Browsable(false)]
         public ICommand ResetSpawnPointPositionCommand { get; }
 
+        [Browsable(false)]
+        public bool HasNoObjectData => EditorObject.ObjectData == null;
+
         public EditorObjectViewModel(EditorObject editorObject,
                                      SceneViewModel sceneViewModel)
         {

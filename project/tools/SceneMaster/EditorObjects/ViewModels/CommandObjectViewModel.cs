@@ -1,4 +1,5 @@
-﻿using SceneMaster.Commands.Models;
+﻿using PropertyTools.DataAnnotations;
+using SceneMaster.Commands.Models;
 using SceneMaster.EditorObjects.ViewModels;
 using SceneMaster.Scenes.ViewModels;
 using System.ComponentModel.DataAnnotations;
@@ -11,6 +12,7 @@ namespace SceneMaster.EditorObjects.CommandLibrary.ViewModels
         {
         }
 
+        [VisibleBy("HasNoObjectData")]
         public string CommandValue 
         { 
             get => (EditorObject as CommandObject).CommandValue;
@@ -21,6 +23,7 @@ namespace SceneMaster.EditorObjects.CommandLibrary.ViewModels
             }
         }
 
+        [VisibleBy("HasNoObjectData")]
         [DataType(DataType.MultilineText)]
         public string PreCommandData
         { 

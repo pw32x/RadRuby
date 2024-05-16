@@ -27,6 +27,8 @@
     <GameObject Name="CommandRunner RightScroll" Guid="cb11947f-a69a-47bc-8ea7-09757eeef37c" X="-3" Y="-73" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="CommandRunner RightScroll">
       <CommandRunnerCreateInfo Commands="" />
     </GameObject>
-    <Command Name="Draw Map" Guid="b6e09a95-80fc-4b69-9c2a-a464f2548c1a" X="-77" Y="39" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" CommandValue="&amp;drawMapInfo" PreCommandData="const DrawMapInfo drawMapInfo = { &amp;field_map, 0, 0, 0, 0, 32, 24 };" />
+    <Command Name="Draw Map" Guid="b6e09a95-80fc-4b69-9c2a-a464f2548c1a" X="-77" Y="39" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False">
+      <DrawMapCommandData MapResource="C:\Dropbox\GenesisDev\projects\RadRuby\project\gamedata\generated\mapthemes\field.tmx" X="1" Y="2" MapX="3" MapY="4" Width="5" Height="77" />
+    </Command>
   </EditorObjects>
 </Scene>

@@ -13,9 +13,9 @@ typedef struct
 	u8 mapy;	// tile map source y
 	u8 width;	// the width of the map section to draw
 	u8 height;  // the height of the map section to draw
-} DrawMapInfo;
+} DrawMapCommandData;
 
 // [COMMAND "Draw Map" DrawMapInfo]
-void DrawMap(const DrawMapInfo* drawMapInfo);
+void DrawMap(const DrawMapCommandData* drawMapCommandData);
 
 #endif
