@@ -28,7 +28,10 @@
       <CommandRunnerCreateInfo Commands="" />
     </GameObject>
     <Command Name="Draw Map" Guid="b6e09a95-80fc-4b69-9c2a-a464f2548c1a" X="-77" Y="39" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False">
-      <DrawMapCommandData MapResource="C:\Dropbox\GenesisDev\projects\RadRuby\project\gamedata\generated\mapthemes\field.tmx" X="1" Y="2" MapX="3" MapY="4" Width="5" Height="77" />
+      <DrawMapCommandData MapResource="C:\Dropbox\GenesisDev\projects\RadRuby\project\gamedata\generated\mapthemes\field.tmx" X="0" Y="0" MapX="0" MapY="0" Width="40" Height="24" />
+    </Command>
+    <Command Name="Draw Map" Guid="4e91f305-f4fe-497f-99b4-e7c6d59fe13e" X="-77" Y="168" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False">
+      <DrawMapCommandData MapResource="C:\Dropbox\GenesisDev\projects\RadRuby\project\gamedata\generated\mapthemes\field_background.tmx" X="0" Y="0" MapX="0" MapY="0" Width="64" Height="24" />
     </Command>
   </EditorObjects>
 </Scene>
