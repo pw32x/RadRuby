@@ -93,6 +93,7 @@
     <ClInclude Include="..\source\client\gameobjects\on_resource_loaded_callback.h" />
     <ClInclude Include="..\source\client\gameobjects\particle_effect.h" />
     <ClInclude Include="..\source\client\gameobjects\player.h" />
+    <ClInclude Include="..\source\client\gameobjects\right_scroller.h" />
     <ClInclude Include="..\source\client\gameobjects\shotgun.h" />
     <ClInclude Include="..\source\client\gameobjects\shotgun_item.h" />
     <ClInclude Include="..\source\client\gameobjects\threeshotflyer.h" />
@@ -207,6 +208,7 @@
     <ClCompile Include="..\source\client\gameobjects\on_resource_loaded_callback.c" />
     <ClCompile Include="..\source\client\gameobjects\particle_effect.c" />
     <ClCompile Include="..\source\client\gameobjects\player.c" />
+    <ClCompile Include="..\source\client\gameobjects\right_scroller.c" />
     <ClCompile Include="..\source\client\gameobjects\shotgun.c" />
     <ClCompile Include="..\source\client\gameobjects\shotgun_item.c" />
     <ClCompile Include="..\source\client\gameobjects\threeshotflyer.c" />

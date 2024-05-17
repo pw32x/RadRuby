@@ -409,6 +409,9 @@
     <ClInclude Include="..\source\client\exported\animations\robotrunner.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\client\gameobjects\right_scroller.h">
+      <Filter>Source Files\client\gameobjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\sgdk200\src\dma.c">
@@ -752,6 +755,9 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\robotspring.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\gameobjects\right_scroller.c">
+      <Filter>Source Files\client\gameobjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,7 @@
 		<InitFunction value="Right_Scroller_Init"/>	
 		<CustomData>
 			<Data value="const Ruby_StripMap* map" include="engine\map_types.h"/>
+			<Data value="u8 plane"/>		
 		</CustomData>			
 	</GameProperties>
 </GameObjectTemplate>
